@@ -13,5 +13,14 @@
     "idf.port": "/dev/ttyACM0",
     "idf.pythonBinPath": "/home/mnepraj/esp/esp-idf/tools/python_env/idf5.3_py3.12_env/bin/python",
     "idf.toolsPath": "/home/mnepraj/esp/esp-idf/tools",
-    "idf.flashType": "UART"
+    "idf.flashType": "UART",
+    "files.associations": {
+        "ili9341_touch.h": "c",
+        "lvgl_helpers.h": "c",
+        "ili9341.h": "c",
+        "xpt2046.h": "c",
+        "ledc_periph.h": "c",
+        "gpio.h": "c",
+        "lvgl.h": "c"
+    }
 }

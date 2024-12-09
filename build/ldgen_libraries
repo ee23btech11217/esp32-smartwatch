@@ -81,6 +81,6 @@
 /home/mnepraj/smart-watch/build/esp-idf/wifi_provisioning/libwifi_provisioning.a
 /home/mnepraj/smart-watch/build/esp-idf/wifi_manager/libwifi_manager.a
 /home/mnepraj/smart-watch/build/esp-idf/lvgl/liblvgl.a
-/home/mnepraj/smart-watch/build/esp-idf/ili9341/libili9341.a
-/home/mnepraj/smart-watch/build/esp-idf/mpu9250/libmpu9250.a
+/home/mnepraj/smart-watch/build/esp-idf/lvgl_esp32_drivers/liblvgl_esp32_drivers.a
 /home/mnepraj/smart-watch/build/esp-idf/main/libmain.a
+/home/mnepraj/smart-watch/build/esp-idf/mpu9250/libmpu9250.a

@@ -31694,6 +31694,3051 @@
                 "id": "component-config-lvgl-configuration",
                 "title": "LVGL configuration",
                 "type": "menu"
+            },
+            {
+                "children": [
+                    {
+                        "children": [
+                            {
+                                "children": [
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice LV_PREDEFINED_DISPLAY>",
+                                        "help": null,
+                                        "id": "LV_PREDEFINED_DISPLAY_NONE",
+                                        "name": "LV_PREDEFINED_DISPLAY_NONE",
+                                        "range": null,
+                                        "title": "None",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice LV_PREDEFINED_DISPLAY>",
+                                        "help": null,
+                                        "id": "LV_PREDEFINED_DISPLAY_WROVER4",
+                                        "name": "LV_PREDEFINED_DISPLAY_WROVER4",
+                                        "range": null,
+                                        "title": "ESP-Wrover-KIT v4.1",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice LV_PREDEFINED_DISPLAY>",
+                                        "help": null,
+                                        "id": "LV_PREDEFINED_DISPLAY_M5STACK",
+                                        "name": "LV_PREDEFINED_DISPLAY_M5STACK",
+                                        "range": null,
+                                        "title": "M5Stack",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice LV_PREDEFINED_DISPLAY>",
+                                        "help": null,
+                                        "id": "LV_PREDEFINED_DISPLAY_M5CORE2",
+                                        "name": "LV_PREDEFINED_DISPLAY_M5CORE2",
+                                        "range": null,
+                                        "title": "M5Core2",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice LV_PREDEFINED_DISPLAY>",
+                                        "help": null,
+                                        "id": "LV_PREDEFINED_DISPLAY_M5STICK",
+                                        "name": "LV_PREDEFINED_DISPLAY_M5STICK",
+                                        "range": null,
+                                        "title": "M5Stick",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice LV_PREDEFINED_DISPLAY>",
+                                        "help": null,
+                                        "id": "LV_PREDEFINED_DISPLAY_M5STICKC",
+                                        "name": "LV_PREDEFINED_DISPLAY_M5STICKC",
+                                        "range": null,
+                                        "title": "M5StickC",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice LV_PREDEFINED_DISPLAY>",
+                                        "help": null,
+                                        "id": "LV_PREDEFINED_DISPLAY_ERTFT0356",
+                                        "name": "LV_PREDEFINED_DISPLAY_ERTFT0356",
+                                        "range": null,
+                                        "title": "ER-TFT035-6",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice LV_PREDEFINED_DISPLAY>",
+                                        "help": null,
+                                        "id": "LV_PREDEFINED_DISPLAY_ADA_FEATHERWING",
+                                        "name": "LV_PREDEFINED_DISPLAY_ADA_FEATHERWING",
+                                        "range": null,
+                                        "title": "Adafruit 3.5 Featherwing",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice LV_PREDEFINED_DISPLAY>",
+                                        "help": null,
+                                        "id": "LV_PREDEFINED_DISPLAY_RPI_MPI3501",
+                                        "name": "LV_PREDEFINED_DISPLAY_RPI_MPI3501",
+                                        "range": null,
+                                        "title": "RPi MPI3501",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice LV_PREDEFINED_DISPLAY>",
+                                        "help": null,
+                                        "id": "LV_PREDEFINED_DISPLAY_WEMOS_LOLIN",
+                                        "name": "LV_PREDEFINED_DISPLAY_WEMOS_LOLIN",
+                                        "range": null,
+                                        "title": "Wemos Lolin OLED",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice LV_PREDEFINED_DISPLAY>",
+                                        "help": null,
+                                        "id": "LV_PREDEFINED_DISPLAY_ATAG",
+                                        "name": "LV_PREDEFINED_DISPLAY_ATAG",
+                                        "range": null,
+                                        "title": "AIRcable ATAGv3",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice LV_PREDEFINED_DISPLAY>",
+                                        "help": null,
+                                        "id": "LV_PREDEFINED_DISPLAY_RPI_RA8875",
+                                        "name": "LV_PREDEFINED_DISPLAY_RPI_RA8875",
+                                        "range": null,
+                                        "title": "RAiO RA8875",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice LV_PREDEFINED_DISPLAY>",
+                                        "help": null,
+                                        "id": "LV_PREDEFINED_DISPLAY_TTGO",
+                                        "name": "LV_PREDEFINED_DISPLAY_TTGO",
+                                        "range": null,
+                                        "title": "TTGO T-Display",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice LV_PREDEFINED_DISPLAY>",
+                                        "help": null,
+                                        "id": "LV_PREDEFINED_DISPLAY_TTGO_CAMERA_PLUS",
+                                        "name": "LV_PREDEFINED_DISPLAY_TTGO_CAMERA_PLUS",
+                                        "range": null,
+                                        "title": "TTGO Camera Plus",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice LV_PREDEFINED_DISPLAY>",
+                                        "help": null,
+                                        "id": "LV_PREDEFINED_DISPLAY_WT32_SC01",
+                                        "name": "LV_PREDEFINED_DISPLAY_WT32_SC01",
+                                        "range": null,
+                                        "title": "Wireless Tag WT32-SC01",
+                                        "type": "bool"
+                                    }
+                                ],
+                                "depends_on": null,
+                                "help": "Select predefined display configuration",
+                                "id": "component-config-lvgl-esp-drivers-lvgl-tft-display-controller-select-predefined-display-configuration",
+                                "name": "LV_PREDEFINED_DISPLAY",
+                                "title": "Select predefined display configuration",
+                                "type": "choice"
+                            },
+                            {
+                                "children": [],
+                                "depends_on": null,
+                                "help": "ILI9341 display controller.",
+                                "id": "LV_TFT_DISPLAY_CONTROLLER_ILI9341",
+                                "name": "LV_TFT_DISPLAY_CONTROLLER_ILI9341",
+                                "range": null,
+                                "title": null,
+                                "type": "bool"
+                            },
+                            {
+                                "children": [],
+                                "depends_on": null,
+                                "help": "ILI9481 display controller.",
+                                "id": "LV_TFT_DISPLAY_CONTROLLER_ILI9481",
+                                "name": "LV_TFT_DISPLAY_CONTROLLER_ILI9481",
+                                "range": null,
+                                "title": null,
+                                "type": "bool"
+                            },
+                            {
+                                "children": [],
+                                "depends_on": null,
+                                "help": "ILI9488 display controller.",
+                                "id": "LV_TFT_DISPLAY_CONTROLLER_ILI9488",
+                                "name": "LV_TFT_DISPLAY_CONTROLLER_ILI9488",
+                                "range": null,
+                                "title": null,
+                                "type": "bool"
+                            },
+                            {
+                                "children": [],
+                                "depends_on": null,
+                                "help": "ILI9486 display controller.",
+                                "id": "LV_TFT_DISPLAY_CONTROLLER_ILI9486",
+                                "name": "LV_TFT_DISPLAY_CONTROLLER_ILI9486",
+                                "range": null,
+                                "title": null,
+                                "type": "bool"
+                            },
+                            {
+                                "children": [],
+                                "depends_on": null,
+                                "help": "ST7789 display controller.",
+                                "id": "LV_TFT_DISPLAY_CONTROLLER_ST7789",
+                                "name": "LV_TFT_DISPLAY_CONTROLLER_ST7789",
+                                "range": null,
+                                "title": null,
+                                "type": "bool"
+                            },
+                            {
+                                "children": [],
+                                "depends_on": null,
+                                "help": "GC9A01 display controller.",
+                                "id": "LV_TFT_DISPLAY_CONTROLLER_GC9A01",
+                                "name": "LV_TFT_DISPLAY_CONTROLLER_GC9A01",
+                                "range": null,
+                                "title": null,
+                                "type": "bool"
+                            },
+                            {
+                                "children": [],
+                                "depends_on": null,
+                                "help": "ST7735S display controller.",
+                                "id": "LV_TFT_DISPLAY_CONTROLLER_ST7735S",
+                                "name": "LV_TFT_DISPLAY_CONTROLLER_ST7735S",
+                                "range": null,
+                                "title": null,
+                                "type": "bool"
+                            },
+                            {
+                                "children": [],
+                                "depends_on": null,
+                                "help": "HX8357 display controller.",
+                                "id": "LV_TFT_DISPLAY_CONTROLLER_HX8357",
+                                "name": "LV_TFT_DISPLAY_CONTROLLER_HX8357",
+                                "range": null,
+                                "title": null,
+                                "type": "bool"
+                            },
+                            {
+                                "children": [],
+                                "depends_on": null,
+                                "help": "SH1107 display controller.",
+                                "id": "LV_TFT_DISPLAY_CONTROLLER_SH1107",
+                                "name": "LV_TFT_DISPLAY_CONTROLLER_SH1107",
+                                "range": null,
+                                "title": null,
+                                "type": "bool"
+                            },
+                            {
+                                "children": [],
+                                "depends_on": null,
+                                "help": "SSD1306 display controller.",
+                                "id": "LV_TFT_DISPLAY_CONTROLLER_SSD1306",
+                                "name": "LV_TFT_DISPLAY_CONTROLLER_SSD1306",
+                                "range": null,
+                                "title": null,
+                                "type": "bool"
+                            },
+                            {
+                                "children": [],
+                                "depends_on": null,
+                                "help": "FT81x display controller.",
+                                "id": "LV_TFT_DISPLAY_CONTROLLER_FT81X",
+                                "name": "LV_TFT_DISPLAY_CONTROLLER_FT81X",
+                                "range": null,
+                                "title": null,
+                                "type": "bool"
+                            },
+                            {
+                                "children": [],
+                                "depends_on": null,
+                                "help": "IL3820 epaper display controller.",
+                                "id": "LV_TFT_DISPLAY_CONTROLLER_IL3820",
+                                "name": "LV_TFT_DISPLAY_CONTROLLER_IL3820",
+                                "range": null,
+                                "title": null,
+                                "type": "bool"
+                            },
+                            {
+                                "children": [],
+                                "depends_on": null,
+                                "help": "FitiPower JD79653A display controller for GoodDisplay GDEW0154M09 e-paper panel",
+                                "id": "LV_TFT_DISPLAY_CONTROLLER_JD79653A",
+                                "name": "LV_TFT_DISPLAY_CONTROLLER_JD79653A",
+                                "range": null,
+                                "title": null,
+                                "type": "bool"
+                            },
+                            {
+                                "children": [],
+                                "depends_on": null,
+                                "help": "UltraChip UC8151D display controller with GoodDisplay GDEW0154M10 DES e-paper panel",
+                                "id": "LV_TFT_DISPLAY_CONTROLLER_UC8151D",
+                                "name": "LV_TFT_DISPLAY_CONTROLLER_UC8151D",
+                                "range": null,
+                                "title": null,
+                                "type": "bool"
+                            },
+                            {
+                                "children": [],
+                                "depends_on": null,
+                                "help": "RA8875 display controller.",
+                                "id": "LV_TFT_DISPLAY_CONTROLLER_RA8875",
+                                "name": "LV_TFT_DISPLAY_CONTROLLER_RA8875",
+                                "range": null,
+                                "title": null,
+                                "type": "bool"
+                            },
+                            {
+                                "children": [],
+                                "depends_on": null,
+                                "help": "ST7796S display controller.",
+                                "id": "LV_TFT_DISPLAY_CONTROLLER_ST7796S",
+                                "name": "LV_TFT_DISPLAY_CONTROLLER_ST7796S",
+                                "range": null,
+                                "title": null,
+                                "type": "bool"
+                            },
+                            {
+                                "children": [],
+                                "depends_on": null,
+                                "help": "ILI9163C display controller.",
+                                "id": "LV_TFT_DISPLAY_CONTROLLER_ILI9163C",
+                                "name": "LV_TFT_DISPLAY_CONTROLLER_ILI9163C",
+                                "range": null,
+                                "title": null,
+                                "type": "bool"
+                            },
+                            {
+                                "children": [],
+                                "depends_on": null,
+                                "help": "PCD8544 display controller (Nokia 3110/5110)",
+                                "id": "LV_TFT_DISPLAY_CONTROLLER_PCD8544",
+                                "name": "LV_TFT_DISPLAY_CONTROLLER_PCD8544",
+                                "range": null,
+                                "title": null,
+                                "type": "bool"
+                            },
+                            {
+                                "children": [],
+                                "depends_on": null,
+                                "help": "Display controller protocol SPI",
+                                "id": "LV_TFT_DISPLAY_PROTOCOL_SPI",
+                                "name": "LV_TFT_DISPLAY_PROTOCOL_SPI",
+                                "range": null,
+                                "title": null,
+                                "type": "bool"
+                            },
+                            {
+                                "children": [],
+                                "depends_on": null,
+                                "help": "Display controller protocol I2C",
+                                "id": "LV_I2C_DISPLAY",
+                                "name": "LV_I2C_DISPLAY",
+                                "range": null,
+                                "title": null,
+                                "type": "bool"
+                            },
+                            {
+                                "children": [
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice DISPLAY_ORIENTATION>",
+                                        "help": null,
+                                        "id": "LV_DISPLAY_ORIENTATION_PORTRAIT",
+                                        "name": "LV_DISPLAY_ORIENTATION_PORTRAIT",
+                                        "range": null,
+                                        "title": "Portrait",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice DISPLAY_ORIENTATION>",
+                                        "help": null,
+                                        "id": "LV_DISPLAY_ORIENTATION_PORTRAIT_INVERTED",
+                                        "name": "LV_DISPLAY_ORIENTATION_PORTRAIT_INVERTED",
+                                        "range": null,
+                                        "title": "Portrait inverted",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice DISPLAY_ORIENTATION>",
+                                        "help": null,
+                                        "id": "LV_DISPLAY_ORIENTATION_LANDSCAPE",
+                                        "name": "LV_DISPLAY_ORIENTATION_LANDSCAPE",
+                                        "range": null,
+                                        "title": "Landscape",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice DISPLAY_ORIENTATION>",
+                                        "help": null,
+                                        "id": "LV_DISPLAY_ORIENTATION_LANDSCAPE_INVERTED",
+                                        "name": "LV_DISPLAY_ORIENTATION_LANDSCAPE_INVERTED",
+                                        "range": null,
+                                        "title": "Landscape inverted",
+                                        "type": "bool"
+                                    }
+                                ],
+                                "depends_on": null,
+                                "help": null,
+                                "id": "component-config-lvgl-esp-drivers-lvgl-tft-display-controller-display-orientation",
+                                "name": "DISPLAY_ORIENTATION",
+                                "title": "Display orientation",
+                                "type": "choice"
+                            },
+                            {
+                                "children": [],
+                                "depends_on": null,
+                                "help": null,
+                                "id": "LV_DISPLAY_ORIENTATION",
+                                "name": "LV_DISPLAY_ORIENTATION",
+                                "range": null,
+                                "title": null,
+                                "type": "int"
+                            },
+                            {
+                                "children": [],
+                                "depends_on": null,
+                                "help": "Display area doesn't start at address 0",
+                                "id": "LV_TFT_DISPLAY_OFFSETS",
+                                "name": "LV_TFT_DISPLAY_OFFSETS",
+                                "range": null,
+                                "title": null,
+                                "type": "bool"
+                            },
+                            {
+                                "children": [],
+                                "depends_on": "LV_TFT_DISPLAY_OFFSETS",
+                                "help": null,
+                                "id": "LV_TFT_DISPLAY_X_OFFSET",
+                                "name": "LV_TFT_DISPLAY_X_OFFSET",
+                                "range": null,
+                                "title": "X offset",
+                                "type": "int"
+                            },
+                            {
+                                "children": [],
+                                "depends_on": "LV_TFT_DISPLAY_OFFSETS",
+                                "help": null,
+                                "id": "LV_TFT_DISPLAY_Y_OFFSET",
+                                "name": "LV_TFT_DISPLAY_Y_OFFSET",
+                                "range": null,
+                                "title": "Y offset",
+                                "type": "int"
+                            },
+                            {
+                                "children": [],
+                                "depends_on": null,
+                                "help": "A monochrome display is used.",
+                                "id": "LV_TFT_DISPLAY_MONOCHROME",
+                                "name": "LV_TFT_DISPLAY_MONOCHROME",
+                                "range": null,
+                                "title": null,
+                                "type": "bool"
+                            },
+                            {
+                                "children": [
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice>",
+                                        "help": null,
+                                        "id": "LV_PREDEFINED_PINS_NONE",
+                                        "name": "LV_PREDEFINED_PINS_NONE",
+                                        "range": null,
+                                        "title": "None",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice>",
+                                        "help": null,
+                                        "id": "LV_PREDEFINED_PINS_38V4",
+                                        "name": "LV_PREDEFINED_PINS_38V4",
+                                        "range": null,
+                                        "title": "ESP32 DevKit v4 with 38 pins",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice>",
+                                        "help": null,
+                                        "id": "LV_PREDEFINED_PINS_30",
+                                        "name": "LV_PREDEFINED_PINS_30",
+                                        "range": null,
+                                        "title": "ESP32 Devkit v1 with 30 pins",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice>",
+                                        "help": null,
+                                        "id": "LV_PREDEFINED_PINS_38V1",
+                                        "name": "LV_PREDEFINED_PINS_38V1",
+                                        "range": null,
+                                        "title": "Dev Board with 38 pins",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice>",
+                                        "help": null,
+                                        "id": "LV_PREDEFINED_PINS_TKOALA",
+                                        "name": "LV_PREDEFINED_PINS_TKOALA",
+                                        "range": null,
+                                        "title": "TTGO Koala",
+                                        "type": "bool"
+                                    }
+                                ],
+                                "depends_on": null,
+                                "help": "Select predefined board pin out configuration.",
+                                "id": "component-config-lvgl-esp-drivers-lvgl-tft-display-controller-select-predefined-board-pinouts",
+                                "name": null,
+                                "title": "Select predefined board pinouts",
+                                "type": "choice"
+                            },
+                            {
+                                "children": [
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice>",
+                                        "help": null,
+                                        "id": "LV_TFT_DISPLAY_USER_CONTROLLER_ILI9341",
+                                        "name": "LV_TFT_DISPLAY_USER_CONTROLLER_ILI9341",
+                                        "range": null,
+                                        "title": "ILI9341",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice>",
+                                        "help": null,
+                                        "id": "LV_TFT_DISPLAY_USER_CONTROLLER_ILI9481",
+                                        "name": "LV_TFT_DISPLAY_USER_CONTROLLER_ILI9481",
+                                        "range": null,
+                                        "title": "ILI9481",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice>",
+                                        "help": null,
+                                        "id": "LV_TFT_DISPLAY_USER_CONTROLLER_ILI9486",
+                                        "name": "LV_TFT_DISPLAY_USER_CONTROLLER_ILI9486",
+                                        "range": null,
+                                        "title": "ILI9486",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice>",
+                                        "help": null,
+                                        "id": "LV_TFT_DISPLAY_USER_CONTROLLER_ILI9488",
+                                        "name": "LV_TFT_DISPLAY_USER_CONTROLLER_ILI9488",
+                                        "range": null,
+                                        "title": "ILI9488",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice>",
+                                        "help": null,
+                                        "id": "LV_TFT_DISPLAY_USER_CONTROLLER_ST7789",
+                                        "name": "LV_TFT_DISPLAY_USER_CONTROLLER_ST7789",
+                                        "range": null,
+                                        "title": "ST7789",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice>",
+                                        "help": null,
+                                        "id": "LV_TFT_DISPLAY_USER_CONTROLLER_ST7796S",
+                                        "name": "LV_TFT_DISPLAY_USER_CONTROLLER_ST7796S",
+                                        "range": null,
+                                        "title": "ST7796S",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice>",
+                                        "help": null,
+                                        "id": "LV_TFT_DISPLAY_USER_CONTROLLER_GC9A01",
+                                        "name": "LV_TFT_DISPLAY_USER_CONTROLLER_GC9A01",
+                                        "range": null,
+                                        "title": "GC9A01",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice>",
+                                        "help": null,
+                                        "id": "LV_TFT_DISPLAY_USER_CONTROLLER_ST7735S",
+                                        "name": "LV_TFT_DISPLAY_USER_CONTROLLER_ST7735S",
+                                        "range": null,
+                                        "title": "ST7735S",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice>",
+                                        "help": null,
+                                        "id": "LV_TFT_DISPLAY_USER_CONTROLLER_HX8357",
+                                        "name": "LV_TFT_DISPLAY_USER_CONTROLLER_HX8357",
+                                        "range": null,
+                                        "title": "HX8357",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice>",
+                                        "help": null,
+                                        "id": "LV_TFT_DISPLAY_USER_CONTROLLER_SH1107",
+                                        "name": "LV_TFT_DISPLAY_USER_CONTROLLER_SH1107",
+                                        "range": null,
+                                        "title": "SH1107",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice>",
+                                        "help": null,
+                                        "id": "LV_TFT_DISPLAY_USER_CONTROLLER_SSD1306",
+                                        "name": "LV_TFT_DISPLAY_USER_CONTROLLER_SSD1306",
+                                        "range": null,
+                                        "title": "SSD1306",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice>",
+                                        "help": null,
+                                        "id": "LV_TFT_DISPLAY_USER_CONTROLLER_FT81X",
+                                        "name": "LV_TFT_DISPLAY_USER_CONTROLLER_FT81X",
+                                        "range": null,
+                                        "title": "FT81X",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice>",
+                                        "help": null,
+                                        "id": "LV_TFT_DISPLAY_USER_CONTROLLER_IL3820",
+                                        "name": "LV_TFT_DISPLAY_USER_CONTROLLER_IL3820",
+                                        "range": null,
+                                        "title": "IL3820",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice>",
+                                        "help": null,
+                                        "id": "LV_TFT_DISPLAY_USER_CONTROLLER_JD79653A",
+                                        "name": "LV_TFT_DISPLAY_USER_CONTROLLER_JD79653A",
+                                        "range": null,
+                                        "title": "JD79653A",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice>",
+                                        "help": null,
+                                        "id": "LV_TFT_DISPLAY_USER_CONTROLLER_UC8151D",
+                                        "name": "LV_TFT_DISPLAY_USER_CONTROLLER_UC8151D",
+                                        "range": null,
+                                        "title": "UC8151D",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice>",
+                                        "help": null,
+                                        "id": "LV_TFT_DISPLAY_USER_CONTROLLER_RA8875",
+                                        "name": "LV_TFT_DISPLAY_USER_CONTROLLER_RA8875",
+                                        "range": null,
+                                        "title": "RA8875",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice>",
+                                        "help": null,
+                                        "id": "LV_TFT_DISPLAY_USER_CONTROLLER_ILI9163C",
+                                        "name": "LV_TFT_DISPLAY_USER_CONTROLLER_ILI9163C",
+                                        "range": null,
+                                        "title": "ILI9163C",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice>",
+                                        "help": null,
+                                        "id": "LV_TFT_DISPLAY_USER_CONTROLLER_PCD8544",
+                                        "name": "LV_TFT_DISPLAY_USER_CONTROLLER_PCD8544",
+                                        "range": null,
+                                        "title": "PCD8544",
+                                        "type": "bool"
+                                    }
+                                ],
+                                "depends_on": null,
+                                "help": "Select the controller for your display.",
+                                "id": "component-config-lvgl-esp-drivers-lvgl-tft-display-controller-select-a-display-controller-model-",
+                                "name": null,
+                                "title": "Select a display controller model.",
+                                "type": "choice"
+                            },
+                            {
+                                "children": [
+                                    {
+                                        "children": [],
+                                        "depends_on": "CUSTOM_DISPLAY_BUFFER_SIZE",
+                                        "help": "See Display buffer on LVGL docs for more information.",
+                                        "id": "CUSTOM_DISPLAY_BUFFER_BYTES",
+                                        "name": "CUSTOM_DISPLAY_BUFFER_BYTES",
+                                        "range": null,
+                                        "title": "Custom buffer size (bytes)",
+                                        "type": "int"
+                                    }
+                                ],
+                                "depends_on": null,
+                                "help": "Enable to use a custom display buffer size.",
+                                "id": "CUSTOM_DISPLAY_BUFFER_SIZE",
+                                "name": "CUSTOM_DISPLAY_BUFFER_SIZE",
+                                "range": null,
+                                "title": "Use custom display buffer size (bytes)",
+                                "type": "bool"
+                            },
+                            {
+                                "children": [
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice>",
+                                        "help": null,
+                                        "id": "LV_FT81X_CONFIG_EVE_VM800B35A",
+                                        "name": "LV_FT81X_CONFIG_EVE_VM800B35A",
+                                        "range": null,
+                                        "title": "EVE_VM800B35A",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice>",
+                                        "help": null,
+                                        "id": "LV_FT81X_CONFIG_EVE_VM800B43A",
+                                        "name": "LV_FT81X_CONFIG_EVE_VM800B43A",
+                                        "range": null,
+                                        "title": "EVE_VM800B43A",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice>",
+                                        "help": null,
+                                        "id": "LV_FT81X_CONFIG_EVE_VM800B50A",
+                                        "name": "LV_FT81X_CONFIG_EVE_VM800B50A",
+                                        "range": null,
+                                        "title": "EVE_VM800B50A",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice>",
+                                        "help": null,
+                                        "id": "LV_FT81X_CONFIG_EVE_VM810C",
+                                        "name": "LV_FT81X_CONFIG_EVE_VM810C",
+                                        "range": null,
+                                        "title": "EVE_VM810C",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice>",
+                                        "help": null,
+                                        "id": "LV_FT81X_CONFIG_EVE_ME812A",
+                                        "name": "LV_FT81X_CONFIG_EVE_ME812A",
+                                        "range": null,
+                                        "title": "EVE_ME812A",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice>",
+                                        "help": null,
+                                        "id": "LV_FT81X_CONFIG_EVE_ME813A",
+                                        "name": "LV_FT81X_CONFIG_EVE_ME813A",
+                                        "range": null,
+                                        "title": "EVE_ME813A",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice>",
+                                        "help": null,
+                                        "id": "LV_FT81X_CONFIG_EVE_FT810CB_HY50HD",
+                                        "name": "LV_FT81X_CONFIG_EVE_FT810CB_HY50HD",
+                                        "range": null,
+                                        "title": "EVE_FT810CB_HY50HD",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice>",
+                                        "help": null,
+                                        "id": "LV_FT81X_CONFIG_EVE_FT811CB_HY50HD",
+                                        "name": "LV_FT81X_CONFIG_EVE_FT811CB_HY50HD",
+                                        "range": null,
+                                        "title": "EVE_FT811CB_HY50HD",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice>",
+                                        "help": null,
+                                        "id": "LV_FT81X_CONFIG_EVE_ET07",
+                                        "name": "LV_FT81X_CONFIG_EVE_ET07",
+                                        "range": null,
+                                        "title": "EVE_ET07",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice>",
+                                        "help": null,
+                                        "id": "LV_FT81X_CONFIG_EVE_RVT28",
+                                        "name": "LV_FT81X_CONFIG_EVE_RVT28",
+                                        "range": null,
+                                        "title": "EVE_RVT28",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice>",
+                                        "help": null,
+                                        "id": "LV_FT81X_CONFIG_EVE_RVT35",
+                                        "name": "LV_FT81X_CONFIG_EVE_RVT35",
+                                        "range": null,
+                                        "title": "EVE_RVT35",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice>",
+                                        "help": null,
+                                        "id": "LV_FT81X_CONFIG_EVE_RVT43",
+                                        "name": "LV_FT81X_CONFIG_EVE_RVT43",
+                                        "range": null,
+                                        "title": "EVE_RVT43",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice>",
+                                        "help": null,
+                                        "id": "LV_FT81X_CONFIG_EVE_RVT50",
+                                        "name": "LV_FT81X_CONFIG_EVE_RVT50",
+                                        "range": null,
+                                        "title": "EVE_RVT50",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice>",
+                                        "help": null,
+                                        "id": "LV_FT81X_CONFIG_EVE_RVT70",
+                                        "name": "LV_FT81X_CONFIG_EVE_RVT70",
+                                        "range": null,
+                                        "title": "EVE_RVT70",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice>",
+                                        "help": null,
+                                        "id": "LV_FT81X_CONFIG_EVE_RiTFT43",
+                                        "name": "LV_FT81X_CONFIG_EVE_RiTFT43",
+                                        "range": null,
+                                        "title": "EVE_RiTFT43",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice>",
+                                        "help": null,
+                                        "id": "LV_FT81X_CONFIG_EVE_RiTFT50",
+                                        "name": "LV_FT81X_CONFIG_EVE_RiTFT50",
+                                        "range": null,
+                                        "title": "EVE_RiTFT50",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice>",
+                                        "help": null,
+                                        "id": "LV_FT81X_CONFIG_EVE_RiTFT70",
+                                        "name": "LV_FT81X_CONFIG_EVE_RiTFT70",
+                                        "range": null,
+                                        "title": "EVE_RiTFT70",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice>",
+                                        "help": null,
+                                        "id": "LV_FT81X_CONFIG_EVE_EVE2_29",
+                                        "name": "LV_FT81X_CONFIG_EVE_EVE2_29",
+                                        "range": null,
+                                        "title": "EVE_EVE2_29",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice>",
+                                        "help": null,
+                                        "id": "LV_FT81X_CONFIG_EVE_EVE2_35",
+                                        "name": "LV_FT81X_CONFIG_EVE_EVE2_35",
+                                        "range": null,
+                                        "title": "EVE_EVE2_35",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice>",
+                                        "help": null,
+                                        "id": "LV_FT81X_CONFIG_EVE_EVE2_35G",
+                                        "name": "LV_FT81X_CONFIG_EVE_EVE2_35G",
+                                        "range": null,
+                                        "title": "EVE_EVE2_35G",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice>",
+                                        "help": null,
+                                        "id": "LV_FT81X_CONFIG_EVE_EVE2_38",
+                                        "name": "LV_FT81X_CONFIG_EVE_EVE2_38",
+                                        "range": null,
+                                        "title": "EVE_EVE2_38",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice>",
+                                        "help": null,
+                                        "id": "LV_FT81X_CONFIG_EVE_EVE2_38G",
+                                        "name": "LV_FT81X_CONFIG_EVE_EVE2_38G",
+                                        "range": null,
+                                        "title": "EVE_EVE2_38G",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice>",
+                                        "help": null,
+                                        "id": "LV_FT81X_CONFIG_EVE_EVE2_43",
+                                        "name": "LV_FT81X_CONFIG_EVE_EVE2_43",
+                                        "range": null,
+                                        "title": "EVE_EVE2_43",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice>",
+                                        "help": null,
+                                        "id": "LV_FT81X_CONFIG_EVE_EVE2_43G",
+                                        "name": "LV_FT81X_CONFIG_EVE_EVE2_43G",
+                                        "range": null,
+                                        "title": "EVE_EVE2_43G",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice>",
+                                        "help": null,
+                                        "id": "LV_FT81X_CONFIG_EVE_EVE2_50",
+                                        "name": "LV_FT81X_CONFIG_EVE_EVE2_50",
+                                        "range": null,
+                                        "title": "EVE_EVE2_50",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice>",
+                                        "help": null,
+                                        "id": "LV_FT81X_CONFIG_EVE_EVE2_50G",
+                                        "name": "LV_FT81X_CONFIG_EVE_EVE2_50G",
+                                        "range": null,
+                                        "title": "EVE_EVE2_50G",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice>",
+                                        "help": null,
+                                        "id": "LV_FT81X_CONFIG_EVE_EVE2_70",
+                                        "name": "LV_FT81X_CONFIG_EVE_EVE2_70",
+                                        "range": null,
+                                        "title": "EVE_EVE2_70",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice>",
+                                        "help": null,
+                                        "id": "LV_FT81X_CONFIG_EVE_EVE2_70G",
+                                        "name": "LV_FT81X_CONFIG_EVE_EVE2_70G",
+                                        "range": null,
+                                        "title": "EVE_EVE2_70G",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice>",
+                                        "help": null,
+                                        "id": "LV_FT81X_CONFIG_EVE_EVE3_35",
+                                        "name": "LV_FT81X_CONFIG_EVE_EVE3_35",
+                                        "range": null,
+                                        "title": "EVE_EVE3_35",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice>",
+                                        "help": null,
+                                        "id": "LV_FT81X_CONFIG_EVE_EVE3_35G",
+                                        "name": "LV_FT81X_CONFIG_EVE_EVE3_35G",
+                                        "range": null,
+                                        "title": "EVE_EVE3_35G",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice>",
+                                        "help": null,
+                                        "id": "LV_FT81X_CONFIG_EVE_EVE3_43",
+                                        "name": "LV_FT81X_CONFIG_EVE_EVE3_43",
+                                        "range": null,
+                                        "title": "EVE_EVE3_43",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice>",
+                                        "help": null,
+                                        "id": "LV_FT81X_CONFIG_EVE_EVE3_43G",
+                                        "name": "LV_FT81X_CONFIG_EVE_EVE3_43G",
+                                        "range": null,
+                                        "title": "EVE_EVE3_43G",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice>",
+                                        "help": null,
+                                        "id": "LV_FT81X_CONFIG_EVE_EVE3_50",
+                                        "name": "LV_FT81X_CONFIG_EVE_EVE3_50",
+                                        "range": null,
+                                        "title": "EVE_EVE3_50",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice>",
+                                        "help": null,
+                                        "id": "LV_FT81X_CONFIG_EVE_EVE3_50G",
+                                        "name": "LV_FT81X_CONFIG_EVE_EVE3_50G",
+                                        "range": null,
+                                        "title": "EVE_EVE3_50G",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice>",
+                                        "help": null,
+                                        "id": "LV_FT81X_CONFIG_EVE_EVE3_70",
+                                        "name": "LV_FT81X_CONFIG_EVE_EVE3_70",
+                                        "range": null,
+                                        "title": "EVE_EVE3_70",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice>",
+                                        "help": null,
+                                        "id": "LV_FT81X_CONFIG_EVE_EVE3_70G",
+                                        "name": "LV_FT81X_CONFIG_EVE_EVE3_70G",
+                                        "range": null,
+                                        "title": "EVE_EVE3_70G",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice>",
+                                        "help": null,
+                                        "id": "LV_FT81X_CONFIG_EVE_NHD_35",
+                                        "name": "LV_FT81X_CONFIG_EVE_NHD_35",
+                                        "range": null,
+                                        "title": "EVE_NHD_35",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice>",
+                                        "help": null,
+                                        "id": "LV_FT81X_CONFIG_EVE_NHD_43",
+                                        "name": "LV_FT81X_CONFIG_EVE_NHD_43",
+                                        "range": null,
+                                        "title": "EVE_NHD_43",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice>",
+                                        "help": null,
+                                        "id": "LV_FT81X_CONFIG_EVE_NHD_50",
+                                        "name": "LV_FT81X_CONFIG_EVE_NHD_50",
+                                        "range": null,
+                                        "title": "EVE_NHD_50",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice>",
+                                        "help": null,
+                                        "id": "LV_FT81X_CONFIG_EVE_NHD_70",
+                                        "name": "LV_FT81X_CONFIG_EVE_NHD_70",
+                                        "range": null,
+                                        "title": "EVE_NHD_70",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice>",
+                                        "help": null,
+                                        "id": "LV_FT81X_CONFIG_EVE_ADAM101",
+                                        "name": "LV_FT81X_CONFIG_EVE_ADAM101",
+                                        "range": null,
+                                        "title": "EVE_ADAM101",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice>",
+                                        "help": null,
+                                        "id": "LV_FT81X_CONFIG_EVE_CFAF240400C1_030SC",
+                                        "name": "LV_FT81X_CONFIG_EVE_CFAF240400C1_030SC",
+                                        "range": null,
+                                        "title": "EVE_CFAF240400C1_030SC",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice>",
+                                        "help": null,
+                                        "id": "LV_FT81X_CONFIG_EVE_CFAF320240F_035T",
+                                        "name": "LV_FT81X_CONFIG_EVE_CFAF320240F_035T",
+                                        "range": null,
+                                        "title": "EVE_CFAF320240F_035T",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice>",
+                                        "help": null,
+                                        "id": "LV_FT81X_CONFIG_EVE_CFAF480128A0_039TC",
+                                        "name": "LV_FT81X_CONFIG_EVE_CFAF480128A0_039TC",
+                                        "range": null,
+                                        "title": "EVE_CFAF480128A0_039TC",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice>",
+                                        "help": null,
+                                        "id": "LV_FT81X_CONFIG_EVE_CFAF800480E0_050SC",
+                                        "name": "LV_FT81X_CONFIG_EVE_CFAF800480E0_050SC",
+                                        "range": null,
+                                        "title": "EVE_CFAF800480E0_050SC",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice>",
+                                        "help": null,
+                                        "id": "LV_FT81X_CONFIG_EVE_PAF90",
+                                        "name": "LV_FT81X_CONFIG_EVE_PAF90",
+                                        "range": null,
+                                        "title": "EVE_PAF90",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice>",
+                                        "help": null,
+                                        "id": "LV_FT81X_CONFIG_EVE_SUNFLOWER",
+                                        "name": "LV_FT81X_CONFIG_EVE_SUNFLOWER",
+                                        "range": null,
+                                        "title": "EVE_SUNFLOWER",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice>",
+                                        "help": null,
+                                        "id": "LV_FT81X_CONFIG_EVE_CONNECTEVE",
+                                        "name": "LV_FT81X_CONFIG_EVE_CONNECTEVE",
+                                        "range": null,
+                                        "title": "EVE_CONNECTEVE",
+                                        "type": "bool"
+                                    }
+                                ],
+                                "depends_on": null,
+                                "help": "Select a configuration for your FT81x display.",
+                                "id": "component-config-lvgl-esp-drivers-lvgl-tft-display-controller-select-a-ft81x-configuration-",
+                                "name": null,
+                                "title": "Select a FT81x configuration.",
+                                "type": "choice"
+                            },
+                            {
+                                "children": [
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice>",
+                                        "help": null,
+                                        "id": "LV_TFT_DISPLAY_SPI2_HOST",
+                                        "name": "LV_TFT_DISPLAY_SPI2_HOST",
+                                        "range": null,
+                                        "title": "SPI2_HOST",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice>",
+                                        "help": null,
+                                        "id": "LV_TFT_DISPLAY_SPI3_HOST",
+                                        "name": "LV_TFT_DISPLAY_SPI3_HOST",
+                                        "range": null,
+                                        "title": "SPI3_HOST",
+                                        "type": "bool"
+                                    }
+                                ],
+                                "depends_on": null,
+                                "help": "Select the SPI Bus the TFT Display is attached to.",
+                                "id": "component-config-lvgl-esp-drivers-lvgl-tft-display-controller-tft-spi-bus-",
+                                "name": null,
+                                "title": "TFT SPI Bus.",
+                                "type": "choice"
+                            },
+                            {
+                                "children": [
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice>",
+                                        "help": null,
+                                        "id": "LV_TFT_DISPLAY_SPI_TRANS_MODE_SIO",
+                                        "name": "LV_TFT_DISPLAY_SPI_TRANS_MODE_SIO",
+                                        "range": null,
+                                        "title": "SIO (MOSI/MISO)",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice>",
+                                        "help": null,
+                                        "id": "LV_TFT_DISPLAY_SPI_TRANS_MODE_DIO",
+                                        "name": "LV_TFT_DISPLAY_SPI_TRANS_MODE_DIO",
+                                        "range": null,
+                                        "title": "DIO (2-bit Dual SPI)",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice>",
+                                        "help": null,
+                                        "id": "LV_TFT_DISPLAY_SPI_TRANS_MODE_QIO",
+                                        "name": "LV_TFT_DISPLAY_SPI_TRANS_MODE_QIO",
+                                        "range": null,
+                                        "title": "QIO (4-bit Quad SPI)",
+                                        "type": "bool"
+                                    }
+                                ],
+                                "depends_on": null,
+                                "help": "Select the SPI SIO/DIO/QIO Transfer Mode for the TFT Display.",
+                                "id": "component-config-lvgl-esp-drivers-lvgl-tft-display-controller-tft-data-transfer-mode",
+                                "name": null,
+                                "title": "TFT Data Transfer Mode",
+                                "type": "choice"
+                            },
+                            {
+                                "children": [
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice>",
+                                        "help": null,
+                                        "id": "LV_TFT_DISPLAY_SPI_HALF_DUPLEX",
+                                        "name": "LV_TFT_DISPLAY_SPI_HALF_DUPLEX",
+                                        "range": null,
+                                        "title": "HALF DUPLEX",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "LV_TFT_DISPLAY_SPI_TRANS_MODE_SIO && <choice>",
+                                        "help": null,
+                                        "id": "LV_TFT_DISPLAY_SPI_FULL_DUPLEX",
+                                        "name": "LV_TFT_DISPLAY_SPI_FULL_DUPLEX",
+                                        "range": null,
+                                        "title": "FULL DUPLEX",
+                                        "type": "bool"
+                                    }
+                                ],
+                                "depends_on": null,
+                                "help": "Select the SPI Duplex Mode for the TFT Display.",
+                                "id": "component-config-lvgl-esp-drivers-lvgl-tft-display-controller-tft-spi-duplex-mode",
+                                "name": null,
+                                "title": "TFT SPI Duplex Mode",
+                                "type": "choice"
+                            },
+                            {
+                                "children": [
+                                    {
+                                        "children": [
+                                            {
+                                                "children": [],
+                                                "depends_on": "<choice>",
+                                                "help": null,
+                                                "id": "LV_TFT_SPI_CLK_DIVIDER_1",
+                                                "name": "LV_TFT_SPI_CLK_DIVIDER_1",
+                                                "range": null,
+                                                "title": "80 MHz",
+                                                "type": "bool"
+                                            },
+                                            {
+                                                "children": [],
+                                                "depends_on": "<choice>",
+                                                "help": null,
+                                                "id": "LV_TFT_SPI_CLK_DIVIDER_2",
+                                                "name": "LV_TFT_SPI_CLK_DIVIDER_2",
+                                                "range": null,
+                                                "title": "40 MHz",
+                                                "type": "bool"
+                                            },
+                                            {
+                                                "children": [],
+                                                "depends_on": "<choice>",
+                                                "help": null,
+                                                "id": "LV_TFT_SPI_CLK_DIVIDER_3",
+                                                "name": "LV_TFT_SPI_CLK_DIVIDER_3",
+                                                "range": null,
+                                                "title": "26.67 MHz",
+                                                "type": "bool"
+                                            },
+                                            {
+                                                "children": [],
+                                                "depends_on": "<choice>",
+                                                "help": null,
+                                                "id": "LV_TFT_SPI_CLK_DIVIDER_4",
+                                                "name": "LV_TFT_SPI_CLK_DIVIDER_4",
+                                                "range": null,
+                                                "title": "20 MHz",
+                                                "type": "bool"
+                                            },
+                                            {
+                                                "children": [],
+                                                "depends_on": "<choice>",
+                                                "help": null,
+                                                "id": "LV_TFT_SPI_CLK_DIVIDER_5",
+                                                "name": "LV_TFT_SPI_CLK_DIVIDER_5",
+                                                "range": null,
+                                                "title": "16 MHz",
+                                                "type": "bool"
+                                            },
+                                            {
+                                                "children": [],
+                                                "depends_on": "<choice>",
+                                                "help": null,
+                                                "id": "LV_TFT_SPI_CLK_DIVIDER_6",
+                                                "name": "LV_TFT_SPI_CLK_DIVIDER_6",
+                                                "range": null,
+                                                "title": "13.33 MHz",
+                                                "type": "bool"
+                                            },
+                                            {
+                                                "children": [],
+                                                "depends_on": "<choice>",
+                                                "help": null,
+                                                "id": "LV_TFT_SPI_CLK_DIVIDER_7",
+                                                "name": "LV_TFT_SPI_CLK_DIVIDER_7",
+                                                "range": null,
+                                                "title": "11.43 MHz",
+                                                "type": "bool"
+                                            },
+                                            {
+                                                "children": [],
+                                                "depends_on": "<choice>",
+                                                "help": null,
+                                                "id": "LV_TFT_SPI_CLK_DIVIDER_8",
+                                                "name": "LV_TFT_SPI_CLK_DIVIDER_8",
+                                                "range": null,
+                                                "title": "10 MHz",
+                                                "type": "bool"
+                                            },
+                                            {
+                                                "children": [],
+                                                "depends_on": "<choice>",
+                                                "help": null,
+                                                "id": "LV_TFT_SPI_CLK_DIVIDER_9",
+                                                "name": "LV_TFT_SPI_CLK_DIVIDER_9",
+                                                "range": null,
+                                                "title": "8.89 MHz",
+                                                "type": "bool"
+                                            },
+                                            {
+                                                "children": [],
+                                                "depends_on": "<choice>",
+                                                "help": null,
+                                                "id": "LV_TFT_SPI_CLK_DIVIDER_10",
+                                                "name": "LV_TFT_SPI_CLK_DIVIDER_10",
+                                                "range": null,
+                                                "title": "8 MHz",
+                                                "type": "bool"
+                                            },
+                                            {
+                                                "children": [],
+                                                "depends_on": "<choice>",
+                                                "help": null,
+                                                "id": "LV_TFT_SPI_CLK_DIVIDER_12",
+                                                "name": "LV_TFT_SPI_CLK_DIVIDER_12",
+                                                "range": null,
+                                                "title": "6.67 MHz",
+                                                "type": "bool"
+                                            },
+                                            {
+                                                "children": [],
+                                                "depends_on": "<choice>",
+                                                "help": null,
+                                                "id": "LV_TFT_SPI_CLK_DIVIDER_16",
+                                                "name": "LV_TFT_SPI_CLK_DIVIDER_16",
+                                                "range": null,
+                                                "title": "5 MHz",
+                                                "type": "bool"
+                                            },
+                                            {
+                                                "children": [],
+                                                "depends_on": "<choice>",
+                                                "help": null,
+                                                "id": "LV_TFT_SPI_CLK_DIVIDER_20",
+                                                "name": "LV_TFT_SPI_CLK_DIVIDER_20",
+                                                "range": null,
+                                                "title": "4 MHz",
+                                                "type": "bool"
+                                            },
+                                            {
+                                                "children": [],
+                                                "depends_on": "<choice>",
+                                                "help": null,
+                                                "id": "LV_TFT_SPI_CLK_DIVIDER_24",
+                                                "name": "LV_TFT_SPI_CLK_DIVIDER_24",
+                                                "range": null,
+                                                "title": "3.33 MHz",
+                                                "type": "bool"
+                                            },
+                                            {
+                                                "children": [],
+                                                "depends_on": "<choice>",
+                                                "help": null,
+                                                "id": "LV_TFT_SPI_CLK_DIVIDER_32",
+                                                "name": "LV_TFT_SPI_CLK_DIVIDER_32",
+                                                "range": null,
+                                                "title": "2.5 MHz",
+                                                "type": "bool"
+                                            },
+                                            {
+                                                "children": [],
+                                                "depends_on": "<choice>",
+                                                "help": null,
+                                                "id": "LV_TFT_SPI_CLK_DIVIDER_40",
+                                                "name": "LV_TFT_SPI_CLK_DIVIDER_40",
+                                                "range": null,
+                                                "title": "2 MHz",
+                                                "type": "bool"
+                                            },
+                                            {
+                                                "children": [],
+                                                "depends_on": "<choice>",
+                                                "help": null,
+                                                "id": "LV_TFT_SPI_CLK_DIVIDER_48",
+                                                "name": "LV_TFT_SPI_CLK_DIVIDER_48",
+                                                "range": null,
+                                                "title": "1.67 MHz",
+                                                "type": "bool"
+                                            },
+                                            {
+                                                "children": [],
+                                                "depends_on": "<choice>",
+                                                "help": null,
+                                                "id": "LV_TFT_SPI_CLK_DIVIDER_80",
+                                                "name": "LV_TFT_SPI_CLK_DIVIDER_80",
+                                                "range": null,
+                                                "title": "1 MHz",
+                                                "type": "bool"
+                                            }
+                                        ],
+                                        "depends_on": "LV_TFT_USE_CUSTOM_SPI_CLK_DIVIDER",
+                                        "help": null,
+                                        "id": "component-config-lvgl-esp-drivers-lvgl-tft-display-controller-use-custom-spi-clock-frequency--select-a-custom-frequency-",
+                                        "name": null,
+                                        "title": "Select a custom frequency.",
+                                        "type": "choice"
+                                    }
+                                ],
+                                "depends_on": null,
+                                "help": "Allows to use a custom divider for the SPI clock frequency.",
+                                "id": "LV_TFT_USE_CUSTOM_SPI_CLK_DIVIDER",
+                                "name": "LV_TFT_USE_CUSTOM_SPI_CLK_DIVIDER",
+                                "range": null,
+                                "title": "Use custom SPI clock frequency.",
+                                "type": "bool"
+                            },
+                            {
+                                "children": [],
+                                "depends_on": null,
+                                "help": null,
+                                "id": "LV_TFT_CUSTOM_SPI_CLK_DIVIDER",
+                                "name": "LV_TFT_CUSTOM_SPI_CLK_DIVIDER",
+                                "range": null,
+                                "title": null,
+                                "type": "int"
+                            },
+                            {
+                                "children": [],
+                                "depends_on": null,
+                                "help": "Display and TFT power supply on M5StickC is controlled using an\nAXP192 Power Mangerment IC. Select yes if you want to enable TFT IC\n(LDO3) and backlight power using AXP192 by LVGL, or select no if you\nwant to take care of power management in your own code.",
+                                "id": "LV_M5STICKC_HANDLE_AXP192",
+                                "name": "LV_M5STICKC_HANDLE_AXP192",
+                                "range": null,
+                                "title": "Handle Backlight and TFT power for M5StickC using AXP192.",
+                                "type": "bool"
+                            },
+                            {
+                                "children": [],
+                                "depends_on": null,
+                                "help": "If text is backwards on your display, try enabling this.",
+                                "id": "LV_INVERT_DISPLAY",
+                                "name": "LV_INVERT_DISPLAY",
+                                "range": null,
+                                "title": "IN DEPRECATION - Invert display.",
+                                "type": "bool"
+                            },
+                            {
+                                "children": [],
+                                "depends_on": null,
+                                "help": "If the colors look inverted on your display, try enabling this.\nIf it didn't help try LVGL configuration -> Swap the 2 bytes of RGB565 color.",
+                                "id": "LV_INVERT_COLORS",
+                                "name": "LV_INVERT_COLORS",
+                                "range": null,
+                                "title": "Invert colors in display",
+                                "type": "bool"
+                            },
+                            {
+                                "children": [
+                                    {
+                                        "children": [],
+                                        "depends_on": "LV_TFT_DISPLAY_CONTROLLER_RA8875",
+                                        "help": "Configure the value to use for PLLDIVM in PLLC0 register here.",
+                                        "id": "LV_DISP_RA8875_PLLDIVM",
+                                        "name": "LV_DISP_RA8875_PLLDIVM",
+                                        "range": null,
+                                        "title": "PLLDIVM value for RA8875 System Clock",
+                                        "type": "int"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "LV_TFT_DISPLAY_CONTROLLER_RA8875",
+                                        "help": "Configure the value to use for PLLDIVN in PLLC0 register here.",
+                                        "id": "LV_DISP_RA8875_PLLDIVN",
+                                        "name": "LV_DISP_RA8875_PLLDIVN",
+                                        "range": null,
+                                        "title": "PLLDIVN value for RA8875 System Clock",
+                                        "type": "int"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "LV_TFT_DISPLAY_CONTROLLER_RA8875",
+                                        "help": "Configure the value to use for PLLDIVK in PLLC1 register here.",
+                                        "id": "LV_DISP_RA8875_PLLDIVK",
+                                        "name": "LV_DISP_RA8875_PLLDIVK",
+                                        "range": null,
+                                        "title": "PLLDIVK value for RA8875 System Clock",
+                                        "type": "int"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "LV_TFT_DISPLAY_CONTROLLER_RA8875",
+                                        "help": "Configure the PCLK multiplier in PCSR register here.",
+                                        "id": "LV_DISP_RA8875_PCLK_MULTIPLIER",
+                                        "name": "LV_DISP_RA8875_PCLK_MULTIPLIER",
+                                        "range": null,
+                                        "title": "PCLK Period Setting",
+                                        "type": "int"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "LV_TFT_DISPLAY_CONTROLLER_RA8875",
+                                        "help": "Configure the PCLK to be inverted in PCSR register here.",
+                                        "id": "LV_DISP_RA8875_PCLK_INVERT",
+                                        "name": "LV_DISP_RA8875_PCLK_INVERT",
+                                        "range": null,
+                                        "title": "PCLK Inversion",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "LV_TFT_DISPLAY_CONTROLLER_RA8875",
+                                        "help": "Set to make data enable (DE) signal active low.",
+                                        "id": "LV_DISP_RA8875_DE_POLARITY",
+                                        "name": "LV_DISP_RA8875_DE_POLARITY",
+                                        "range": null,
+                                        "title": "Data Enable (DE) Polarity/Invert",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "LV_TFT_DISPLAY_CONTROLLER_RA8875",
+                                        "help": "Configure the Horizontal Non-Display Period (aka Horizontal Back Porch).\nHorizontal Non-Display Period(pixels) = 8*(HNDR+1) + 2*(HNDFTR/2+1) + 2",
+                                        "id": "LV_DISP_RA8875_HORI_NON_DISP_PERIOD",
+                                        "name": "LV_DISP_RA8875_HORI_NON_DISP_PERIOD",
+                                        "range": null,
+                                        "title": "Horizontal Non-Display Period",
+                                        "type": "int"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "LV_TFT_DISPLAY_CONTROLLER_RA8875",
+                                        "help": "Configure start position of HSYNC (aka Horizontal Front Porch).\nHSYNC Start Position(pixels) = 8*(HSTR+1)",
+                                        "id": "LV_DISP_RA8875_HSYNC_START",
+                                        "name": "LV_DISP_RA8875_HSYNC_START",
+                                        "range": null,
+                                        "title": "HSYNC Start Position",
+                                        "type": "int"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "LV_TFT_DISPLAY_CONTROLLER_RA8875",
+                                        "help": "Configure pulse width of HSYNC.\nHSYNC Pulse Width(pixels) = 8*(HPW+1)",
+                                        "id": "LV_DISP_RA8875_HSYNC_PW",
+                                        "name": "LV_DISP_RA8875_HSYNC_PW",
+                                        "range": null,
+                                        "title": "HSYNC Pulse Width",
+                                        "type": "int"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "LV_TFT_DISPLAY_CONTROLLER_RA8875",
+                                        "help": "Set to make HSYNC signal active high.",
+                                        "id": "LV_DISP_RA8875_HSYNC_POLARITY",
+                                        "name": "LV_DISP_RA8875_HSYNC_POLARITY",
+                                        "range": null,
+                                        "title": "HSYNC Polarity/Invert",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "LV_TFT_DISPLAY_CONTROLLER_RA8875",
+                                        "help": "Configure the Vertical Non-Display Period (aka Vertical Back Porch).\nVertical Non-Display Period(lines) = (VNDR+1)",
+                                        "id": "LV_DISP_RA8875_VERT_NON_DISP_PERIOD",
+                                        "name": "LV_DISP_RA8875_VERT_NON_DISP_PERIOD",
+                                        "range": null,
+                                        "title": "Vertical Non-Display Period",
+                                        "type": "int"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "LV_TFT_DISPLAY_CONTROLLER_RA8875",
+                                        "help": "Configure start position of VSYNC (aka Vertical Front Porch).\nVSYNC Start Position(lines) = (VSTR+1)",
+                                        "id": "LV_DISP_RA8875_VSYNC_START",
+                                        "name": "LV_DISP_RA8875_VSYNC_START",
+                                        "range": null,
+                                        "title": "VSYNC Start Position",
+                                        "type": "int"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "LV_TFT_DISPLAY_CONTROLLER_RA8875",
+                                        "help": "Configure pulse width of VSYNC.\nVSYNC Pulse Width(lines) = (VPWR+1)",
+                                        "id": "LV_DISP_RA8875_VSYNC_PW",
+                                        "name": "LV_DISP_RA8875_VSYNC_PW",
+                                        "range": null,
+                                        "title": "VSYNC Pulse Width",
+                                        "type": "int"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "LV_TFT_DISPLAY_CONTROLLER_RA8875",
+                                        "help": "Set to make VSYNC signal active high.",
+                                        "id": "LV_DISP_RA8875_VSYNC_POLARITY",
+                                        "name": "LV_DISP_RA8875_VSYNC_POLARITY",
+                                        "range": null,
+                                        "title": "VSYNC Polarity/Invert",
+                                        "type": "bool"
+                                    }
+                                ],
+                                "depends_on": null,
+                                "id": "component-config-lvgl-esp-drivers-lvgl-tft-display-controller-display-ra8875-configuration",
+                                "title": "Display RA8875 Configuration",
+                                "type": "menu"
+                            },
+                            {
+                                "children": [
+                                    {
+                                        "children": [],
+                                        "depends_on": "LV_TFT_DISPLAY_CONTROLLER_ST7789",
+                                        "help": "Use software reset and ignores configured reset pin (some hardware does not use a reset pin).",
+                                        "id": "LV_DISP_ST7789_SOFT_RESET",
+                                        "name": "LV_DISP_ST7789_SOFT_RESET",
+                                        "range": null,
+                                        "title": "Soft reset - use software reset instead of reset pin",
+                                        "type": "bool"
+                                    }
+                                ],
+                                "depends_on": null,
+                                "id": "component-config-lvgl-esp-drivers-lvgl-tft-display-controller-display-st7789-configuration",
+                                "title": "Display ST7789 Configuration",
+                                "type": "menu"
+                            },
+                            {
+                                "children": [
+                                    {
+                                        "children": [],
+                                        "depends_on": null,
+                                        "help": "Configure the display MOSI pin here.",
+                                        "id": "LV_DISP_SPI_MOSI",
+                                        "name": "LV_DISP_SPI_MOSI",
+                                        "range": null,
+                                        "title": "GPIO for MOSI (Master Out Slave In)",
+                                        "type": "int"
+                                    },
+                                    {
+                                        "children": [
+                                            {
+                                                "children": [],
+                                                "depends_on": "LV_DISPLAY_USE_SPI_MISO",
+                                                "help": "Configure the display MISO pin here.",
+                                                "id": "LV_DISP_SPI_MISO",
+                                                "name": "LV_DISP_SPI_MISO",
+                                                "range": null,
+                                                "title": "GPIO for MISO (Master In Slave Out)",
+                                                "type": "int"
+                                            },
+                                            {
+                                                "children": [],
+                                                "depends_on": "LV_DISPLAY_USE_SPI_MISO",
+                                                "help": "The time required between SCLK and MISO being valid, including the possible clock\ndelay from processor to display. Leave at 0 unless you know you need a delay.",
+                                                "id": "LV_DISP_SPI_INPUT_DELAY_NS",
+                                                "name": "LV_DISP_SPI_INPUT_DELAY_NS",
+                                                "range": [
+                                                    0,
+                                                    2147483647
+                                                ],
+                                                "title": "MISO Input Delay (ns)",
+                                                "type": "int"
+                                            }
+                                        ],
+                                        "depends_on": null,
+                                        "help": "Enable the MISO signal to control the display. You can disable\nit when the display does not need MISO signal to be controlled.",
+                                        "id": "LV_DISPLAY_USE_SPI_MISO",
+                                        "name": "LV_DISPLAY_USE_SPI_MISO",
+                                        "range": null,
+                                        "title": "GPIO for MISO (Master In Slave Out)",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "LV_TFT_DISPLAY_SPI_TRANS_MODE_QIO",
+                                        "help": "Configure the display Quad SPI IO2 pin here.",
+                                        "id": "LV_DISP_SPI_IO2",
+                                        "name": "LV_DISP_SPI_IO2",
+                                        "range": null,
+                                        "title": "GPIO for Quad SPI IO2/WP",
+                                        "type": "int"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "LV_TFT_DISPLAY_SPI_TRANS_MODE_QIO",
+                                        "help": "Configure the display Quad SPI IO2 pin here.",
+                                        "id": "LV_DISP_SPI_IO3",
+                                        "name": "LV_DISP_SPI_IO3",
+                                        "range": null,
+                                        "title": "GPIO for Quad SPI IO3/HD",
+                                        "type": "int"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": null,
+                                        "help": "Configure the display CLK pin here.",
+                                        "id": "LV_DISP_SPI_CLK",
+                                        "name": "LV_DISP_SPI_CLK",
+                                        "range": null,
+                                        "title": "GPIO for CLK (SCK / Serial Clock)",
+                                        "type": "int"
+                                    },
+                                    {
+                                        "children": [
+                                            {
+                                                "children": [],
+                                                "depends_on": "LV_DISPLAY_USE_SPI_CS",
+                                                "help": "Configure the display CS pin here.",
+                                                "id": "LV_DISP_SPI_CS",
+                                                "name": "LV_DISP_SPI_CS",
+                                                "range": null,
+                                                "title": "GPIO for CS (Slave Select)",
+                                                "type": "int"
+                                            }
+                                        ],
+                                        "depends_on": null,
+                                        "help": "Enable the CS signal to control the display. You can disable\nit when the display does not need CS signal to be controlled.",
+                                        "id": "LV_DISPLAY_USE_SPI_CS",
+                                        "name": "LV_DISPLAY_USE_SPI_CS",
+                                        "range": null,
+                                        "title": "Use CS signal to control the display",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [
+                                            {
+                                                "children": [],
+                                                "depends_on": "LV_DISPLAY_USE_DC",
+                                                "help": "Configure the display DC pin here.",
+                                                "id": "LV_DISP_PIN_DC",
+                                                "name": "LV_DISP_PIN_DC",
+                                                "range": null,
+                                                "title": "GPIO for DC (Data / Command)",
+                                                "type": "int"
+                                            }
+                                        ],
+                                        "depends_on": null,
+                                        "help": "Enable the DC signal to control the display. You can disable\nit when the display does not need DC signal to be controlled.",
+                                        "id": "LV_DISPLAY_USE_DC",
+                                        "name": "LV_DISPLAY_USE_DC",
+                                        "range": null,
+                                        "title": "Use DC signal to control the display",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [
+                                            {
+                                                "children": [],
+                                                "depends_on": "LV_DISP_USE_RST",
+                                                "help": "Configure the display Reset pin here.",
+                                                "id": "LV_DISP_PIN_RST",
+                                                "name": "LV_DISP_PIN_RST",
+                                                "range": null,
+                                                "title": "GPIO for Reset",
+                                                "type": "int"
+                                            }
+                                        ],
+                                        "depends_on": null,
+                                        "help": "Enable display reset control. Set this if the reset pin of the\ndisplay is connected to the host. If this is not set, then it is\nthe user's responsibility to ensure that the display is reset\nbefore initialisation.\nYou may want to disable this option because the reset pin is not\nconnected, or is connected to an external component such as the\npower management IC.",
+                                        "id": "LV_DISP_USE_RST",
+                                        "name": "LV_DISP_USE_RST",
+                                        "range": null,
+                                        "title": "Use a GPIO for resetting the display",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": null,
+                                        "help": "Configure the display Busy pin here.",
+                                        "id": "LV_DISP_PIN_BUSY",
+                                        "name": "LV_DISP_PIN_BUSY",
+                                        "range": null,
+                                        "title": "GPIO for Busy",
+                                        "type": "int"
+                                    }
+                                ],
+                                "depends_on": null,
+                                "id": "component-config-lvgl-esp-drivers-lvgl-tft-display-controller-display-pin-assignments",
+                                "title": "Display Pin Assignments",
+                                "type": "menu"
+                            },
+                            {
+                                "children": [
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice>",
+                                        "help": "I2C is shared peripheral managed by I2C Manager. In order to configure I2C Manager (pinout, etc.) see menu\nComponent config->I2C Port Settings.",
+                                        "id": "LV_I2C_DISPLAY_PORT_0",
+                                        "name": "LV_I2C_DISPLAY_PORT_0",
+                                        "range": null,
+                                        "title": "I2C port 0",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice>",
+                                        "help": "I2C is shared peripheral managed by I2C Manager. In order to configure I2C Manager (pinout, etc.) see menu\nComponent config->I2C Port Settings.",
+                                        "id": "LV_I2C_DISPLAY_PORT_1",
+                                        "name": "LV_I2C_DISPLAY_PORT_1",
+                                        "range": null,
+                                        "title": "I2C port 1",
+                                        "type": "bool"
+                                    }
+                                ],
+                                "depends_on": "LV_I2C_DISPLAY",
+                                "help": null,
+                                "id": "component-config-lvgl-esp-drivers-lvgl-tft-display-controller-select-an-i2c-port-for-the-display",
+                                "name": null,
+                                "title": "Select an I2C port for the display",
+                                "type": "choice"
+                            },
+                            {
+                                "children": [
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice>",
+                                        "help": "Display backlight is not controlled by this driver, must be hardwired in hardware.",
+                                        "id": "LV_DISP_BACKLIGHT_OFF",
+                                        "name": "LV_DISP_BACKLIGHT_OFF",
+                                        "range": null,
+                                        "title": "Not Used",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice>",
+                                        "help": "Display backlight can be switched on or off.",
+                                        "id": "LV_DISP_BACKLIGHT_SWITCH",
+                                        "name": "LV_DISP_BACKLIGHT_SWITCH",
+                                        "range": null,
+                                        "title": "Switch control",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice>",
+                                        "help": "Display backlight is controlled by pulse-width modulation, allowing brightness settings.",
+                                        "id": "LV_DISP_BACKLIGHT_PWM",
+                                        "name": "LV_DISP_BACKLIGHT_PWM",
+                                        "range": null,
+                                        "title": "PWM control",
+                                        "type": "bool"
+                                    }
+                                ],
+                                "depends_on": null,
+                                "help": null,
+                                "id": "component-config-lvgl-esp-drivers-lvgl-tft-display-controller-backlight-control",
+                                "name": null,
+                                "title": "Backlight Control",
+                                "type": "choice"
+                            },
+                            {
+                                "children": [],
+                                "depends_on": "!LV_DISP_BACKLIGHT_OFF",
+                                "help": "Some backlights are turned on with a high signal, others held low.\nIf enabled, a value of 1 will be sent to the display to enable the backlight,\notherwise a 0 will be expected to enable it.",
+                                "id": "LV_BACKLIGHT_ACTIVE_LVL",
+                                "name": "LV_BACKLIGHT_ACTIVE_LVL",
+                                "range": null,
+                                "title": "Is backlight turn on with a HIGH (1) logic level?",
+                                "type": "bool"
+                            },
+                            {
+                                "children": [],
+                                "depends_on": "!LV_DISP_BACKLIGHT_OFF",
+                                "help": "Configure the display BCLK (LED) pin here.",
+                                "id": "LV_DISP_PIN_BCKL",
+                                "name": "LV_DISP_PIN_BCKL",
+                                "range": null,
+                                "title": "GPIO for Backlight Control",
+                                "type": "int"
+                            },
+                            {
+                                "children": [],
+                                "depends_on": null,
+                                "help": null,
+                                "id": "LV_I2C",
+                                "name": "LV_I2C",
+                                "range": null,
+                                "title": null,
+                                "type": "bool"
+                            },
+                            {
+                                "children": [],
+                                "depends_on": null,
+                                "help": null,
+                                "id": "LV_I2C_DISPLAY_PORT",
+                                "name": "LV_I2C_DISPLAY_PORT",
+                                "range": null,
+                                "title": null,
+                                "type": "int"
+                            }
+                        ],
+                        "depends_on": null,
+                        "id": "component-config-lvgl-esp-drivers-lvgl-tft-display-controller",
+                        "title": "LVGL TFT Display controller",
+                        "type": "menu"
+                    },
+                    {
+                        "children": [
+                            {
+                                "children": [],
+                                "depends_on": null,
+                                "help": null,
+                                "id": "LV_TOUCH_CONTROLLER",
+                                "name": "LV_TOUCH_CONTROLLER",
+                                "range": null,
+                                "title": null,
+                                "type": "int"
+                            },
+                            {
+                                "children": [
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice>",
+                                        "help": null,
+                                        "id": "LV_TOUCH_CONTROLLER_NONE",
+                                        "name": "LV_TOUCH_CONTROLLER_NONE",
+                                        "range": null,
+                                        "title": "None",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice>",
+                                        "help": null,
+                                        "id": "LV_TOUCH_CONTROLLER_XPT2046",
+                                        "name": "LV_TOUCH_CONTROLLER_XPT2046",
+                                        "range": null,
+                                        "title": "XPT2046",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice>",
+                                        "help": null,
+                                        "id": "LV_TOUCH_CONTROLLER_FT6X06",
+                                        "name": "LV_TOUCH_CONTROLLER_FT6X06",
+                                        "range": null,
+                                        "title": "FT6X06",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice>",
+                                        "help": null,
+                                        "id": "LV_TOUCH_CONTROLLER_STMPE610",
+                                        "name": "LV_TOUCH_CONTROLLER_STMPE610",
+                                        "range": null,
+                                        "title": "STMPE610",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice>",
+                                        "help": null,
+                                        "id": "LV_TOUCH_CONTROLLER_ADCRAW",
+                                        "name": "LV_TOUCH_CONTROLLER_ADCRAW",
+                                        "range": null,
+                                        "title": "ADCRAW",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice>",
+                                        "help": null,
+                                        "id": "LV_TOUCH_CONTROLLER_FT81X",
+                                        "name": "LV_TOUCH_CONTROLLER_FT81X",
+                                        "range": null,
+                                        "title": "FT81X",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice>",
+                                        "help": null,
+                                        "id": "LV_TOUCH_CONTROLLER_RA8875",
+                                        "name": "LV_TOUCH_CONTROLLER_RA8875",
+                                        "range": null,
+                                        "title": "RA8875",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice>",
+                                        "help": null,
+                                        "id": "LV_TOUCH_CONTROLLER_GT911",
+                                        "name": "LV_TOUCH_CONTROLLER_GT911",
+                                        "range": null,
+                                        "title": "GT911",
+                                        "type": "bool"
+                                    }
+                                ],
+                                "depends_on": null,
+                                "help": "Select the controller for your touch panel.",
+                                "id": "component-config-lvgl-esp-drivers-lvgl-touch-controller-select-a-touch-panel-controller-model-",
+                                "name": null,
+                                "title": "Select a touch panel controller model.",
+                                "type": "choice"
+                            },
+                            {
+                                "children": [],
+                                "depends_on": null,
+                                "help": "Touch controller protocol SPI",
+                                "id": "LV_TOUCH_DRIVER_PROTOCOL_SPI",
+                                "name": "LV_TOUCH_DRIVER_PROTOCOL_SPI",
+                                "range": null,
+                                "title": null,
+                                "type": "bool"
+                            },
+                            {
+                                "children": [],
+                                "depends_on": null,
+                                "help": "Touch controller protocol I2C",
+                                "id": "LV_I2C_TOUCH",
+                                "name": "LV_I2C_TOUCH",
+                                "range": null,
+                                "title": null,
+                                "type": "bool"
+                            },
+                            {
+                                "children": [],
+                                "depends_on": null,
+                                "help": "Touch controller via ADC",
+                                "id": "LV_TOUCH_DRIVER_ADC",
+                                "name": "LV_TOUCH_DRIVER_ADC",
+                                "range": null,
+                                "title": null,
+                                "type": "bool"
+                            },
+                            {
+                                "children": [],
+                                "depends_on": null,
+                                "help": "Touch controller uses same interface/device as display\n(Note: Display must be initialized before touch)",
+                                "id": "LV_TOUCH_DRIVER_DISPLAY",
+                                "name": "LV_TOUCH_DRIVER_DISPLAY",
+                                "range": null,
+                                "title": null,
+                                "type": "bool"
+                            },
+                            {
+                                "children": [
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice>",
+                                        "help": null,
+                                        "id": "LV_TOUCH_CONTROLLER_SPI2_HOST",
+                                        "name": "LV_TOUCH_CONTROLLER_SPI2_HOST",
+                                        "range": null,
+                                        "title": "SPI2_HOST",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice>",
+                                        "help": null,
+                                        "id": "LV_TOUCH_CONTROLLER_SPI3_HOST",
+                                        "name": "LV_TOUCH_CONTROLLER_SPI3_HOST",
+                                        "range": null,
+                                        "title": "SPI3_HOST",
+                                        "type": "bool"
+                                    }
+                                ],
+                                "depends_on": "LV_TOUCH_DRIVER_PROTOCOL_SPI",
+                                "help": "Select the SPI Bus the touch controller is attached to.",
+                                "id": "component-config-lvgl-esp-drivers-lvgl-touch-controller-touch-controller-spi-bus-",
+                                "name": null,
+                                "title": "Touch Controller SPI Bus.",
+                                "type": "choice"
+                            },
+                            {
+                                "children": [
+                                    {
+                                        "children": [],
+                                        "depends_on": "LV_TOUCH_CONTROLLER_XPT2046",
+                                        "help": "Configure the touchpanel MISO pin here.",
+                                        "id": "LV_TOUCH_SPI_MISO",
+                                        "name": "LV_TOUCH_SPI_MISO",
+                                        "range": null,
+                                        "title": "GPIO for MISO (Master In Slave Out)",
+                                        "type": "int"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "LV_TOUCH_CONTROLLER_XPT2046",
+                                        "help": "Configure the touchpanel MOSI pin here.",
+                                        "id": "LV_TOUCH_SPI_MOSI",
+                                        "name": "LV_TOUCH_SPI_MOSI",
+                                        "range": null,
+                                        "title": "GPIO for MOSI (Master Out Slave In)",
+                                        "type": "int"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "LV_TOUCH_CONTROLLER_XPT2046",
+                                        "help": "Configure the touchpanel CLK pin here.",
+                                        "id": "LV_TOUCH_SPI_CLK",
+                                        "name": "LV_TOUCH_SPI_CLK",
+                                        "range": null,
+                                        "title": "GPIO for CLK (SCK / Serial Clock)",
+                                        "type": "int"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "LV_TOUCH_CONTROLLER_XPT2046",
+                                        "help": "Configure the touchpanel CS pin here.",
+                                        "id": "LV_TOUCH_SPI_CS",
+                                        "name": "LV_TOUCH_SPI_CS",
+                                        "range": null,
+                                        "title": "GPIO for CS (Slave Select)",
+                                        "type": "int"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "LV_TOUCH_CONTROLLER_XPT2046",
+                                        "help": "Configure the touchpanel IRQ pin here.",
+                                        "id": "LV_TOUCH_PIN_IRQ",
+                                        "name": "LV_TOUCH_PIN_IRQ",
+                                        "range": null,
+                                        "title": "GPIO for IRQ (Interrupt Request)",
+                                        "type": "int"
+                                    }
+                                ],
+                                "depends_on": "LV_TOUCH_CONTROLLER_XPT2046",
+                                "id": "component-config-lvgl-esp-drivers-lvgl-touch-controller-touchpanel-xpt2046-pin-assignments",
+                                "title": "Touchpanel (XPT2046) Pin Assignments",
+                                "type": "menu"
+                            },
+                            {
+                                "children": [
+                                    {
+                                        "children": [],
+                                        "depends_on": "LV_TOUCH_CONTROLLER_XPT2046",
+                                        "help": null,
+                                        "id": "LV_TOUCH_X_MIN",
+                                        "name": "LV_TOUCH_X_MIN",
+                                        "range": null,
+                                        "title": "Minimum X coordinate value.",
+                                        "type": "int"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "LV_TOUCH_CONTROLLER_XPT2046",
+                                        "help": null,
+                                        "id": "LV_TOUCH_Y_MIN",
+                                        "name": "LV_TOUCH_Y_MIN",
+                                        "range": null,
+                                        "title": "Minimum Y coordinate value.",
+                                        "type": "int"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "LV_TOUCH_CONTROLLER_XPT2046",
+                                        "help": null,
+                                        "id": "LV_TOUCH_X_MAX",
+                                        "name": "LV_TOUCH_X_MAX",
+                                        "range": null,
+                                        "title": "Maximum X coordinate value.",
+                                        "type": "int"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "LV_TOUCH_CONTROLLER_XPT2046",
+                                        "help": null,
+                                        "id": "LV_TOUCH_Y_MAX",
+                                        "name": "LV_TOUCH_Y_MAX",
+                                        "range": null,
+                                        "title": "Maximum Y coordinate value.",
+                                        "type": "int"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "LV_TOUCH_CONTROLLER_XPT2046",
+                                        "help": null,
+                                        "id": "LV_TOUCH_XY_SWAP",
+                                        "name": "LV_TOUCH_XY_SWAP",
+                                        "range": null,
+                                        "title": "Swap XY.",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "LV_TOUCH_CONTROLLER_XPT2046",
+                                        "help": null,
+                                        "id": "LV_TOUCH_INVERT_X",
+                                        "name": "LV_TOUCH_INVERT_X",
+                                        "range": null,
+                                        "title": "Invert X coordinate value.",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "LV_TOUCH_CONTROLLER_XPT2046",
+                                        "help": null,
+                                        "id": "LV_TOUCH_INVERT_Y",
+                                        "name": "LV_TOUCH_INVERT_Y",
+                                        "range": null,
+                                        "title": "Invert Y coordinate value.",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [
+                                            {
+                                                "children": [],
+                                                "depends_on": "<choice>",
+                                                "help": null,
+                                                "id": "LV_TOUCH_DETECT_IRQ",
+                                                "name": "LV_TOUCH_DETECT_IRQ",
+                                                "range": null,
+                                                "title": "IRQ pin only",
+                                                "type": "bool"
+                                            },
+                                            {
+                                                "children": [],
+                                                "depends_on": "<choice>",
+                                                "help": null,
+                                                "id": "LV_TOUCH_DETECT_IRQ_PRESSURE",
+                                                "name": "LV_TOUCH_DETECT_IRQ_PRESSURE",
+                                                "range": null,
+                                                "title": "IRQ pin and pressure",
+                                                "type": "bool"
+                                            },
+                                            {
+                                                "children": [],
+                                                "depends_on": "<choice>",
+                                                "help": null,
+                                                "id": "LV_TOUCH_DETECT_PRESSURE",
+                                                "name": "LV_TOUCH_DETECT_PRESSURE",
+                                                "range": null,
+                                                "title": "Pressure only",
+                                                "type": "bool"
+                                            }
+                                        ],
+                                        "depends_on": "LV_TOUCH_CONTROLLER_XPT2046",
+                                        "help": "Select the controller for your touch panel.",
+                                        "id": "component-config-lvgl-esp-drivers-lvgl-touch-controller-touchpanel-configuration-xpt2046--select-touch-detection-method-",
+                                        "name": null,
+                                        "title": "Select touch detection method.",
+                                        "type": "choice"
+                                    }
+                                ],
+                                "depends_on": "LV_TOUCH_CONTROLLER_XPT2046",
+                                "id": "component-config-lvgl-esp-drivers-lvgl-touch-controller-touchpanel-configuration-xpt2046-",
+                                "title": "Touchpanel Configuration (XPT2046)",
+                                "type": "menu"
+                            },
+                            {
+                                "children": [
+                                    {
+                                        "children": [],
+                                        "depends_on": "LV_TOUCH_CONTROLLER_FT6X06",
+                                        "help": null,
+                                        "id": "LV_FT6X36_SWAPXY",
+                                        "name": "LV_FT6X36_SWAPXY",
+                                        "range": null,
+                                        "title": "Swap X with Y coordinate.",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "LV_TOUCH_CONTROLLER_FT6X06",
+                                        "help": null,
+                                        "id": "LV_FT6X36_INVERT_X",
+                                        "name": "LV_FT6X36_INVERT_X",
+                                        "range": null,
+                                        "title": "Invert X coordinate value.",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "LV_TOUCH_CONTROLLER_FT6X06",
+                                        "help": null,
+                                        "id": "LV_FT6X36_INVERT_Y",
+                                        "name": "LV_FT6X36_INVERT_Y",
+                                        "range": null,
+                                        "title": "Invert Y coordinate value.",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "LV_TOUCH_CONTROLLER_FT6X06",
+                                        "help": "Receive from the FreeRTOS queue using the handle 'ft6x36_touch_queue_handle'.",
+                                        "id": "LV_FT6X36_COORDINATES_QUEUE",
+                                        "name": "LV_FT6X36_COORDINATES_QUEUE",
+                                        "range": null,
+                                        "title": "Send coordinates to FreeRTOS queue.",
+                                        "type": "bool"
+                                    }
+                                ],
+                                "depends_on": "LV_TOUCH_CONTROLLER_FT6X06",
+                                "id": "component-config-lvgl-esp-drivers-lvgl-touch-controller-touchpanel-configuration-ft6x06-",
+                                "title": "Touchpanel Configuration (FT6X06)",
+                                "type": "menu"
+                            },
+                            {
+                                "children": [
+                                    {
+                                        "children": [],
+                                        "depends_on": "LV_TOUCH_CONTROLLER_STMPE610",
+                                        "help": "Configure the touchpanel MISO pin here.",
+                                        "id": "LV_TOUCH_SPI_MISO",
+                                        "name": "LV_TOUCH_SPI_MISO",
+                                        "range": null,
+                                        "title": "GPIO for MISO (Master In Slave Out)",
+                                        "type": "int"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "LV_TOUCH_CONTROLLER_STMPE610",
+                                        "help": "Configure the touchpanel MOSI pin here.",
+                                        "id": "LV_TOUCH_SPI_MOSI",
+                                        "name": "LV_TOUCH_SPI_MOSI",
+                                        "range": null,
+                                        "title": "GPIO for MOSI (Master Out Slave In)",
+                                        "type": "int"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "LV_TOUCH_CONTROLLER_STMPE610",
+                                        "help": "Configure the touchpanel CLK pin here.",
+                                        "id": "LV_TOUCH_SPI_CLK",
+                                        "name": "LV_TOUCH_SPI_CLK",
+                                        "range": null,
+                                        "title": "GPIO for CLK (SCK / Serial Clock)",
+                                        "type": "int"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "LV_TOUCH_CONTROLLER_STMPE610",
+                                        "help": "Configure the touchpanel CS pin here.",
+                                        "id": "LV_TOUCH_SPI_CS",
+                                        "name": "LV_TOUCH_SPI_CS",
+                                        "range": null,
+                                        "title": "GPIO for CS (Slave Select)",
+                                        "type": "int"
+                                    }
+                                ],
+                                "depends_on": "LV_TOUCH_CONTROLLER_STMPE610",
+                                "id": "component-config-lvgl-esp-drivers-lvgl-touch-controller-touchpanel-stmpe610-pin-assignments",
+                                "title": "Touchpanel (STMPE610) Pin Assignments",
+                                "type": "menu"
+                            },
+                            {
+                                "children": [
+                                    {
+                                        "children": [],
+                                        "depends_on": "LV_TOUCH_CONTROLLER_STMPE610",
+                                        "help": null,
+                                        "id": "LV_TOUCH_X_MIN",
+                                        "name": "LV_TOUCH_X_MIN",
+                                        "range": null,
+                                        "title": "Minimum X coordinate value.",
+                                        "type": "int"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "LV_TOUCH_CONTROLLER_STMPE610",
+                                        "help": null,
+                                        "id": "LV_TOUCH_Y_MIN",
+                                        "name": "LV_TOUCH_Y_MIN",
+                                        "range": null,
+                                        "title": "Minimum Y coordinate value.",
+                                        "type": "int"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "LV_TOUCH_CONTROLLER_STMPE610",
+                                        "help": null,
+                                        "id": "LV_TOUCH_X_MAX",
+                                        "name": "LV_TOUCH_X_MAX",
+                                        "range": null,
+                                        "title": "Maximum X coordinate value.",
+                                        "type": "int"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "LV_TOUCH_CONTROLLER_STMPE610",
+                                        "help": null,
+                                        "id": "LV_TOUCH_Y_MAX",
+                                        "name": "LV_TOUCH_Y_MAX",
+                                        "range": null,
+                                        "title": "Maximum Y coordinate value.",
+                                        "type": "int"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "LV_TOUCH_CONTROLLER_STMPE610",
+                                        "help": null,
+                                        "id": "LV_TOUCH_XY_SWAP",
+                                        "name": "LV_TOUCH_XY_SWAP",
+                                        "range": null,
+                                        "title": "Swap XY.",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "LV_TOUCH_CONTROLLER_STMPE610",
+                                        "help": null,
+                                        "id": "LV_TOUCH_INVERT_X",
+                                        "name": "LV_TOUCH_INVERT_X",
+                                        "range": null,
+                                        "title": "Invert X coordinate value.",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "LV_TOUCH_CONTROLLER_STMPE610",
+                                        "help": null,
+                                        "id": "LV_TOUCH_INVERT_Y",
+                                        "name": "LV_TOUCH_INVERT_Y",
+                                        "range": null,
+                                        "title": "Invert Y coordinate value.",
+                                        "type": "bool"
+                                    }
+                                ],
+                                "depends_on": "LV_TOUCH_CONTROLLER_STMPE610",
+                                "id": "component-config-lvgl-esp-drivers-lvgl-touch-controller-touchpanel-configuration-stmpe610-",
+                                "title": "Touchpanel Configuration (STMPE610)",
+                                "type": "menu"
+                            },
+                            {
+                                "children": [
+                                    {
+                                        "children": [],
+                                        "depends_on": "LV_TOUCH_CONTROLLER_ADCRAW",
+                                        "help": "Configure the touchpanel Y+ pin. Can be a regular GPIO.",
+                                        "id": "LV_TOUCHSCREEN_RESISTIVE_PIN_YU",
+                                        "name": "LV_TOUCHSCREEN_RESISTIVE_PIN_YU",
+                                        "range": null,
+                                        "title": "GPIO Y+",
+                                        "type": "int"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "LV_TOUCH_CONTROLLER_ADCRAW",
+                                        "help": "Configure the touchpanel Y- pin. Must be ADC input.",
+                                        "id": "LV_TOUCHSCREEN_RESISTIVE_PIN_YD",
+                                        "name": "LV_TOUCHSCREEN_RESISTIVE_PIN_YD",
+                                        "range": null,
+                                        "title": "GPIO/ADC Y-",
+                                        "type": "int"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "LV_TOUCH_CONTROLLER_ADCRAW",
+                                        "help": "Configure the touchpanel X- pin. Can be a regular GPIO.",
+                                        "id": "LV_TOUCHSCREEN_RESISTIVE_PIN_XL",
+                                        "name": "LV_TOUCHSCREEN_RESISTIVE_PIN_XL",
+                                        "range": null,
+                                        "title": "GPIO X-",
+                                        "type": "int"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "LV_TOUCH_CONTROLLER_ADCRAW",
+                                        "help": "Configure the touchpanel X- pin. Must be ADC input.",
+                                        "id": "LV_TOUCHSCREEN_RESISTIVE_PIN_XR",
+                                        "name": "LV_TOUCHSCREEN_RESISTIVE_PIN_XR",
+                                        "range": null,
+                                        "title": "GPIO/ADC X+",
+                                        "type": "int"
+                                    }
+                                ],
+                                "depends_on": "LV_TOUCH_CONTROLLER_ADCRAW",
+                                "id": "component-config-lvgl-esp-drivers-lvgl-touch-controller-touchpanel-adcraw-pin-assignments",
+                                "title": "Touchpanel (ADCRAW) Pin Assignments",
+                                "type": "menu"
+                            },
+                            {
+                                "children": [
+                                    {
+                                        "children": [],
+                                        "depends_on": "LV_TOUCH_CONTROLLER_ADCRAW",
+                                        "help": null,
+                                        "id": "LV_TOUCH_X_MIN",
+                                        "name": "LV_TOUCH_X_MIN",
+                                        "range": null,
+                                        "title": "Minimum X coordinate value.",
+                                        "type": "int"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "LV_TOUCH_CONTROLLER_ADCRAW",
+                                        "help": null,
+                                        "id": "LV_TOUCH_Y_MIN",
+                                        "name": "LV_TOUCH_Y_MIN",
+                                        "range": null,
+                                        "title": "Minimum Y coordinate value.",
+                                        "type": "int"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "LV_TOUCH_CONTROLLER_ADCRAW",
+                                        "help": null,
+                                        "id": "LV_TOUCH_X_MAX",
+                                        "name": "LV_TOUCH_X_MAX",
+                                        "range": null,
+                                        "title": "Maximum X coordinate value.",
+                                        "type": "int"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "LV_TOUCH_CONTROLLER_ADCRAW",
+                                        "help": null,
+                                        "id": "LV_TOUCH_Y_MAX",
+                                        "name": "LV_TOUCH_Y_MAX",
+                                        "range": null,
+                                        "title": "Maximum Y coordinate value.",
+                                        "type": "int"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "LV_TOUCH_CONTROLLER_ADCRAW",
+                                        "help": null,
+                                        "id": "LV_TOUCH_XY_SWAP",
+                                        "name": "LV_TOUCH_XY_SWAP",
+                                        "range": null,
+                                        "title": "Swap XY.",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "LV_TOUCH_CONTROLLER_ADCRAW",
+                                        "help": null,
+                                        "id": "LV_TOUCH_INVERT_X",
+                                        "name": "LV_TOUCH_INVERT_X",
+                                        "range": null,
+                                        "title": "Invert X coordinate value.",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "LV_TOUCH_CONTROLLER_ADCRAW",
+                                        "help": null,
+                                        "id": "LV_TOUCH_INVERT_Y",
+                                        "name": "LV_TOUCH_INVERT_Y",
+                                        "range": null,
+                                        "title": "Invert Y coordinate value.",
+                                        "type": "bool"
+                                    }
+                                ],
+                                "depends_on": "LV_TOUCH_CONTROLLER_ADCRAW",
+                                "id": "component-config-lvgl-esp-drivers-lvgl-touch-controller-touchpanel-configuration-adcraw-",
+                                "title": "Touchpanel Configuration (ADCRAW)",
+                                "type": "menu"
+                            },
+                            {
+                                "children": [
+                                    {
+                                        "children": [],
+                                        "depends_on": "LV_TOUCH_CONTROLLER_RA8875",
+                                        "help": null,
+                                        "id": "LV_TOUCH_X_MIN",
+                                        "name": "LV_TOUCH_X_MIN",
+                                        "range": null,
+                                        "title": "Minimum X coordinate ADC value",
+                                        "type": "int"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "LV_TOUCH_CONTROLLER_RA8875",
+                                        "help": null,
+                                        "id": "LV_TOUCH_Y_MIN",
+                                        "name": "LV_TOUCH_Y_MIN",
+                                        "range": null,
+                                        "title": "Minimum Y coordinate ADC value",
+                                        "type": "int"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "LV_TOUCH_CONTROLLER_RA8875",
+                                        "help": null,
+                                        "id": "LV_TOUCH_X_MAX",
+                                        "name": "LV_TOUCH_X_MAX",
+                                        "range": null,
+                                        "title": "Maximum X coordinate ADC value",
+                                        "type": "int"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "LV_TOUCH_CONTROLLER_RA8875",
+                                        "help": null,
+                                        "id": "LV_TOUCH_Y_MAX",
+                                        "name": "LV_TOUCH_Y_MAX",
+                                        "range": null,
+                                        "title": "Maximum Y coordinate ADC value",
+                                        "type": "int"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "LV_TOUCH_CONTROLLER_RA8875",
+                                        "help": null,
+                                        "id": "LV_TOUCH_XY_SWAP",
+                                        "name": "LV_TOUCH_XY_SWAP",
+                                        "range": null,
+                                        "title": "Swap XY",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "LV_TOUCH_CONTROLLER_RA8875",
+                                        "help": null,
+                                        "id": "LV_TOUCH_INVERT_X",
+                                        "name": "LV_TOUCH_INVERT_X",
+                                        "range": null,
+                                        "title": "Invert X coordinate value",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "LV_TOUCH_CONTROLLER_RA8875",
+                                        "help": null,
+                                        "id": "LV_TOUCH_INVERT_Y",
+                                        "name": "LV_TOUCH_INVERT_Y",
+                                        "range": null,
+                                        "title": "Invert Y coordinate value",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "LV_TOUCH_CONTROLLER_RA8875",
+                                        "help": null,
+                                        "id": "LV_TOUCH_RA8875_SAMPLE_TIME",
+                                        "name": "LV_TOUCH_RA8875_SAMPLE_TIME",
+                                        "range": null,
+                                        "title": "TP Sample Time Adjusting",
+                                        "type": "int"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "LV_TOUCH_CONTROLLER_RA8875",
+                                        "help": null,
+                                        "id": "LV_TOUCH_RA8875_ADC_CLOCK",
+                                        "name": "LV_TOUCH_RA8875_ADC_CLOCK",
+                                        "range": null,
+                                        "title": "ADC Clock Setting",
+                                        "type": "int"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "LV_TOUCH_CONTROLLER_RA8875",
+                                        "help": null,
+                                        "id": "LV_TOUCH_RA8875_WAKEUP_ENABLE",
+                                        "name": "LV_TOUCH_RA8875_WAKEUP_ENABLE",
+                                        "range": null,
+                                        "title": "Touch Panel Wakeup Enable",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "LV_TOUCH_CONTROLLER_RA8875",
+                                        "help": null,
+                                        "id": "LV_TOUCH_RA8875_EXTERNAL_VREF",
+                                        "name": "LV_TOUCH_RA8875_EXTERNAL_VREF",
+                                        "range": null,
+                                        "title": "TP ADC Use External Reference Voltage Source",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "LV_TOUCH_CONTROLLER_RA8875",
+                                        "help": null,
+                                        "id": "LV_TOUCH_RA8875_DEBOUNCE_ENABLE",
+                                        "name": "LV_TOUCH_RA8875_DEBOUNCE_ENABLE",
+                                        "range": null,
+                                        "title": "De-bounce Circuit Enable for Touch Panel Interrupt",
+                                        "type": "bool"
+                                    }
+                                ],
+                                "depends_on": "LV_TOUCH_CONTROLLER_RA8875",
+                                "id": "component-config-lvgl-esp-drivers-lvgl-touch-controller-touchpanel-configuration-ra8875-",
+                                "title": "Touchpanel Configuration (RA8875)",
+                                "type": "menu"
+                            },
+                            {
+                                "children": [
+                                    {
+                                        "children": [],
+                                        "depends_on": "LV_TOUCH_CONTROLLER_GT911",
+                                        "help": null,
+                                        "id": "LV_GT911_SWAPXY",
+                                        "name": "LV_GT911_SWAPXY",
+                                        "range": null,
+                                        "title": "Swap X with Y coordinate.",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "LV_TOUCH_CONTROLLER_GT911",
+                                        "help": null,
+                                        "id": "LV_GT911_INVERT_X",
+                                        "name": "LV_GT911_INVERT_X",
+                                        "range": null,
+                                        "title": "Invert X coordinate value.",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "LV_TOUCH_CONTROLLER_GT911",
+                                        "help": null,
+                                        "id": "LV_GT911_INVERT_Y",
+                                        "name": "LV_GT911_INVERT_Y",
+                                        "range": null,
+                                        "title": "Invert Y coordinate value.",
+                                        "type": "bool"
+                                    }
+                                ],
+                                "depends_on": "LV_TOUCH_CONTROLLER_GT911",
+                                "id": "component-config-lvgl-esp-drivers-lvgl-touch-controller-touchpanel-configuration-gt911-",
+                                "title": "Touchpanel Configuration (GT911)",
+                                "type": "menu"
+                            },
+                            {
+                                "children": [
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice>",
+                                        "help": "I2C is shared peripheral managed by I2C Manager. In order to configure I2C Manager (pinout, etc.) see menu\nComponent config->I2C Port Settings.",
+                                        "id": "LV_I2C_TOUCH_PORT_0",
+                                        "name": "LV_I2C_TOUCH_PORT_0",
+                                        "range": null,
+                                        "title": "I2C port 0",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice>",
+                                        "help": "I2C is shared peripheral managed by I2C Manager. In order to configure I2C Manager (pinout, etc.) see menu\nComponent config->I2C Port Settings.",
+                                        "id": "LV_I2C_TOUCH_PORT_1",
+                                        "name": "LV_I2C_TOUCH_PORT_1",
+                                        "range": null,
+                                        "title": "I2C port 1",
+                                        "type": "bool"
+                                    }
+                                ],
+                                "depends_on": "LV_I2C_TOUCH",
+                                "help": null,
+                                "id": "component-config-lvgl-esp-drivers-lvgl-touch-controller-select-an-i2c-port-for-the-touch-panel",
+                                "name": null,
+                                "title": "Select an I2C port for the touch panel",
+                                "type": "choice"
+                            },
+                            {
+                                "children": [],
+                                "depends_on": null,
+                                "help": null,
+                                "id": "LV_I2C",
+                                "name": "LV_I2C",
+                                "range": null,
+                                "title": null,
+                                "type": "bool"
+                            },
+                            {
+                                "children": [],
+                                "depends_on": null,
+                                "help": null,
+                                "id": "LV_I2C_TOUCH_PORT",
+                                "name": "LV_I2C_TOUCH_PORT",
+                                "range": null,
+                                "title": null,
+                                "type": "int"
+                            }
+                        ],
+                        "depends_on": null,
+                        "id": "component-config-lvgl-esp-drivers-lvgl-touch-controller",
+                        "title": "LVGL Touch controller",
+                        "type": "menu"
+                    }
+                ],
+                "depends_on": null,
+                "id": "component-config-lvgl-esp-drivers",
+                "title": "LVGL ESP Drivers",
+                "type": "menu"
+            },
+            {
+                "children": [
+                    {
+                        "children": [
+                            {
+                                "children": [
+                                    {
+                                        "children": [],
+                                        "depends_on": "I2C_MANAGER_0_ENABLED && LV_I2C && !HAVE_I2C_MANAGER",
+                                        "help": null,
+                                        "id": "I2C_MANAGER_0_SDA",
+                                        "name": "I2C_MANAGER_0_SDA",
+                                        "range": null,
+                                        "title": "SDA (GPIO pin)",
+                                        "type": "int"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "I2C_MANAGER_0_ENABLED && LV_I2C && !HAVE_I2C_MANAGER",
+                                        "help": null,
+                                        "id": "I2C_MANAGER_0_SCL",
+                                        "name": "I2C_MANAGER_0_SCL",
+                                        "range": null,
+                                        "title": "SCL (GPIO pin)",
+                                        "type": "int"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "I2C_MANAGER_0_ENABLED && LV_I2C && !HAVE_I2C_MANAGER",
+                                        "help": "The clock speed in Hz. Ranges from 100000 (100 kHz) to\n5000000 (5 Mhz). I2C busses that involve external wires may\nhave to be slower, and the real maximum speed the bus will\nsupport depends on the value of the pullup resistors and the\ndesign of the overall circuit.",
+                                        "id": "I2C_MANAGER_0_FREQ_HZ",
+                                        "name": "I2C_MANAGER_0_FREQ_HZ",
+                                        "range": null,
+                                        "title": "Frequency (Hz)",
+                                        "type": "int"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "I2C_MANAGER_0_ENABLED && LV_I2C && !HAVE_I2C_MANAGER",
+                                        "help": "Timeout for I2C read and write operations. This does not\ninclude the time waiting for a lock.",
+                                        "id": "I2C_MANAGER_0_TIMEOUT",
+                                        "name": "I2C_MANAGER_0_TIMEOUT",
+                                        "range": null,
+                                        "title": "R/W timeout (ms)",
+                                        "type": "int"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "I2C_MANAGER_0_ENABLED && LV_I2C && !HAVE_I2C_MANAGER",
+                                        "help": "Timeout at which point an operation waiting for its turn on\nthe port will assume that whatever set the lock has died and\noverrides it. Set this somewhat larger than the previous\ntimeout.",
+                                        "id": "I2C_MANAGER_0_LOCK_TIMEOUT",
+                                        "name": "I2C_MANAGER_0_LOCK_TIMEOUT",
+                                        "range": null,
+                                        "title": "Stale lock override (ms)",
+                                        "type": "int"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "I2C_MANAGER_0_ENABLED && LV_I2C && !HAVE_I2C_MANAGER",
+                                        "help": "The I2C bus needs resistors to make sure it's in a defined\nstate when nobody is talking. Many circuits have external\npullup resistors already and turning these on will increase\npower consumption slightly and may limit the speed your bus\ncan attain. Try with these off first if you don't know.",
+                                        "id": "I2C_MANAGER_0_PULLUPS",
+                                        "name": "I2C_MANAGER_0_PULLUPS",
+                                        "range": null,
+                                        "title": "Use ESP32 built-in bus pull-up resistors",
+                                        "type": "bool"
+                                    }
+                                ],
+                                "depends_on": "LV_I2C && !HAVE_I2C_MANAGER",
+                                "help": null,
+                                "id": "I2C_MANAGER_0_ENABLED",
+                                "name": "I2C_MANAGER_0_ENABLED",
+                                "range": null,
+                                "title": "Enable I2C port 0",
+                                "type": "bool"
+                            }
+                        ],
+                        "depends_on": "LV_I2C && !HAVE_I2C_MANAGER",
+                        "id": "component-config-i2c-port-settings-i2c-port-0",
+                        "title": "I2C Port 0",
+                        "type": "menu"
+                    },
+                    {
+                        "children": [
+                            {
+                                "children": [
+                                    {
+                                        "children": [],
+                                        "depends_on": "I2C_MANAGER_1_ENABLED && LV_I2C && !HAVE_I2C_MANAGER",
+                                        "help": null,
+                                        "id": "I2C_MANAGER_1_SDA",
+                                        "name": "I2C_MANAGER_1_SDA",
+                                        "range": null,
+                                        "title": "SDA (GPIO pin)",
+                                        "type": "int"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "I2C_MANAGER_1_ENABLED && LV_I2C && !HAVE_I2C_MANAGER",
+                                        "help": null,
+                                        "id": "I2C_MANAGER_1_SCL",
+                                        "name": "I2C_MANAGER_1_SCL",
+                                        "range": null,
+                                        "title": "SCL (GPIO pin)",
+                                        "type": "int"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "I2C_MANAGER_1_ENABLED && LV_I2C && !HAVE_I2C_MANAGER",
+                                        "help": "The clock speed in Hz. Ranges from 100000 (100 kHz) to\n5000000 (5 Mhz). I2C busses that involve external wires may\nhave to be slower, and the real maximum speed the bus will\nsupport depends on the value of the pullup resistors and the\ndesign of the overall circuit.",
+                                        "id": "I2C_MANAGER_1_FREQ_HZ",
+                                        "name": "I2C_MANAGER_1_FREQ_HZ",
+                                        "range": null,
+                                        "title": "Frequency (Hz)",
+                                        "type": "int"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "I2C_MANAGER_1_ENABLED && LV_I2C && !HAVE_I2C_MANAGER",
+                                        "help": "Timeout for I2C read and write operations. This does not\ninclude the time waiting for a lock. Default should be fine.",
+                                        "id": "I2C_MANAGER_1_TIMEOUT",
+                                        "name": "I2C_MANAGER_1_TIMEOUT",
+                                        "range": null,
+                                        "title": "R/W timeout (ms)",
+                                        "type": "int"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "I2C_MANAGER_1_ENABLED && LV_I2C && !HAVE_I2C_MANAGER",
+                                        "help": "Timeout at which point an operation waiting for its turn on\nthe port will assume that whatever set the lock has died and\noverrides it. Set this somewhat larger than the previous\ntimeout. Default should be fine.",
+                                        "id": "I2C_MANAGER_1_LOCK_TIMEOUT",
+                                        "name": "I2C_MANAGER_1_LOCK_TIMEOUT",
+                                        "range": null,
+                                        "title": "Stale lock override (ms)",
+                                        "type": "int"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "I2C_MANAGER_1_ENABLED && LV_I2C && !HAVE_I2C_MANAGER",
+                                        "help": "The I2C bus needs resistors to make sure it's in a defined\nstate when nobody is talking. Many circuits have external\npullup resistors already and turning these on will increase\npower consumption slightly and may limit the speed your bus\ncan attain. Try with these off first if you don't know.",
+                                        "id": "I2C_MANAGER_1_PULLUPS",
+                                        "name": "I2C_MANAGER_1_PULLUPS",
+                                        "range": null,
+                                        "title": "Use ESP32 built-in bus pull-up resistors",
+                                        "type": "bool"
+                                    }
+                                ],
+                                "depends_on": "LV_I2C && !HAVE_I2C_MANAGER",
+                                "help": null,
+                                "id": "I2C_MANAGER_1_ENABLED",
+                                "name": "I2C_MANAGER_1_ENABLED",
+                                "range": null,
+                                "title": "Enable I2C port 1",
+                                "type": "bool"
+                            }
+                        ],
+                        "depends_on": "LV_I2C && !HAVE_I2C_MANAGER",
+                        "id": "component-config-i2c-port-settings-i2c-port-1",
+                        "title": "I2C Port 1",
+                        "type": "menu"
+                    }
+                ],
+                "depends_on": "LV_I2C && !HAVE_I2C_MANAGER",
+                "id": "component-config-i2c-port-settings",
+                "title": "I2C Port Settings",
+                "type": "menu"
             }
         ],
         "depends_on": null,

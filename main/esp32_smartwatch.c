@@ -5,32 +5,10 @@
 #include "esp_sntp.h"
 #include "wifi_manager.h"
 #include "tasks/gui_task.h"
-#include "mpu9250.h"
 
 #define TAG "SMARTWATCH"
 #define I2C_SDA_PIN 32
 #define I2C_SCL_PIN 33
-
-void mpu9250_test_task(void *pvParameters)
-{
-    mpu9250_data_t sensor_data;
-
-    while (1)
-    {
-        if (mpu9250_read_data(&sensor_data) == ESP_OK)
-        {
-            ESP_LOGI(TAG, "Accel: X=%.2f Y=%.2f Z=%.2f G",
-                     sensor_data.accel_x, sensor_data.accel_y, sensor_data.accel_z);
-            ESP_LOGI(TAG, "Gyro: X=%.2f Y=%.2f Z=%.2f deg/s",
-                     sensor_data.gyro_x, sensor_data.gyro_y, sensor_data.gyro_z);
-        }
-        else
-        {
-            ESP_LOGE(TAG, "Failed to read MPU9250 data");
-        }
-        vTaskDelay(pdMS_TO_TICKS(1000));
-    }
-}
 
 void app_main(void)
 {
@@ -64,19 +42,6 @@ void app_main(void)
     // Set timezone
     setenv("TZ", "IST-5:30", 1);
     tzset();
-
-    // Initialize MPU9250
-    esp_err_t ret = mpu9250_init(I2C_SDA_PIN, I2C_SCL_PIN);
-    if (ret != ESP_OK)
-    {
-        ESP_LOGE(TAG, "Failed to initialize MPU9250");
-    }
-    else
-    {
-        ESP_LOGI(TAG, "MPU9250 initialized successfully");
-    }
-
-    // xTaskCreate(mpu9250_test_task, "mpu9250_test", 2048, NULL, 5, NULL);
 
     // Start GUI task
     ESP_LOGI(TAG, "Starting GUI application");
