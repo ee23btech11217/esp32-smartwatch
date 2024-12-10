@@ -75,7 +75,7 @@ esp_lcd_touch_handle_t tp = NULL;
 #endif
 
 extern void example_lvgl_demo_ui(lv_disp_t *disp);
-extern void initialize_sntp();
+extern void setup_time_sync();
 extern void wifi_init_sta();
 
 static bool example_notify_lvgl_flush_ready(esp_lcd_panel_io_handle_t panel_io, esp_lcd_panel_io_event_data_t *edata, void *user_ctx)
@@ -225,7 +225,7 @@ void app_main(void)
     vTaskDelay(pdMS_TO_TICKS(5000)); // Wait for WiFi to connect
 
     // Setup time synchronization
-    initialize_sntp();
+    setup_time_sync();
 
     static lv_disp_draw_buf_t disp_buf; // contains internal graphic buffer(s) called draw buffer(s)
     static lv_disp_drv_t disp_drv;      // contains callback functions
