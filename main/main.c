@@ -17,6 +17,7 @@
 #include "esp_err.h"
 #include "esp_log.h"
 #include "lvgl.h"
+#include "wifiManager.h"
 
 #if CONFIG_EXAMPLE_LCD_CONTROLLER_ILI9341
 #include "esp_lcd_ili9341.h"
@@ -74,9 +75,11 @@ static SemaphoreHandle_t lvgl_mux = NULL;
 esp_lcd_touch_handle_t tp = NULL;
 #endif
 
-extern void example_lvgl_demo_ui(lv_disp_t *disp);
-extern void setup_time_sync();
+////////////////////////////////////////////////////////
+extern void create_watch_face(lv_disp_t *disp);
+extern void configure_system_time();
 extern void wifi_init_sta();
+////////////////////////////////////////////////////////
 
 static bool example_notify_lvgl_flush_ready(esp_lcd_panel_io_handle_t panel_io, esp_lcd_panel_io_event_data_t *edata, void *user_ctx)
 {
@@ -218,14 +221,30 @@ static void example_lvgl_port_task(void *arg)
 
 void app_main(void)
 {
-    wifi_init_sta();
+    // Initialize WiFi
+    // Initialize WiFi
+    ESP_ERROR_CHECK(wifi_manager_init());
+    ESP_ERROR_CHECK(wifi_manager_connect("Jio 1", "raja1234"));
 
-    // Wait for WiFi connection
-    // You might want to use event handling or a semaphore here
-    vTaskDelay(pdMS_TO_TICKS(5000)); // Wait for WiFi to connect
+    // Wait for connection with timeout
+    int retry_count = 0;
+    while (wifi_manager_get_state() != WIFI_CONNECTED && retry_count < 10)
+    {
+        vTaskDelay(pdMS_TO_TICKS(1000));
+        retry_count++;
+    }
 
-    // Setup time synchronization
-    setup_time_sync();
+    if (wifi_manager_get_state() != WIFI_CONNECTED)
+    {
+        ESP_LOGE(TAG, "Failed to connect to WiFi");
+    }
+    else
+    {
+        ESP_LOGI(TAG, "WiFi connected");
+    }
+
+    // Configure system time
+    configure_system_time();
 
     static lv_disp_draw_buf_t disp_buf; // contains internal graphic buffer(s) called draw buffer(s)
     static lv_disp_drv_t disp_drv;      // contains callback functions
@@ -331,6 +350,7 @@ void app_main(void)
     disp_drv.ver_res = EXAMPLE_LCD_V_RES;
     disp_drv.flush_cb = example_lvgl_flush_cb;
     disp_drv.drv_update_cb = example_lvgl_port_update_callback;
+    disp_drv.rotated = LV_DISP_ROT_180;
     disp_drv.draw_buf = &disp_buf;
     disp_drv.user_data = panel_handle;
     lv_disp_t *disp = lv_disp_drv_register(&disp_drv);
@@ -345,7 +365,7 @@ void app_main(void)
     ESP_ERROR_CHECK(esp_timer_start_periodic(lvgl_tick_timer, EXAMPLE_LVGL_TICK_PERIOD_MS * 1000));
 
 #if CONFIG_EXAMPLE_LCD_TOUCH_ENABLED
-    static lv_indev_drv_t indev_drv; // Input device driver (Touch)
+    static lv_indev_drv_t indev_drv;
     lv_indev_drv_init(&indev_drv);
     indev_drv.type = LV_INDEV_TYPE_POINTER;
     indev_drv.disp = disp;
@@ -360,12 +380,16 @@ void app_main(void)
     ESP_LOGI(TAG, "Create LVGL task");
     xTaskCreate(example_lvgl_port_task, "LVGL", EXAMPLE_LVGL_TASK_STACK_SIZE, NULL, EXAMPLE_LVGL_TASK_PRIORITY, NULL);
 
-    ESP_LOGI(TAG, "Display LVGL Meter Widget");
     // Lock the mutex due to the LVGL APIs are not thread-safe
     if (example_lvgl_lock(-1))
     {
-        example_lvgl_demo_ui(disp);
+        create_watch_face(disp);
         // Release the mutex
         example_lvgl_unlock();
+    }
+
+    while (1)
+    {
+        vTaskDelay(pdMS_TO_TICKS(1000)); // Keep the main task alive
     }
 }
