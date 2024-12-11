@@ -387,9 +387,4 @@ void app_main(void)
         // Release the mutex
         example_lvgl_unlock();
     }
-
-    while (1)
-    {
-        vTaskDelay(pdMS_TO_TICKS(1000)); // Keep the main task alive
-    }
 }
