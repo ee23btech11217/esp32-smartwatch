@@ -23,20 +23,6 @@ dependencies:
       registry_url: https://components.espressif.com
       type: service
     version: 0.5.3
-  espressif/esp_lcd_gc9a01:
-    component_hash: 2ccbdfa5a1762c7a8be66770b69a256d809651d6069098852d2c829648707b5b
-    dependencies:
-    - name: idf
-      require: private
-      version: '>=4.4'
-    - name: espressif/cmake_utilities
-      registry_url: https://components.espressif.com
-      require: private
-      version: 0.*
-    source:
-      registry_url: https://components.espressif.com/
-      type: service
-    version: 1.2.0
   espressif/esp_lcd_ili9341:
     component_hash: 31f1b793aa2110dd2ae071c21ccbff0a4eb20d9a4ee40b6294c0dc0ad9552c4e
     dependencies:
@@ -61,20 +47,6 @@ dependencies:
       registry_url: https://components.espressif.com/
       type: service
     version: 1.1.2
-  espressif/esp_lcd_touch_stmpe610:
-    component_hash: 0f5f7fb50c2d716e72c2729725e4f96232a594d4b36036d6faa74e66e24d2ac9
-    dependencies:
-    - name: idf
-      require: private
-      version: '>=5.0'
-    - name: espressif/esp_lcd_touch
-      registry_url: https://components.espressif.com
-      require: public
-      version: ^1.0.4
-    source:
-      registry_url: https://components.espressif.com/
-      type: service
-    version: 1.0.6
   idf:
     source:
       type: idf
@@ -88,12 +60,10 @@ dependencies:
     version: 8.3.11
 direct_dependencies:
 - atanisoft/esp_lcd_touch_xpt2046
-- espressif/esp_lcd_gc9a01
 - espressif/esp_lcd_ili9341
 - espressif/esp_lcd_touch
-- espressif/esp_lcd_touch_stmpe610
 - idf
 - lvgl/lvgl
-manifest_hash: 8cd85533a0ca21884c2fd32c7e4bb1da32275c753196918853c1aa4a541398e4
+manifest_hash: fa52e8a8068f653ae616c755cdf04012cf6ff8c957fd978702f3c3a64bd0cd7d
 target: esp32
 version: 2.0.0

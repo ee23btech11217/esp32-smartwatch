@@ -548,6 +548,7 @@
 /home/mnepraj/smart-watch/build/esp-idf/esp_wifi/CMakeFiles/install.dir
 /home/mnepraj/smart-watch/build/esp-idf/esp_wifi/CMakeFiles/install/local.dir
 /home/mnepraj/smart-watch/build/esp-idf/esp_wifi/CMakeFiles/install/strip.dir
+/home/mnepraj/smart-watch/build/esp-idf/bt/CMakeFiles/__idf_bt.dir
 /home/mnepraj/smart-watch/build/esp-idf/bt/CMakeFiles/edit_cache.dir
 /home/mnepraj/smart-watch/build/esp-idf/bt/CMakeFiles/rebuild_cache.dir
 /home/mnepraj/smart-watch/build/esp-idf/bt/CMakeFiles/list_install_components.dir
@@ -830,13 +831,6 @@
 /home/mnepraj/smart-watch/build/esp-idf/espressif__cmake_utilities/CMakeFiles/install.dir
 /home/mnepraj/smart-watch/build/esp-idf/espressif__cmake_utilities/CMakeFiles/install/local.dir
 /home/mnepraj/smart-watch/build/esp-idf/espressif__cmake_utilities/CMakeFiles/install/strip.dir
-/home/mnepraj/smart-watch/build/esp-idf/espressif__esp_lcd_gc9a01/CMakeFiles/__idf_espressif__esp_lcd_gc9a01.dir
-/home/mnepraj/smart-watch/build/esp-idf/espressif__esp_lcd_gc9a01/CMakeFiles/edit_cache.dir
-/home/mnepraj/smart-watch/build/esp-idf/espressif__esp_lcd_gc9a01/CMakeFiles/rebuild_cache.dir
-/home/mnepraj/smart-watch/build/esp-idf/espressif__esp_lcd_gc9a01/CMakeFiles/list_install_components.dir
-/home/mnepraj/smart-watch/build/esp-idf/espressif__esp_lcd_gc9a01/CMakeFiles/install.dir
-/home/mnepraj/smart-watch/build/esp-idf/espressif__esp_lcd_gc9a01/CMakeFiles/install/local.dir
-/home/mnepraj/smart-watch/build/esp-idf/espressif__esp_lcd_gc9a01/CMakeFiles/install/strip.dir
 /home/mnepraj/smart-watch/build/esp-idf/espressif__esp_lcd_ili9341/CMakeFiles/__idf_espressif__esp_lcd_ili9341.dir
 /home/mnepraj/smart-watch/build/esp-idf/espressif__esp_lcd_ili9341/CMakeFiles/edit_cache.dir
 /home/mnepraj/smart-watch/build/esp-idf/espressif__esp_lcd_ili9341/CMakeFiles/rebuild_cache.dir
@@ -844,13 +838,6 @@
 /home/mnepraj/smart-watch/build/esp-idf/espressif__esp_lcd_ili9341/CMakeFiles/install.dir
 /home/mnepraj/smart-watch/build/esp-idf/espressif__esp_lcd_ili9341/CMakeFiles/install/local.dir
 /home/mnepraj/smart-watch/build/esp-idf/espressif__esp_lcd_ili9341/CMakeFiles/install/strip.dir
-/home/mnepraj/smart-watch/build/esp-idf/espressif__esp_lcd_touch_stmpe610/CMakeFiles/__idf_espressif__esp_lcd_touch_stmpe610.dir
-/home/mnepraj/smart-watch/build/esp-idf/espressif__esp_lcd_touch_stmpe610/CMakeFiles/edit_cache.dir
-/home/mnepraj/smart-watch/build/esp-idf/espressif__esp_lcd_touch_stmpe610/CMakeFiles/rebuild_cache.dir
-/home/mnepraj/smart-watch/build/esp-idf/espressif__esp_lcd_touch_stmpe610/CMakeFiles/list_install_components.dir
-/home/mnepraj/smart-watch/build/esp-idf/espressif__esp_lcd_touch_stmpe610/CMakeFiles/install.dir
-/home/mnepraj/smart-watch/build/esp-idf/espressif__esp_lcd_touch_stmpe610/CMakeFiles/install/local.dir
-/home/mnepraj/smart-watch/build/esp-idf/espressif__esp_lcd_touch_stmpe610/CMakeFiles/install/strip.dir
 /home/mnepraj/smart-watch/build/esp-idf/lvgl__lvgl/CMakeFiles/__idf_lvgl__lvgl.dir
 /home/mnepraj/smart-watch/build/esp-idf/lvgl__lvgl/CMakeFiles/edit_cache.dir
 /home/mnepraj/smart-watch/build/esp-idf/lvgl__lvgl/CMakeFiles/rebuild_cache.dir
