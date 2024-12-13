@@ -1,4 +1,4 @@
-# Install script for directory: /home/mnepraj/display/managed_components/espressif__esp_lcd_touch_stmpe610
+# Install script for directory: /home/mnepraj/smart-watch/managed_components/espressif__esp_lcd_touch_stmpe610
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -34,6 +34,6 @@ endif()
 
 # Set default install directory permissions.
 if(NOT DEFINED CMAKE_OBJDUMP)
-  set(CMAKE_OBJDUMP "/home/mnepraj/.espressif/tools/xtensa-esp-elf/esp-13.2.0_20240530/xtensa-esp-elf/bin/xtensa-esp32-elf-objdump")
+  set(CMAKE_OBJDUMP "/home/mnepraj/esp/esp-idf/tools/tools/xtensa-esp-elf/esp-13.2.0_20240530/xtensa-esp-elf/bin/xtensa-esp32-elf-objdump")
 endif()
 

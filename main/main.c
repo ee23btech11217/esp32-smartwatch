@@ -319,7 +319,7 @@ void app_main(void)
         .int_gpio_num = -1,
         .flags = {
             .swap_xy = 0,
-            .mirror_x = 0,
+            .mirror_x = 1,
             .mirror_y = 0,
         },
     };

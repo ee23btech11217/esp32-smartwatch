@@ -12,7 +12,7 @@ typedef enum
     SCREEN_DIGITAL,
     SCREEN_ANALOG,
     SCREEN_CALENDAR,
-    SCREEN_COUNT // Total number of screens
+    SCREEN_COUNT 
 } screen_type_t;
 
 // Global state
