@@ -84,4 +84,5 @@ $<TARGET_FILE:__idf_espressif__esp_lcd_touch>
 $<TARGET_FILE:__idf_atanisoft__esp_lcd_touch_xpt2046>
 $<TARGET_FILE:__idf_espressif__esp_lcd_ili9341>
 $<TARGET_FILE:__idf_lvgl__lvgl>
+$<TARGET_FILE:__idf_truita__mpu9250>
 $<TARGET_FILE:__idf_main>

@@ -845,6 +845,13 @@
 /home/mnepraj/smart-watch/build/esp-idf/lvgl__lvgl/CMakeFiles/install.dir
 /home/mnepraj/smart-watch/build/esp-idf/lvgl__lvgl/CMakeFiles/install/local.dir
 /home/mnepraj/smart-watch/build/esp-idf/lvgl__lvgl/CMakeFiles/install/strip.dir
+/home/mnepraj/smart-watch/build/esp-idf/truita__mpu9250/CMakeFiles/__idf_truita__mpu9250.dir
+/home/mnepraj/smart-watch/build/esp-idf/truita__mpu9250/CMakeFiles/edit_cache.dir
+/home/mnepraj/smart-watch/build/esp-idf/truita__mpu9250/CMakeFiles/rebuild_cache.dir
+/home/mnepraj/smart-watch/build/esp-idf/truita__mpu9250/CMakeFiles/list_install_components.dir
+/home/mnepraj/smart-watch/build/esp-idf/truita__mpu9250/CMakeFiles/install.dir
+/home/mnepraj/smart-watch/build/esp-idf/truita__mpu9250/CMakeFiles/install/local.dir
+/home/mnepraj/smart-watch/build/esp-idf/truita__mpu9250/CMakeFiles/install/strip.dir
 /home/mnepraj/smart-watch/build/esp-idf/main/CMakeFiles/__idf_main.dir
 /home/mnepraj/smart-watch/build/esp-idf/main/CMakeFiles/edit_cache.dir
 /home/mnepraj/smart-watch/build/esp-idf/main/CMakeFiles/rebuild_cache.dir

@@ -27,6 +27,13 @@
         "nvs_flash.h": "c",
         "blemanager.h": "c",
         "esp_gap_ble_api.h": "c",
-        "notify.h": "c"
+        "notify.h": "c",
+        "semphr.h": "c",
+        "freertos.h": "c",
+        "esp_task_wdt.h": "c",
+        "mpu9250.h": "c",
+        "max30100.h": "c",
+        "i2c_types.h": "c",
+        "i2c.h": "c"
     }
 }

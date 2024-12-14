@@ -564,6 +564,11 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
+  include("/home/mnepraj/smart-watch/build/esp-idf/truita__mpu9250/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
   include("/home/mnepraj/smart-watch/build/esp-idf/main/cmake_install.cmake")
 endif()
 
