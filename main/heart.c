@@ -31,7 +31,6 @@ void heart_rate_monitor_task(void *pvParameters)
 
     ESP_LOGI(TAG, "Heart-rate initialised");
 
-    // Continuous monitoring loop
     while (1)
     {
 
@@ -40,13 +39,13 @@ void heart_rate_monitor_task(void *pvParameters)
 
         if (result == ESP_OK)
         {
-            // Check if a pulse is detected
             if (max30100_data.pulse_detected)
             {
                 ESP_LOGI(TAG, "Pulse Detected!");
                 ESP_LOGI(TAG, "Heart Rate: %.2f BPM", max30100_data.heart_bpm);
                 ESP_LOGI(TAG, "SpO2: %.2f%%", max30100_data.spO2);
             }
+            ESP_LOGI(TAG, "Pulse not detected");
         } else {
             ESP_LOGE(TAG, "Failed to update MAX30100 sensor: %s", esp_err_to_name(result));
         }
@@ -54,19 +53,4 @@ void heart_rate_monitor_task(void *pvParameters)
         // Delay to prevent too frequent readings (adjust as needed)
         vTaskDelay(pdMS_TO_TICKS(1000));
     }
-}
-
-/**
- * @brief Initialize and start the heart rate monitoring task
- */
-void start_heart_rate_monitoring()
-{
-    xTaskCreate(
-        heart_rate_monitor_task, // Task function
-        "Heart Rate Monitor",    // Task name
-        4096,                    // Stack size (adjust as needed)
-        NULL,                    // Task parameters
-        1,                       // Priority
-        NULL                     // Task handle
-    );
 }

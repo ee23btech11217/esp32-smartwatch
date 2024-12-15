@@ -34,7 +34,7 @@ static const char *TAG = "main";
 #define I2C_MASTER_NUM I2C_NUM_0
 
 #define EXAMPLE_LVGL_TICK_PERIOD_MS 2
-#define EXAMPLE_LVGL_TASK_MAX_DELAY_MS 10
+#define EXAMPLE_LVGL_TASK_MAX_DELAY_MS 500
 #define EXAMPLE_LVGL_TASK_MIN_DELAY_MS 1
 #define EXAMPLE_LVGL_TASK_STACK_SIZE (4 * 1024)
 #define EXAMPLE_LVGL_TASK_PRIORITY 3
@@ -46,7 +46,7 @@ extern void create_watch_face(lv_disp_t *disp);
 extern void configure_system_time();
 extern void wifi_init_sta();
 extern void mpu9250_init();
-extern void start_heart_rate_monitoring();
+extern void heart_rate_monitor_task(void *pvParameters);
 ////////////////////////////////////////////////////////
 
 static void increase_lvgl_tick(void *arg)
@@ -78,7 +78,7 @@ static void lvgl_port_task(void *arg)
         if (lvgl_lock(-1))
         {
             task_delay_ms = lv_timer_handler();
-            // Release the mutex
+            ESP_LOGI(TAG, "LVGL port task running");
             lvgl_unlock();
         }
         if (task_delay_ms > EXAMPLE_LVGL_TASK_MAX_DELAY_MS)
@@ -93,67 +93,23 @@ static void lvgl_port_task(void *arg)
     }
 }
 
-// Add these to your initialization code
-void check_reset_reason()
-{
-    esp_reset_reason_t reason = esp_reset_reason();
-    switch (reason) {
-        case ESP_RST_POWERON:
-            ESP_LOGI(TAG, "Reset due to power-on event");
-            break;
-        case ESP_RST_EXT:
-            ESP_LOGI(TAG, "Reset due to external pin");
-            break;
-        case ESP_RST_SW:
-            ESP_LOGI(TAG, "Software reset");
-            break;
-        case ESP_RST_PANIC:
-            ESP_LOGI(TAG, "Reset due to exception/panic");
-            break;
-        case ESP_RST_INT_WDT:
-            ESP_LOGI(TAG, "Reset due to interrupt watchdog");
-            break;
-        case ESP_RST_TASK_WDT:
-            ESP_LOGI(TAG, "Reset due to task watchdog");
-            break;
-        case ESP_RST_WDT:
-            ESP_LOGI(TAG, "Reset due to other watchdog");
-            break;
-        case ESP_RST_DEEPSLEEP:
-            ESP_LOGI(TAG, "Reset after deep sleep");
-            break;
-        default:
-            ESP_LOGI(TAG, "Unknown reset reason");
-    }
-}
-
 void ui_task(void *pvParameters)
 {
     lv_disp_t *disp = (lv_disp_t *)pvParameters;
 
-    // Initial setup
-    if (lvgl_lock(pdMS_TO_TICKS(1000)))
-    {
-        create_watch_face(disp);
-        lvgl_unlock();
-    }
-
     // Continuous UI event handling
-    while (1) // Infinite loop
+    while (1)
     {
         // Lock LVGL mutex and process events
         if (lvgl_lock(pdMS_TO_TICKS(100)))
         {
-            lv_timer_handler(); // Process LVGL timers
+            create_watch_face(disp);
+            ESP_LOGI(TAG, "UI task running");
             lvgl_unlock();
         }
 
-        // Delay to prevent starvation of lower-priority tasks
         vTaskDelay(pdMS_TO_TICKS(10));
     }
-
-    check_reset_reason();
-
 }
 
 void app_main(void)
@@ -193,8 +149,19 @@ void app_main(void)
         .master.clk_speed = 400000,
     };
 
-    ESP_ERROR_CHECK(i2c_param_config(I2C_MASTER_NUM, &conf));
-    ESP_ERROR_CHECK(i2c_driver_install(I2C_MASTER_NUM, conf.mode, 0, 0, 0));
+    esp_err_t ret = i2c_param_config(I2C_MASTER_NUM, &conf);
+    if (ret != ESP_OK)
+    {
+        ESP_LOGE(TAG, "I2C configuration failed: %s", esp_err_to_name(ret));
+        return;
+    }
+
+    ret = i2c_driver_install(I2C_MASTER_NUM, conf.mode, 0, 0, 0);
+    if (ret != ESP_OK)
+    {
+        ESP_LOGE(TAG, "I2C driver installation failed: %s", esp_err_to_name(ret));
+        return;
+    }
 
     ESP_LOGI(TAG, "Initialize SPI bus");
     spi_bus_config_t buscfg = {
@@ -232,18 +199,34 @@ void app_main(void)
     }
 
     mpu9250_init();
-    start_heart_rate_monitoring();
 
     ESP_LOGI(TAG, "Create LVGL task");
-    xTaskCreate(lvgl_port_task, "LVGL", EXAMPLE_LVGL_TASK_STACK_SIZE, NULL, EXAMPLE_LVGL_TASK_PRIORITY, NULL);
 
-    // Create UI task with display as parameter
+    xTaskCreatePinnedToCore(
+        heart_rate_monitor_task,
+        "Heart Rate Monitor",
+        4096,
+        NULL,
+        3,
+        NULL,
+        1 
+    );
+
+    xTaskCreatePinnedToCore(
+        lvgl_port_task,
+        "LVGL",
+        EXAMPLE_LVGL_TASK_STACK_SIZE,
+        NULL,
+        4,
+        NULL,
+        1); // Pin to Core 1
+
     xTaskCreatePinnedToCore(
         ui_task,
         "UI_Task",
-        8192, // Increased stack size
+        EXAMPLE_LVGL_TASK_STACK_SIZE,
         disp,
-        EXAMPLE_LVGL_TASK_PRIORITY + 1,
+        5,
         NULL,
         1);
 }

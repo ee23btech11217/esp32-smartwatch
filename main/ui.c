@@ -11,20 +11,20 @@ static const char *TAG = "WatchFace";
 typedef enum {
     SCREEN_DIGITAL,
     SCREEN_ANALOG,
-    SCREEN_CALENDAR,
-    SCREEN_COUNT 
+    SCREEN_COUNT  
 } screen_type_t;
 
 // Reduced global state with careful memory management
-typedef struct {
+typedef struct
+{
     screen_type_t current_screen;
     lv_obj_t *screens[SCREEN_COUNT];
-    
+
     // Digital watch components
     lv_obj_t *time_label;
     lv_obj_t *date_label;
     lv_obj_t *step_label;
-    
+
     // Analog watch components
     lv_obj_t *clock_bg;
     lv_obj_t *hour_hand;
@@ -34,10 +34,7 @@ typedef struct {
     lv_point_t hour_points[2];
     lv_point_t minute_points[2];
     lv_point_t second_points[2];
-    
-    // Calendar component
-    lv_obj_t *calendar;
-    
+
     // Touch and timing control
     uint32_t last_touch_time;
 } watch_ui_t;
@@ -54,17 +51,18 @@ static const int MINUTE_HAND_LENGTH = 80;
 static const int SECOND_HAND_LENGTH = 90;
 
 // Precise analog clock update function
-void update_analog_watch(void) {
+void update_analog_watch(void)
+{
     // Ensure components exist
-    if (!watch_ui.hour_hand || !watch_ui.minute_hand || !watch_ui.second_hand) 
+    if (!watch_ui.hour_hand || !watch_ui.minute_hand || !watch_ui.second_hand)
         return;
 
     // Get current time with high precision
     struct timeval tv;
     gettimeofday(&tv, NULL);
-    
+
     struct tm *timeinfo = localtime(&tv.tv_sec);
-    
+
     // Precise rotation calculations
     float hour_rot = (timeinfo->tm_hour % 12 + timeinfo->tm_min / 60.0) * 30.0;
     float minute_rot = (timeinfo->tm_min + timeinfo->tm_sec / 60.0) * 6.0;
@@ -93,8 +91,10 @@ void update_analog_watch(void) {
 }
 
 // Simplified time display update
-void update_time_display(void) {
-    if (!watch_ui.time_label || !watch_ui.date_label) return;
+void update_time_display(void)
+{
+    if (!watch_ui.time_label || !watch_ui.date_label)
+        return;
 
     time_t now;
     struct tm *timeinfo;
@@ -110,17 +110,20 @@ void update_time_display(void) {
 }
 
 // Screen switch handler with debounce
-static void screen_switch_handler(lv_event_t *e) {
+static void screen_switch_handler(lv_event_t *e)
+{
     lv_event_code_t code = lv_event_get_code(e);
     uint32_t current_time = lv_tick_get();
 
-    if (code == LV_EVENT_RELEASED && 
-        (current_time - watch_ui.last_touch_time >= SCREEN_SWITCH_TIMEOUT)) {
-        
+    if (code == LV_EVENT_RELEASED &&
+        (current_time - watch_ui.last_touch_time >= SCREEN_SWITCH_TIMEOUT))
+    {
+
         watch_ui.current_screen = (watch_ui.current_screen + 1) % SCREEN_COUNT;
 
         // Hide all screens
-        for (int i = 0; i < SCREEN_COUNT; i++) {
+        for (int i = 0; i < SCREEN_COUNT; i++)
+        {
             lv_obj_add_flag(watch_ui.screens[i], LV_OBJ_FLAG_HIDDEN);
         }
 
@@ -135,7 +138,8 @@ static void screen_switch_handler(lv_event_t *e) {
 }
 
 // Create digital watch face with minimal allocations
-void create_digital_watch_face(lv_obj_t *parent) {
+void create_digital_watch_face(lv_obj_t *parent)
+{
     watch_ui.time_label = lv_label_create(parent);
     lv_obj_set_pos(watch_ui.time_label, 20, 50);
     lv_obj_set_style_text_font(watch_ui.time_label, &lv_font_montserrat_32, 0);
@@ -150,12 +154,13 @@ void create_digital_watch_face(lv_obj_t *parent) {
 }
 
 // Enhanced analog watch face with improved aesthetics
-void create_analog_watch_face(lv_obj_t *parent) {
+void create_analog_watch_face(lv_obj_t *parent)
+{
     // Create clock background with a more refined look
     watch_ui.clock_bg = lv_obj_create(parent);
     lv_obj_set_size(watch_ui.clock_bg, 200, 200);
     lv_obj_center(watch_ui.clock_bg);
-    
+
     // Set background style
     lv_obj_set_style_bg_color(watch_ui.clock_bg, lv_color_make(240, 240, 240), LV_PART_MAIN);
     lv_obj_set_style_bg_opa(watch_ui.clock_bg, LV_OPA_COVER, LV_PART_MAIN);
@@ -164,26 +169,30 @@ void create_analog_watch_face(lv_obj_t *parent) {
     lv_obj_set_style_radius(watch_ui.clock_bg, 100, LV_PART_MAIN);
 
     // Create hour markings with enhanced style
-    for (int i = 0; i < 12; i++) {
+    for (int i = 0; i < 12; i++)
+    {
         float angle = i * 30.0 * (M_PI / 180);
         lv_obj_t *mark = lv_line_create(parent);
         lv_point_t points[2];
-        
+
         // Outer circle points for longer markings
         points[0].x = CLOCK_CENTER_X + sin(angle) * 110;
         points[0].y = CLOCK_CENTER_Y - cos(angle) * 110;
-        
+
         // Inner circle points
         points[1].x = CLOCK_CENTER_X + sin(angle) * 100;
         points[1].y = CLOCK_CENTER_Y - cos(angle) * 100;
 
         lv_line_set_points(mark, points, 2);
-        
+
         // Thicker markings for 12, 3, 6, 9
-        if (i % 3 == 0) {
+        if (i % 3 == 0)
+        {
             lv_obj_set_style_line_width(mark, 4, LV_PART_MAIN);
             lv_obj_set_style_line_color(mark, lv_palette_main(LV_PALETTE_GREY), LV_PART_MAIN);
-        } else {
+        }
+        else
+        {
             lv_obj_set_style_line_width(mark, 2, LV_PART_MAIN);
             lv_obj_set_style_line_color(mark, lv_palette_main(LV_PALETTE_BLUE_GREY), LV_PART_MAIN);
         }
@@ -191,25 +200,25 @@ void create_analog_watch_face(lv_obj_t *parent) {
 
     // Add hour numbers with improved styling
     const char *hour_labels[] = {"12", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"};
-    
-    for (int i = 0; i < 12; i++) {
+
+    for (int i = 0; i < 12; i++)
+    {
         float angle = i * 30.0 * (M_PI / 180);
-        
+
         // Create label for hour number
         lv_obj_t *number_label = lv_label_create(parent);
-        
+
         // Position calculation
         int radius = 85; // Slightly inside the hour markings
         int x = CLOCK_CENTER_X + sin(angle) * radius;
         int y = CLOCK_CENTER_Y - cos(angle) * radius;
-        
+
         // Set label text and position
         lv_label_set_text(number_label, hour_labels[i]);
-        lv_obj_set_pos(number_label, 
-            x - (i == 0 || i == 10 ? 15 : 10),  
-            y - 10 
-        );
-        
+        lv_obj_set_pos(number_label,
+                       x - (i == 0 || i == 10 ? 15 : 10),
+                       y - 10);
+
         // Style the hour numbers
         lv_obj_set_style_text_color(number_label, lv_palette_main(LV_PALETTE_BLUE_GREY), LV_PART_MAIN);
         lv_obj_set_style_text_font(number_label, &lv_font_montserrat_14, 0);
@@ -253,41 +262,22 @@ void create_analog_watch_face(lv_obj_t *parent) {
     // Enhanced center circle
     watch_ui.center_circle = lv_obj_create(parent);
     lv_obj_set_size(watch_ui.center_circle, 12, 12);
-    lv_obj_set_pos(watch_ui.center_circle, 
-        CLOCK_CENTER_X - 6, 
-        CLOCK_CENTER_Y - 6);
+    lv_obj_set_pos(watch_ui.center_circle,
+                   CLOCK_CENTER_X - 6,
+                   CLOCK_CENTER_Y - 6);
     lv_obj_set_style_bg_color(watch_ui.center_circle, lv_palette_main(LV_PALETTE_GREY), LV_PART_MAIN);
     lv_obj_set_style_radius(watch_ui.center_circle, LV_RADIUS_CIRCLE, 0);
     lv_obj_set_style_border_width(watch_ui.center_circle, 2, LV_PART_MAIN);
     lv_obj_set_style_border_color(watch_ui.center_circle, lv_palette_main(LV_PALETTE_BLUE_GREY), LV_PART_MAIN);
 }
 
-// Minimal calendar face
-void create_calendar_face(lv_obj_t *parent) {
-    watch_ui.calendar = lv_calendar_create(parent);
-    lv_obj_set_size(watch_ui.calendar, 240, 240);
-    lv_obj_center(watch_ui.calendar);
-
-    time_t now;
-    struct tm *timeinfo;
-    time(&now);
-    timeinfo = localtime(&now);
-
-    lv_calendar_set_today_date(
-        watch_ui.calendar,
-        timeinfo->tm_year + 1900,
-        timeinfo->tm_mon + 1,
-        timeinfo->tm_mday
-    );
-}
-
 // Periodic time update handler
-static void update_time_handler(lv_timer_t *timer) {
+static void update_time_handler(lv_timer_t *timer)
+{
     update_time_display();
     update_analog_watch();
 }
 
-// Main watch face initialization with reduced memory footprint
 void create_watch_face(lv_disp_t *disp) {
     lv_obj_t *scr = lv_disp_get_scr_act(disp);
 
@@ -311,7 +301,6 @@ void create_watch_face(lv_disp_t *disp) {
     // Create watch faces for different screens
     create_digital_watch_face(watch_ui.screens[SCREEN_DIGITAL]);
     create_analog_watch_face(watch_ui.screens[SCREEN_ANALOG]);
-    create_calendar_face(watch_ui.screens[SCREEN_CALENDAR]);
 
     // Create timer for periodic updates (every second)
     lv_timer_create(update_time_handler, 1000, NULL);
