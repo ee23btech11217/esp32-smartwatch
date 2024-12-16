@@ -7,11 +7,14 @@
 
 static const char *TAG = "WatchFace";
 
+extern bool get_heart_rate_data(float *heart_rate, float *spo2);
+
 // Optimized screen management
-typedef enum {
+typedef enum
+{
     SCREEN_DIGITAL,
     SCREEN_ANALOG,
-    SCREEN_COUNT  
+    SCREEN_COUNT
 } screen_type_t;
 
 // Reduced global state with careful memory management
@@ -24,6 +27,8 @@ typedef struct
     lv_obj_t *time_label;
     lv_obj_t *date_label;
     lv_obj_t *step_label;
+    lv_obj_t *heart_rate_label;
+    lv_obj_t *spo2_label;
 
     // Analog watch components
     lv_obj_t *clock_bg;
@@ -90,7 +95,6 @@ void update_analog_watch(void)
     lv_line_set_points(watch_ui.second_hand, watch_ui.second_points, 2);
 }
 
-// Simplified time display update
 void update_time_display(void)
 {
     if (!watch_ui.time_label || !watch_ui.date_label)
@@ -107,6 +111,14 @@ void update_time_display(void)
 
     lv_label_set_text(watch_ui.time_label, time_str);
     lv_label_set_text(watch_ui.date_label, date_str);
+
+    // Update heart rate and SpO2
+    float heart_rate, spo2;
+    if (get_heart_rate_data(&heart_rate, &spo2))
+    {
+        lv_label_set_text_fmt(watch_ui.heart_rate_label, "HR: %.1f BPM", heart_rate);
+        lv_label_set_text_fmt(watch_ui.spo2_label, "SpO2: %.1f%%", spo2);
+    }
 }
 
 // Screen switch handler with debounce
@@ -151,13 +163,31 @@ void create_digital_watch_face(lv_obj_t *parent)
     watch_ui.step_label = lv_label_create(parent);
     lv_obj_set_pos(watch_ui.step_label, 20, 170);
     lv_label_set_text(watch_ui.step_label, "Steps: 0");
+
+    watch_ui.heart_rate_label = lv_label_create(parent);
+    lv_obj_set_pos(watch_ui.heart_rate_label, 20, 220);
+
+    watch_ui.spo2_label = lv_label_create(parent);
+    lv_obj_set_pos(watch_ui.spo2_label, 20, 270);
 }
 
 // Enhanced analog watch face with improved aesthetics
 void create_analog_watch_face(lv_obj_t *parent)
 {
+    // Validate parent screen
+    if (!parent)
+    {
+        ESP_LOGE(TAG, "Invalid parent screen in create_analog_watch_face");
+        return;
+    }
+
     // Create clock background with a more refined look
     watch_ui.clock_bg = lv_obj_create(parent);
+    if (!watch_ui.clock_bg)
+    {
+        ESP_LOGE(TAG, "Failed to create clock background");
+        return;
+    }
     lv_obj_set_size(watch_ui.clock_bg, 200, 200);
     lv_obj_center(watch_ui.clock_bg);
 
@@ -173,6 +203,11 @@ void create_analog_watch_face(lv_obj_t *parent)
     {
         float angle = i * 30.0 * (M_PI / 180);
         lv_obj_t *mark = lv_line_create(parent);
+        if (!mark)
+        {
+            ESP_LOGE(TAG, "Failed to create hour marking %d", i);
+            continue;
+        }
         lv_point_t points[2];
 
         // Outer circle points for longer markings
@@ -207,6 +242,11 @@ void create_analog_watch_face(lv_obj_t *parent)
 
         // Create label for hour number
         lv_obj_t *number_label = lv_label_create(parent);
+        if (!number_label)
+        {
+            ESP_LOGE(TAG, "Failed to create hour number label %d", i);
+            continue;
+        }
 
         // Position calculation
         int radius = 85; // Slightly inside the hour markings
@@ -278,29 +318,39 @@ static void update_time_handler(lv_timer_t *timer)
     update_analog_watch();
 }
 
-void create_watch_face(lv_disp_t *disp) {
+void create_watch_face(lv_disp_t *disp, float heart_rate, float spo2)
+{
     lv_obj_t *scr = lv_disp_get_scr_act(disp);
 
     // Initialize screens with consistent sizing
-    for (int i = 0; i < SCREEN_COUNT; i++) {
+    for (int i = 0; i < SCREEN_COUNT; i++)
+    {
         watch_ui.screens[i] = lv_obj_create(scr);
-        lv_obj_set_size(watch_ui.screens[i], 
-            lv_disp_get_hor_res(disp), 
-            lv_disp_get_ver_res(disp));
-        
+        lv_obj_set_size(watch_ui.screens[i],
+                        lv_disp_get_hor_res(disp),
+                        lv_disp_get_ver_res(disp));
+
         // Hide non-digital screens initially
-        if (i != SCREEN_DIGITAL) {
+        if (i != SCREEN_DIGITAL)
+        {
             lv_obj_add_flag(watch_ui.screens[i], LV_OBJ_FLAG_HIDDEN);
         }
 
         // Add touch event for screen switching
-        lv_obj_add_event_cb(watch_ui.screens[i], screen_switch_handler, 
-            LV_EVENT_RELEASED, NULL);
+        lv_obj_add_event_cb(watch_ui.screens[i], screen_switch_handler,
+                            LV_EVENT_RELEASED, NULL);
     }
 
     // Create watch faces for different screens
     create_digital_watch_face(watch_ui.screens[SCREEN_DIGITAL]);
     create_analog_watch_face(watch_ui.screens[SCREEN_ANALOG]);
+
+    // Manually update heart rate and SpO2 labels if values are provided
+    if (watch_ui.heart_rate_label && watch_ui.spo2_label)
+    {
+        lv_label_set_text_fmt(watch_ui.heart_rate_label, "HR: %.1f BPM", heart_rate);
+        lv_label_set_text_fmt(watch_ui.spo2_label, "SpO2: %.1f%%", spo2);
+    }
 
     // Create timer for periodic updates (every second)
     lv_timer_create(update_time_handler, 1000, NULL);
