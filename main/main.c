@@ -83,21 +83,26 @@ void lvgl_port_task(void *arg) {
     lv_disp_t *disp = (lv_disp_t *)arg;
     float current_heart_rate = 0.0f;
     float current_spo2 = 0.0f;
+    TickType_t last_wake_time = xTaskGetTickCount();
 
     while (1) {
+        // Safely get heart rate data
         if (xSemaphoreTake(heart_rate_mutex, pdMS_TO_TICKS(50)) == pdTRUE) {
             current_heart_rate = g_heart_rate;
             current_spo2 = g_spo2;
             xSemaphoreGive(heart_rate_mutex);
         }
 
-        if (lvgl_lock(-1)) {
-            create_watch_face(disp, current_heart_rate, current_spo2);
+        // Use a single lock for both create_watch_face and lv_timer_handler
+        if (lvgl_lock(100)) {
+            // Clear any pending LVGL events before creating watch face
             lv_timer_handler();
+            create_watch_face(disp, current_heart_rate, current_spo2);
             lvgl_unlock();
         }
 
-        vTaskDelay(pdMS_TO_TICKS(EXAMPLE_LVGL_TASK_DELAY_MS));
+        // Use vTaskDelayUntil for more precise timing
+        vTaskDelayUntil(&last_wake_time, pdMS_TO_TICKS(EXAMPLE_LVGL_TASK_DELAY_MS));
     }
 }
 
@@ -106,13 +111,17 @@ void increase_lvgl_tick(void *arg) {
 }
 
 void app_main(void) {
+    // Initialize LVGL
     lv_init();
 
+    // Initialize WiFi
     ESP_ERROR_CHECK(wifi_manager_init());
     ESP_ERROR_CHECK(wifi_manager_connect("Jio 1", "raja1234"));
 
+    // Configure system time
     configure_system_time();
 
+    // I2C Configuration
     i2c_config_t i2c_conf = {
         .mode = I2C_MODE_MASTER,
         .sda_io_num = I2C_MASTER_SDA_IO,
@@ -125,6 +134,7 @@ void app_main(void) {
     ESP_ERROR_CHECK(i2c_param_config(I2C_MASTER_NUM, &i2c_conf));
     ESP_ERROR_CHECK(i2c_driver_install(I2C_MASTER_NUM, i2c_conf.mode, 0, 0, 0));
 
+    // SPI Bus Configuration
     spi_bus_config_t buscfg = {
         .sclk_io_num = EXAMPLE_PIN_NUM_SCLK,
         .mosi_io_num = EXAMPLE_PIN_NUM_MOSI,
@@ -136,8 +146,10 @@ void app_main(void) {
 
     ESP_ERROR_CHECK(spi_bus_initialize(HOST, &buscfg, SPI_DMA_CH_AUTO));
 
+    // Initialize LVGL display
     lv_disp_t *disp = lvgl_port_init();
 
+    // Create LVGL tick timer
     const esp_timer_create_args_t lvgl_tick_timer_args = {
         .callback = &increase_lvgl_tick,
         .name = "lvgl_tick"
@@ -146,9 +158,13 @@ void app_main(void) {
     ESP_ERROR_CHECK(esp_timer_create(&lvgl_tick_timer_args, &lvgl_tick_timer));
     ESP_ERROR_CHECK(esp_timer_start_periodic(lvgl_tick_timer, EXAMPLE_LVGL_TICK_PERIOD_MS * 1000));
 
+    // Create mutexes
     lvgl_mux = xSemaphoreCreateRecursiveMutex();
+    
+    // Initialize additional hardware
     mpu9250_init();
 
+    // Create tasks
     xTaskCreatePinnedToCore(heart_rate_monitor_task, "Heart Rate Monitor", 4096, NULL, 2, NULL, 1);
     xTaskCreatePinnedToCore(lvgl_port_task, "LVGL", 4096, disp, 3, NULL, 1);
 }

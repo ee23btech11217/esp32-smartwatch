@@ -9,17 +9,13 @@ static const char *TAG = "WatchFace";
 
 extern bool get_heart_rate_data(float *heart_rate, float *spo2);
 
-// Optimized screen management
-typedef enum
-{
+typedef enum {
     SCREEN_DIGITAL,
     SCREEN_ANALOG,
     SCREEN_COUNT
 } screen_type_t;
 
-// Reduced global state with careful memory management
-typedef struct
-{
+typedef struct {
     screen_type_t current_screen;
     lv_obj_t *screens[SCREEN_COUNT];
 
@@ -40,14 +36,15 @@ typedef struct
     lv_point_t minute_points[2];
     lv_point_t second_points[2];
 
-    // Touch and timing control
+    // State tracking
     uint32_t last_touch_time;
+    int last_second;
+    int last_minute;
+    int last_hour;
 } watch_ui_t;
 
-// Static allocation to reduce heap usage
 static watch_ui_t watch_ui = {0};
 
-// Constants to reduce computational overhead
 static const uint32_t SCREEN_SWITCH_TIMEOUT = 500;
 static const int CLOCK_CENTER_X = 113;
 static const int CLOCK_CENTER_Y = 148;
@@ -55,18 +52,27 @@ static const int HOUR_HAND_LENGTH = 60;
 static const int MINUTE_HAND_LENGTH = 80;
 static const int SECOND_HAND_LENGTH = 90;
 
-// Precise analog clock update function
-void update_analog_watch(void)
-{
-    // Ensure components exist
+void update_analog_watch(void) {
+    // Quick exit if no hand components exist
     if (!watch_ui.hour_hand || !watch_ui.minute_hand || !watch_ui.second_hand)
         return;
 
-    // Get current time with high precision
+    // Get current time
     struct timeval tv;
     gettimeofday(&tv, NULL);
-
     struct tm *timeinfo = localtime(&tv.tv_sec);
+
+    // Optimize updates by checking if time has actually changed
+    if (timeinfo->tm_sec == watch_ui.last_second && 
+        timeinfo->tm_min == watch_ui.last_minute && 
+        timeinfo->tm_hour == watch_ui.last_hour) {
+        return;
+    }
+
+    // Update tracking
+    watch_ui.last_second = timeinfo->tm_sec;
+    watch_ui.last_minute = timeinfo->tm_min;
+    watch_ui.last_hour = timeinfo->tm_hour;
 
     // Precise rotation calculations
     float hour_rot = (timeinfo->tm_hour % 12 + timeinfo->tm_min / 60.0) * 30.0;
@@ -89,14 +95,14 @@ void update_analog_watch(void)
     watch_ui.second_points[1].x = CLOCK_CENTER_X + SECOND_HAND_LENGTH * sin(second_rot * M_PI / 180);
     watch_ui.second_points[1].y = CLOCK_CENTER_Y - SECOND_HAND_LENGTH * cos(second_rot * M_PI / 180);
 
-    // Update line points efficiently
+    // Efficient line updates
     lv_line_set_points(watch_ui.hour_hand, watch_ui.hour_points, 2);
     lv_line_set_points(watch_ui.minute_hand, watch_ui.minute_points, 2);
     lv_line_set_points(watch_ui.second_hand, watch_ui.second_points, 2);
 }
 
-void update_time_display(void)
-{
+void update_time_display(void) {
+    // Quick exit if labels not initialized
     if (!watch_ui.time_label || !watch_ui.date_label)
         return;
 
@@ -105,43 +111,63 @@ void update_time_display(void)
     time(&now);
     timeinfo = localtime(&now);
 
+    // Only update if time has changed
+    static char last_time_str[6] = {0};
+    static char last_date_str[32] = {0};
+
     char time_str[6], date_str[32];
     strftime(time_str, sizeof(time_str), "%H:%M", timeinfo);
     strftime(date_str, sizeof(date_str), "%b %d, %Y", timeinfo);
 
-    lv_label_set_text(watch_ui.time_label, time_str);
-    lv_label_set_text(watch_ui.date_label, date_str);
+    // Compare and update only if changed
+    if (strcmp(time_str, last_time_str) != 0) {
+        lv_label_set_text(watch_ui.time_label, time_str);
+        strcpy(last_time_str, time_str);
+    }
+
+    if (strcmp(date_str, last_date_str) != 0) {
+        lv_label_set_text(watch_ui.date_label, date_str);
+        strcpy(last_date_str, date_str);
+    }
 
     // Update heart rate and SpO2
     float heart_rate, spo2;
-    if (get_heart_rate_data(&heart_rate, &spo2))
-    {
-        lv_label_set_text_fmt(watch_ui.heart_rate_label, "HR: %.1f BPM", heart_rate);
-        lv_label_set_text_fmt(watch_ui.spo2_label, "SpO2: %.1f%%", spo2);
+    if (get_heart_rate_data(&heart_rate, &spo2)) {
+        static float last_heart_rate = 0.0f;
+        static float last_spo2 = 0.0f;
+
+        // Only update if values have changed significantly
+        if (fabs(heart_rate - last_heart_rate) > 0.5f || fabs(spo2 - last_spo2) > 0.5f) {
+            lv_label_set_text_fmt(watch_ui.heart_rate_label, "HR: %.1f BPM", heart_rate);
+            lv_label_set_text_fmt(watch_ui.spo2_label, "SpO2: %.1f%%", spo2);
+            
+            last_heart_rate = heart_rate;
+            last_spo2 = spo2;
+        }
     }
 }
 
-// Screen switch handler with debounce
-static void screen_switch_handler(lv_event_t *e)
-{
+// Screen switch handler with improved debounce
+static void screen_switch_handler(lv_event_t *e) {
     lv_event_code_t code = lv_event_get_code(e);
     uint32_t current_time = lv_tick_get();
 
     if (code == LV_EVENT_RELEASED &&
-        (current_time - watch_ui.last_touch_time >= SCREEN_SWITCH_TIMEOUT))
-    {
-
+        (current_time - watch_ui.last_touch_time >= SCREEN_SWITCH_TIMEOUT)) {
+        
+        // Cycle through screens
         watch_ui.current_screen = (watch_ui.current_screen + 1) % SCREEN_COUNT;
 
-        // Hide all screens
-        for (int i = 0; i < SCREEN_COUNT; i++)
-        {
-            lv_obj_add_flag(watch_ui.screens[i], LV_OBJ_FLAG_HIDDEN);
+        // Efficiently manage screen visibility
+        for (int i = 0; i < SCREEN_COUNT; i++) {
+            if (i == watch_ui.current_screen) {
+                lv_obj_clear_flag(watch_ui.screens[i], LV_OBJ_FLAG_HIDDEN);
+            } else {
+                lv_obj_add_flag(watch_ui.screens[i], LV_OBJ_FLAG_HIDDEN);
+            }
         }
 
-        // Show current screen
-        lv_obj_clear_flag(watch_ui.screens[watch_ui.current_screen], LV_OBJ_FLAG_HIDDEN);
-
+        // Force update of current screen
         update_time_display();
         update_analog_watch();
 
@@ -311,28 +337,32 @@ void create_analog_watch_face(lv_obj_t *parent)
     lv_obj_set_style_border_color(watch_ui.center_circle, lv_palette_main(LV_PALETTE_BLUE_GREY), LV_PART_MAIN);
 }
 
-// Periodic time update handler
-static void update_time_handler(lv_timer_t *timer)
-{
+// Periodic update handler with reduced frequency
+static void update_time_handler(lv_timer_t *timer) {
     update_time_display();
     update_analog_watch();
 }
 
-void create_watch_face(lv_disp_t *disp, float heart_rate, float spo2)
-{
+// Create watch face with minimal redraws
+void create_watch_face(lv_disp_t *disp, float heart_rate, float spo2) {
+    // Prevent multiple initializations
+    static bool initialized = false;
+    if (initialized) {
+        return;
+    }
+    initialized = true;
+
     lv_obj_t *scr = lv_disp_get_scr_act(disp);
 
-    // Initialize screens with consistent sizing
-    for (int i = 0; i < SCREEN_COUNT; i++)
-    {
+    // Initialize screens
+    for (int i = 0; i < SCREEN_COUNT; i++) {
         watch_ui.screens[i] = lv_obj_create(scr);
         lv_obj_set_size(watch_ui.screens[i],
                         lv_disp_get_hor_res(disp),
                         lv_disp_get_ver_res(disp));
 
-        // Hide non-digital screens initially
-        if (i != SCREEN_DIGITAL)
-        {
+        // Hide all but digital screen initially
+        if (i != SCREEN_DIGITAL) {
             lv_obj_add_flag(watch_ui.screens[i], LV_OBJ_FLAG_HIDDEN);
         }
 
@@ -345,17 +375,17 @@ void create_watch_face(lv_disp_t *disp, float heart_rate, float spo2)
     create_digital_watch_face(watch_ui.screens[SCREEN_DIGITAL]);
     create_analog_watch_face(watch_ui.screens[SCREEN_ANALOG]);
 
-    // Manually update heart rate and SpO2 labels if values are provided
-    if (watch_ui.heart_rate_label && watch_ui.spo2_label)
-    {
+    // Manually set initial heart rate and SpO2 labels
+    if (watch_ui.heart_rate_label && watch_ui.spo2_label) {
         lv_label_set_text_fmt(watch_ui.heart_rate_label, "HR: %.1f BPM", heart_rate);
         lv_label_set_text_fmt(watch_ui.spo2_label, "SpO2: %.1f%%", spo2);
     }
 
-    // Create timer for periodic updates (every second)
-    lv_timer_create(update_time_handler, 1000, NULL);
+    // Create timer for periodic updates (every 2 seconds to reduce overhead)
+    lv_timer_create(update_time_handler, 2000, NULL);
 
     // Initial time and watch display
     update_time_display();
     update_analog_watch();
 }
+
