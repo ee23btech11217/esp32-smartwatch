@@ -12,6 +12,7 @@
 #include "esp_err.h"
 #include "esp_log.h"
 
+#define LOGI(...) ESP_LOGI(TAG, __VA_ARGS__)
 #include "lvgl.h"
 #include "wifiManager.h"
 #include "lvglPort.h"
@@ -70,6 +71,7 @@ void heart_rate_monitor_task(void *pvParameters)
 
     while (1)
     {
+        LOGI("Enterring heart-1");
         if (max30100_update(&max30100_config, &max30100_data) == ESP_OK)
         {
             if (xSemaphoreTake(heart_rate_mutex, pdMS_TO_TICKS(100)) == pdTRUE)
@@ -80,6 +82,7 @@ void heart_rate_monitor_task(void *pvParameters)
                     g_spo2 = max30100_data.spO2;
                 }
                 xSemaphoreGive(heart_rate_mutex);
+                LOGI("Enterring heart-2");
             }
         }
         vTaskDelay(pdMS_TO_TICKS(500));
@@ -94,6 +97,7 @@ void create_watch_face_task(void *arg)
 
     while (1)
     {
+        LOGI("Enterring create watch face-1");
 
         // Safely get heart rate data
         if (xSemaphoreTake(heart_rate_mutex, pdMS_TO_TICKS(50)) == pdTRUE)
@@ -106,6 +110,7 @@ void create_watch_face_task(void *arg)
         // Lock LVGL and create watch face
         if (lvgl_lock(100))
         {
+            LOGI("Enterring create watch face-2");
             create_watch_face(disp, current_heart_rate, current_spo2);
             lvgl_unlock();
         }
@@ -120,6 +125,7 @@ void lvgl_port_task(void *arg)
 
     while (1)
     {
+        LOGI("Enterring lvgl-port");
         if (lvgl_lock(100))
         {
             lv_timer_handler();
