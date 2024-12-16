@@ -11,6 +11,7 @@
 #include "driver/i2c.h"
 #include "esp_err.h"
 #include "esp_log.h"
+
 #include "lvgl.h"
 #include "wifiManager.h"
 #include "lvglPort.h"
@@ -28,7 +29,7 @@ static const char *TAG = "main";
 #define I2C_MASTER_NUM I2C_NUM_0
 
 #define EXAMPLE_LVGL_TICK_PERIOD_MS 2
-#define EXAMPLE_LVGL_TASK_DELAY_MS 50
+#define EXAMPLE_LVGL_TASK_DELAY_MS 10
 
 static SemaphoreHandle_t lvgl_mux = NULL;
 static float g_heart_rate = 0.0f;
@@ -40,16 +41,19 @@ extern void configure_system_time();
 extern void wifi_init_sta();
 extern void mpu9250_init();
 
-bool lvgl_lock(int timeout_ms) {
+bool lvgl_lock(int timeout_ms)
+{
     const TickType_t timeout_ticks = (timeout_ms == -1) ? portMAX_DELAY : pdMS_TO_TICKS(timeout_ms);
     return xSemaphoreTakeRecursive(lvgl_mux, timeout_ticks) == pdTRUE;
 }
 
-void lvgl_unlock(void) {
+void lvgl_unlock(void)
+{
     xSemaphoreGiveRecursive(lvgl_mux);
 }
 
-void heart_rate_monitor_task(void *pvParameters) {
+void heart_rate_monitor_task(void *pvParameters)
+{
     heart_rate_mutex = xSemaphoreCreateMutex();
     max30100_config_t max30100_config;
     max30100_data_t max30100_data;
@@ -62,13 +66,16 @@ void heart_rate_monitor_task(void *pvParameters) {
         MAX30100_PULSE_WIDTH_1600US_ADC_16,
         MAX30100_LED_CURRENT_50MA,
         MAX30100_LED_CURRENT_27_1MA,
-        15, 10, true, false
-    );
+        15, 10, true, false);
 
-    while (1) {
-        if (max30100_update(&max30100_config, &max30100_data) == ESP_OK) {
-            if (xSemaphoreTake(heart_rate_mutex, pdMS_TO_TICKS(100)) == pdTRUE) {
-                if (max30100_data.pulse_detected) {
+    while (1)
+    {
+        if (max30100_update(&max30100_config, &max30100_data) == ESP_OK)
+        {
+            if (xSemaphoreTake(heart_rate_mutex, pdMS_TO_TICKS(100)) == pdTRUE)
+            {
+                if (max30100_data.pulse_detected)
+                {
                     g_heart_rate = max30100_data.heart_bpm;
                     g_spo2 = max30100_data.spO2;
                 }
@@ -78,39 +85,58 @@ void heart_rate_monitor_task(void *pvParameters) {
         vTaskDelay(pdMS_TO_TICKS(500));
     }
 }
-
-void lvgl_port_task(void *arg) {
+void create_watch_face_task(void *arg)
+{
     lv_disp_t *disp = (lv_disp_t *)arg;
     float current_heart_rate = 0.0f;
     float current_spo2 = 0.0f;
     TickType_t last_wake_time = xTaskGetTickCount();
 
-    while (1) {
+    while (1)
+    {
+
         // Safely get heart rate data
-        if (xSemaphoreTake(heart_rate_mutex, pdMS_TO_TICKS(50)) == pdTRUE) {
+        if (xSemaphoreTake(heart_rate_mutex, pdMS_TO_TICKS(50)) == pdTRUE)
+        {
             current_heart_rate = g_heart_rate;
             current_spo2 = g_spo2;
             xSemaphoreGive(heart_rate_mutex);
         }
 
-        // Use a single lock for both create_watch_face and lv_timer_handler
-        if (lvgl_lock(100)) {
-            // Clear any pending LVGL events before creating watch face
-            lv_timer_handler();
+        // Lock LVGL and create watch face
+        if (lvgl_lock(100))
+        {
             create_watch_face(disp, current_heart_rate, current_spo2);
             lvgl_unlock();
         }
 
-        // Use vTaskDelayUntil for more precise timing
         vTaskDelayUntil(&last_wake_time, pdMS_TO_TICKS(EXAMPLE_LVGL_TASK_DELAY_MS));
     }
 }
 
-void increase_lvgl_tick(void *arg) {
+void lvgl_port_task(void *arg)
+{
+    TickType_t last_wake_time = xTaskGetTickCount();
+
+    while (1)
+    {
+        if (lvgl_lock(100))
+        {
+            lv_timer_handler();
+            lvgl_unlock();
+        }
+
+        vTaskDelayUntil(&last_wake_time, pdMS_TO_TICKS(EXAMPLE_LVGL_TASK_DELAY_MS));
+    }
+}
+
+static void increase_lvgl_tick(void *arg)
+{
     lv_tick_inc(EXAMPLE_LVGL_TICK_PERIOD_MS);
 }
 
-void app_main(void) {
+void app_main(void)
+{
     // Initialize LVGL
     lv_init();
 
@@ -152,19 +178,19 @@ void app_main(void) {
     // Create LVGL tick timer
     const esp_timer_create_args_t lvgl_tick_timer_args = {
         .callback = &increase_lvgl_tick,
-        .name = "lvgl_tick"
-    };
+        .name = "lvgl_tick"};
     esp_timer_handle_t lvgl_tick_timer = NULL;
     ESP_ERROR_CHECK(esp_timer_create(&lvgl_tick_timer_args, &lvgl_tick_timer));
     ESP_ERROR_CHECK(esp_timer_start_periodic(lvgl_tick_timer, EXAMPLE_LVGL_TICK_PERIOD_MS * 1000));
 
     // Create mutexes
     lvgl_mux = xSemaphoreCreateRecursiveMutex();
-    
+
     // Initialize additional hardware
     mpu9250_init();
 
     // Create tasks
-    xTaskCreatePinnedToCore(heart_rate_monitor_task, "Heart Rate Monitor", 4096, NULL, 2, NULL, 1);
-    xTaskCreatePinnedToCore(lvgl_port_task, "LVGL", 4096, disp, 3, NULL, 1);
+    xTaskCreatePinnedToCore(heart_rate_monitor_task, "Heart Rate Monitor", 4096, NULL, 1, NULL, 1);
+    xTaskCreatePinnedToCore(lvgl_port_task, "LVGL Port", 8192, NULL, 3, NULL, 1);
+    xTaskCreatePinnedToCore(create_watch_face_task, "Create Watch Face", 8192, disp, 2, NULL, 1);
 }

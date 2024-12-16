@@ -1,7 +1,7 @@
 {
     "version":            "1.1",
     "project_name":       "display",
-    "project_version":    "16a3d8a-dirty",
+    "project_version":    "396bede-dirty",
     "project_path":       "/home/mnepraj/smart-watch",
     "idf_path":           "/home/mnepraj/esp/esp-idf",
     "build_dir":          "/home/mnepraj/smart-watch/build",

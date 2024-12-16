@@ -382,7 +382,7 @@ void create_watch_face(lv_disp_t *disp, float heart_rate, float spo2) {
     }
 
     // Create timer for periodic updates (every 2 seconds to reduce overhead)
-    lv_timer_create(update_time_handler, 2000, NULL);
+    lv_timer_create(update_time_handler, 1000, NULL);
 
     // Initial time and watch display
     update_time_display();
