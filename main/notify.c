@@ -34,7 +34,7 @@ static int custom_handler(uint16_t conn_handle, uint16_t attr_handle, struct ble
     }
     else if (ctxt->op == BLE_GATT_ACCESS_OP_READ_CHR)
     {
-        const char *msg = "SPP_CHR";
+        const char *msg = "Hi, I am Bluetooth";
         os_mbuf_append(ctxt->om, msg, strlen(msg));
         ESP_LOGI(TAG, "Responded to READ with: %s", msg);
     }

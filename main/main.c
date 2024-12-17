@@ -197,8 +197,8 @@ void app_main(void)
     mpu9250_init();
 
     // // Create tasks
-    // xTaskCreatePinnedToCore(heart_rate_monitor_task, "Heart Rate Monitor", 4096, NULL, 1, NULL, 1);
-    // xTaskCreatePinnedToCore(lvgl_port_task, "LVGL Port", 8192, NULL, 3, NULL, 1);
-    // xTaskCreatePinnedToCore(create_watch_face_task, "Create Watch Face", 8192, disp, 2, NULL, 1);
+    xTaskCreatePinnedToCore(heart_rate_monitor_task, "Heart Rate Monitor", 4096, NULL, 1, NULL, 1);
+    xTaskCreatePinnedToCore(lvgl_port_task, "LVGL Port", 8192, NULL, 3, NULL, 1);
+    xTaskCreatePinnedToCore(create_watch_face_task, "Create Watch Face", 8192, disp, 2, NULL, 1);
     start_bluetooth_notify_task();
 }
