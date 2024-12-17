@@ -1,161 +1,162 @@
-#include "notify.h"
-#include "bleManager.h"
-#include "esp_log.h"
-#include "esp_bt.h"
-#include "esp_bt_main.h"
-#include "esp_gatts_api.h"
-#include "esp_gatt_common_api.h"
+#include <stdio.h>
 #include <string.h>
+#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
+#include "freertos/event_groups.h"
+#include "esp_log.h"
+#include "esp_nimble_hci.h"
+#include "nimble/nimble_port.h"
+#include "nimble/nimble_port_freertos.h"
+#include "host/ble_hs.h"
+#include "services/gap/ble_svc_gap.h"
+#include "nvs_flash.h"
+#include "services/gatt/ble_svc_gatt.h"
 
-// Reduce static allocations and use const where possible
-static const char* const TAG = "NOTIFICATION_SERVICE";
+static const char *TAG = "BLE_CUSTOM_NOTIFY";
+uint8_t ble_addr_type;
+void ble_app_advertise(void);
 
-// Service and Characteristic UUIDs - move to .rodata
-static const uint16_t GATTS_SERVICE_UUID   = 0x00FF;
-static const uint16_t GATTS_CHAR_UUID      = 0xFF01;
+// Custom service and characteristic UUIDs
+#define CUSTOM_SERVICE_UUID 0x1802
+#define CUSTOM_CHAR_UUID 0x2a02
 
-// Minimize global state tracking
-typedef struct {
-    bool is_connected;
-    uint16_t conn_id;
-    esp_gatt_if_t gatts_interface;
-    uint16_t notification_handle;
-} NotificationContext;
+// Custom notification data
+#define CUSTOM_NOTIFY_MESSAGE "Hello from ESP32 Custom Service!"
 
-// Use static allocation for context to reduce dynamic memory usage
-static NotificationContext s_notification_ctx = {
-    .is_connected = false,
-    .conn_id = 0,
-    .gatts_interface = 0,
-    .notification_handle = 0
-};
+// Custom write handler
+static int custom_handler(uint16_t conn_handle, uint16_t attr_handle, struct ble_gatt_access_ctxt *ctxt, void *arg)
+{
+    ESP_LOGI(TAG, "Custom characteristic accessed.");
 
-// Characteristic configuration - use const and move to .rodata
-static const uint16_t primary_service_uuid = GATTS_SERVICE_UUID;
-static const uint16_t character_declaration_uuid = ESP_GATT_UUID_CHAR_DECLARE;
-static const uint16_t character_notification_uuid = GATTS_CHAR_UUID;
-static const uint8_t char_prop_notify = ESP_GATT_CHAR_PROP_BIT_NOTIFY;
-
-// Optimize event handler - minimize IRAM usage
-void notification_gatts_event_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts_if, esp_ble_gatts_cb_param_t *param) {
-    switch (event) {
-        case ESP_GATTS_REG_EVT:
-            ESP_LOGI(TAG, "GATT service registered");
-            break;
-
-        case ESP_GATTS_CONNECT_EVT:
-            s_notification_ctx.is_connected = true;
-            s_notification_ctx.conn_id = param->connect.conn_id;
-            s_notification_ctx.gatts_interface = gatts_if;
-            ESP_LOGI(TAG, "Device connected");
-            break;
-
-        case ESP_GATTS_DISCONNECT_EVT:
-            s_notification_ctx.is_connected = false;
-            ESP_LOGI(TAG, "Device disconnected");
-            // Restart advertising using the Bluetooth manager
-            bluetooth_manager_start_advertising();
-            break;
-
-        default:
-            break;
+    if (ctxt->op == BLE_GATT_ACCESS_OP_WRITE_CHR)
+    {
+        ESP_LOGI(TAG, "Received WRITE: %.*s", ctxt->om->om_len, ctxt->om->om_data);
     }
+    else if (ctxt->op == BLE_GATT_ACCESS_OP_READ_CHR)
+    {
+        const char *msg = "SPP_CHR";
+        os_mbuf_append(ctxt->om, msg, strlen(msg));
+        ESP_LOGI(TAG, "Responded to READ with: %s", msg);
+    }
+
+    return 0;
 }
 
-esp_err_t notification_init(void) {
-    esp_err_t ret;
+// Define characteristics and service
+static const struct ble_gatt_svc_def gatt_svcs[] = {
+    {.type = BLE_GATT_SVC_TYPE_PRIMARY,
+     .uuid = BLE_UUID16_DECLARE(CUSTOM_SERVICE_UUID),
+     .characteristics = (struct ble_gatt_chr_def[]){
+         {.uuid = BLE_UUID16_DECLARE(CUSTOM_CHAR_UUID),
+          .flags = BLE_GATT_CHR_F_READ | BLE_GATT_CHR_F_WRITE | BLE_GATT_CHR_F_NOTIFY,
+          .access_cb = custom_handler},
+         {0}}},
+    {0}};
 
-    // Register GATTS callback using the custom handler
-    ret = esp_ble_gatts_register_callback(notification_gatts_event_handler);
-    if (ret != ESP_OK) {
-        ESP_LOGE(TAG, "GATTS callback registration failed: %s", esp_err_to_name(ret));
-        return ret;
-    }
-
-    // Create GATT service - use stack allocation
-    esp_gatts_attr_db_t gatt_db[3] = {
-        // Service Declaration
-        [0] = {
-            .attr_control = {.auto_rsp = ESP_GATT_AUTO_RSP},
-            .att_desc = {
-                .uuid_length = ESP_UUID_LEN_16,
-                .uuid_p = (uint8_t*)&primary_service_uuid,
-                .perm = ESP_GATT_PERM_READ,
-                .max_length = sizeof(uint16_t),
-                .length = sizeof(uint16_t)
-            }
-        },
-        // Characteristic Declaration
-        [1] = {
-            .attr_control = {.auto_rsp = ESP_GATT_AUTO_RSP},
-            .att_desc = {
-                .uuid_length = ESP_UUID_LEN_16,
-                .uuid_p = (uint8_t*)&character_declaration_uuid,
-                .perm = ESP_GATT_PERM_READ,
-                .max_length = sizeof(uint8_t),
-                .length = sizeof(uint8_t),
-                .value = (uint8_t*)&char_prop_notify
-            }
-        },
-        // Characteristic Value
-        [2] = {
-            .attr_control = {.auto_rsp = ESP_GATT_AUTO_RSP},
-            .att_desc = {
-                .uuid_length = ESP_UUID_LEN_16,
-                .uuid_p = (uint8_t*)&character_notification_uuid,
-                .perm = ESP_GATT_PERM_WRITE | ESP_GATT_PERM_READ,
-                .max_length = MAX_NOTIFICATION_LENGTH,
-                .length = 0
-            }
+// BLE GAP event handler
+static int ble_gap_event(struct ble_gap_event *event, void *arg)
+{
+    switch (event->type)
+    {
+    case BLE_GAP_EVENT_CONNECT:
+        ESP_LOGI(TAG, "BLE GAP EVENT CONNECT %s", event->connect.status == 0 ? "OK!" : "FAILED!");
+        if (event->connect.status != 0)
+        {
+            ble_app_advertise(); // Restart advertising if connection failed
         }
-    };
+        break;
 
-    // Register service with correct parameters
-    ret = esp_ble_gatts_create_attr_tab(gatt_db, ESP_GATT_IF_NONE, 3, 0);
-    if (ret != ESP_OK) {
-        ESP_LOGE(TAG, "Create attribute table failed: %s", esp_err_to_name(ret));
-        return ret;
+    case BLE_GAP_EVENT_DISCONNECT:
+        ESP_LOGI(TAG, "BLE GAP EVENT DISCONNECTED");
+        ble_app_advertise(); // Restart advertising after disconnect
+        break;
+
+    case BLE_GAP_EVENT_ADV_COMPLETE:
+        ESP_LOGI(TAG, "BLE GAP EVENT: Advertisement Complete");
+        ble_app_advertise(); // Restart advertising
+        break;
+
+    case BLE_GAP_EVENT_CONN_UPDATE:
+        ESP_LOGI(TAG, "BLE GAP EVENT: Connection parameters updated.");
+        break;
+
+    case BLE_GAP_EVENT_CONN_UPDATE_REQ:
+        ESP_LOGI(TAG, "BLE GAP EVENT: Connection update request received.");
+        break;
+
+    case BLE_GAP_EVENT_ENC_CHANGE:
+        ESP_LOGI(TAG, "BLE GAP EVENT: Encryption status changed.");
+        break;
+
+    case BLE_GAP_EVENT_NOTIFY_TX:
+        ESP_LOGI(TAG, "BLE GAP EVENT: Notification sent.");
+        break;
+
+    case BLE_GAP_EVENT_SUBSCRIBE:
+        ESP_LOGI(TAG, "BLE GAP EVENT: Client %s notifications for handle %d.",
+                 event->subscribe.cur_notify ? "subscribed to" : "unsubscribed from",
+                 event->subscribe.attr_handle);
+        break;
+
+    case BLE_GAP_EVENT_MTU:
+        ESP_LOGI(TAG, "BLE GAP EVENT: MTU size updated to %d", event->mtu.value);
+        break;
+
+    default:
+        ESP_LOGW(TAG, "Unhandled GAP event: %d", event->type);
+        break;
     }
-
-    // Register the GATT application
-    ret = esp_ble_gatts_app_register(0);
-    if (ret != ESP_OK) {
-        ESP_LOGE(TAG, "Add service failed: %s", esp_err_to_name(ret));
-        return ret;
-    }
-
-    return ESP_OK;
+    return 0;
 }
 
-esp_err_t send_notification(const char* message) {
-    // Check connection status using Bluetooth manager
-    if (!bluetooth_manager_is_connected()) {
-        ESP_LOGW(TAG, "No active connection to send notification");
-        return ESP_FAIL;
-    }
+// Start BLE advertising
+void ble_app_advertise(void)
+{
+    struct ble_hs_adv_fields fields;
+    memset(&fields, 0, sizeof(fields));
 
-    // Use local buffer to reduce global memory usage
-    uint8_t notify_data[MAX_NOTIFICATION_LENGTH];
-    size_t len = strlen(message);
-    
-    // Ensure message doesn't exceed max length
-    len = (len > MAX_NOTIFICATION_LENGTH) ? MAX_NOTIFICATION_LENGTH : len;
-    strncpy((char*)notify_data, message, len);
+    const char *device_name = ble_svc_gap_device_name();
+    fields.name = (uint8_t *)device_name;
+    fields.name_len = strlen(device_name);
+    fields.name_is_complete = 1;
 
-    // Send notification
-    esp_ble_gatts_send_indicate(
-        s_notification_ctx.gatts_interface,
-        s_notification_ctx.conn_id,
-        s_notification_ctx.notification_handle,
-        len,
-        notify_data,
-        false
-    );
+    ble_gap_adv_set_fields(&fields);
 
-    ESP_LOGI(TAG, "Notification sent: %s", message);
-    return ESP_OK;
+    struct ble_gap_adv_params adv_params = {0};
+    adv_params.conn_mode = BLE_GAP_CONN_MODE_UND;
+    adv_params.disc_mode = BLE_GAP_DISC_MODE_GEN;
+
+    ble_gap_adv_start(ble_addr_type, NULL, BLE_HS_FOREVER, &adv_params, ble_gap_event, NULL);
+    ESP_LOGI(TAG, "BLE advertising started");
 }
 
-uint16_t get_notification_handle(void) {
-    return s_notification_ctx.notification_handle;
+// BLE stack sync callback
+void ble_app_on_sync(void)
+{
+    ble_hs_id_infer_auto(0, &ble_addr_type);
+    ble_app_advertise();
+    ESP_LOGI(TAG, "BLE stack synced, advertising started");
+}
+
+// NimBLE Host Task
+void host_task(void *param)
+{
+    ESP_LOGI(TAG, "BLE Host Task Started");
+    nimble_port_run();
+}
+
+void start_bluetooth_notify_task()
+{
+    ESP_LOGI(TAG, "Starting BLE Custom Notify Task");
+
+    nimble_port_init();
+
+    ble_svc_gap_device_name_set("Smart-watch");
+    ble_svc_gap_init();
+    ble_svc_gatt_init();
+    ble_gatts_count_cfg(gatt_svcs);
+    ble_gatts_add_svcs(gatt_svcs);
+
+    ble_hs_cfg.sync_cb = ble_app_on_sync;
+    nimble_port_freertos_init(host_task);
 }

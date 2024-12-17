@@ -1,7 +1,8 @@
 dependencies:
-  idf: ">=5.0"
-  lvgl/lvgl: "~8.3.0"
-  esp_lcd_ili9341: "^1.0"
-  espressif/esp_lcd_touch: ">=1.0.4"
-  atanisoft/esp_lcd_touch_xpt2046: "~1.0.0"
-  truita/mpu9250: "~1.0.1"
+  idf: '>=5.0'
+  lvgl/lvgl: ~8.3.0
+  esp_lcd_ili9341: ^1.0
+  espressif/esp_lcd_touch: '>=1.0.4'
+  atanisoft/esp_lcd_touch_xpt2046: ~1.0.0
+  truita/mpu9250: ~1.0.1
+  espressif/ble_conn_mgr: =*

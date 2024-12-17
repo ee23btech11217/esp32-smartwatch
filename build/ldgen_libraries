@@ -82,6 +82,7 @@
 /home/mnepraj/smart-watch/build/esp-idf/wifi_provisioning/libwifi_provisioning.a
 /home/mnepraj/smart-watch/build/esp-idf/espressif__esp_lcd_touch/libespressif__esp_lcd_touch.a
 /home/mnepraj/smart-watch/build/esp-idf/atanisoft__esp_lcd_touch_xpt2046/libatanisoft__esp_lcd_touch_xpt2046.a
+/home/mnepraj/smart-watch/build/esp-idf/espressif__ble_conn_mgr/libespressif__ble_conn_mgr.a
 /home/mnepraj/smart-watch/build/esp-idf/espressif__esp_lcd_ili9341/libespressif__esp_lcd_ili9341.a
 /home/mnepraj/smart-watch/build/esp-idf/lvgl__lvgl/liblvgl__lvgl.a
 /home/mnepraj/smart-watch/build/esp-idf/truita__mpu9250/libtruita__mpu9250.a

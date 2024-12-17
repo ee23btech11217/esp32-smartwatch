@@ -1,19 +1,16 @@
 #ifndef NOTIFY_H
 #define NOTIFY_H
 
-#include "esp_err.h"
-#include "esp_gatts_api.h"
+#include <esp_err.h>
+#include <esp_event.h>
+#include <esp_log.h>
+#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
 
-// Maximum notification length
-#define MAX_NOTIFICATION_LENGTH 50
+// Function to start the Bluetooth notification task
+void start_bluetooth_notify_task(void);
 
-// Initialize BLE GATT service for notifications
-esp_err_t notification_init(void);
-
-// Send a notification to connected device
-esp_err_t send_notification(const char* message);
-
-// Get current notification handle
-uint16_t get_notification_handle(void);
+// Bluetooth notification task function prototype
+void bluetooth_notify_task(void *param);
 
 #endif // NOTIFY_H

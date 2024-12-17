@@ -554,6 +554,11 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
+  include("/home/mnepraj/smart-watch/build/esp-idf/espressif__ble_conn_mgr/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
   include("/home/mnepraj/smart-watch/build/esp-idf/espressif__esp_lcd_ili9341/cmake_install.cmake")
 endif()
 

@@ -41,6 +41,7 @@ extern void create_watch_face(lv_disp_t *disp, float heart_rate, float spo2);
 extern void configure_system_time();
 extern void wifi_init_sta();
 extern void mpu9250_init();
+extern void start_bluetooth_notify_task();
 
 bool lvgl_lock(int timeout_ms)
 {
@@ -195,8 +196,9 @@ void app_main(void)
     // Initialize additional hardware
     mpu9250_init();
 
-    // Create tasks
-    xTaskCreatePinnedToCore(heart_rate_monitor_task, "Heart Rate Monitor", 4096, NULL, 1, NULL, 1);
-    xTaskCreatePinnedToCore(lvgl_port_task, "LVGL Port", 8192, NULL, 3, NULL, 1);
-    xTaskCreatePinnedToCore(create_watch_face_task, "Create Watch Face", 8192, disp, 2, NULL, 1);
+    // // Create tasks
+    // xTaskCreatePinnedToCore(heart_rate_monitor_task, "Heart Rate Monitor", 4096, NULL, 1, NULL, 1);
+    // xTaskCreatePinnedToCore(lvgl_port_task, "LVGL Port", 8192, NULL, 3, NULL, 1);
+    // xTaskCreatePinnedToCore(create_watch_face_task, "Create Watch Face", 8192, disp, 2, NULL, 1);
+    start_bluetooth_notify_task();
 }

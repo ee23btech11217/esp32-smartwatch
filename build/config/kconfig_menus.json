@@ -6399,10 +6399,7 @@
                                                 "help": "Maximum GATT Server Profiles Count",
                                                 "id": "BT_GATT_MAX_SR_PROFILES",
                                                 "name": "BT_GATT_MAX_SR_PROFILES",
-                                                "range": [
-                                                    1,
-                                                    32
-                                                ],
+                                                "range": null,
                                                 "title": "Max GATT Server Profiles",
                                                 "type": "int"
                                             },
@@ -6412,10 +6409,7 @@
                                                 "help": "Maximum GATT Service Attributes Count",
                                                 "id": "BT_GATT_MAX_SR_ATTRIBUTES",
                                                 "name": "BT_GATT_MAX_SR_ATTRIBUTES",
-                                                "range": [
-                                                    1,
-                                                    500
-                                                ],
+                                                "range": null,
                                                 "title": "Max GATT Service Attributes",
                                                 "type": "int"
                                             },
@@ -6506,10 +6500,7 @@
                                                 "help": "Maximum GATTC cache characteristic count",
                                                 "id": "BT_GATTC_MAX_CACHE_CHAR",
                                                 "name": "BT_GATTC_MAX_CACHE_CHAR",
-                                                "range": [
-                                                    1,
-                                                    500
-                                                ],
+                                                "range": null,
                                                 "title": "Max gattc cache characteristic for discover",
                                                 "type": "int"
                                             },
@@ -6519,10 +6510,7 @@
                                                 "help": "Maximum GATTC notify(indication) register number",
                                                 "id": "BT_GATTC_NOTIF_REG_MAX",
                                                 "name": "BT_GATTC_NOTIF_REG_MAX",
-                                                "range": [
-                                                    1,
-                                                    64
-                                                ],
+                                                "range": null,
                                                 "title": "Max gattc notify(indication) register number",
                                                 "type": "int"
                                             },
@@ -6542,10 +6530,7 @@
                                                 "help": "The number of attempts to reconnect if the connection establishment failed",
                                                 "id": "BT_GATTC_CONNECT_RETRY_COUNT",
                                                 "name": "BT_GATTC_CONNECT_RETRY_COUNT",
-                                                "range": [
-                                                    0,
-                                                    255
-                                                ],
+                                                "range": null,
                                                 "title": "The number of attempts to reconnect if the connection establishment failed",
                                                 "type": "int"
                                             }
@@ -8512,10 +8497,7 @@
                                 "help": "Maximum BT/BLE connection count. The ESP32-C3/S3 chip supports a maximum of 10 instances,\nincluding ADV, SCAN and connections. The ESP32-C3/S3 chip can connect up to 9 devices if\nADV or SCAN uses only one. If ADV and SCAN are both used, The ESP32-C3/S3 chip is connected\nto a maximum of 8 devices. Because Bluetooth cannot reclaim used instances once ADV or SCAN\nis used.",
                                 "id": "BT_ACL_CONNECTIONS",
                                 "name": "BT_ACL_CONNECTIONS",
-                                "range": [
-                                    1,
-                                    9
-                                ],
+                                "range": null,
                                 "title": "BT/BLE MAX ACL CONNECTIONS(1~9)",
                                 "type": "int"
                             },
@@ -8575,10 +8557,7 @@
                                 "help": "The number of security records for peer devices.",
                                 "id": "BT_SMP_MAX_BONDS",
                                 "name": "BT_SMP_MAX_BONDS",
-                                "range": [
-                                    1,
-                                    32
-                                ],
+                                "range": null,
                                 "title": "BT/BLE maximum bond device count",
                                 "type": "int"
                             },
@@ -8598,10 +8577,7 @@
                                 "help": "Bluetooth Connection establishment maximum time, if connection time exceeds this value, the connection\nestablishment fails, ESP_GATTC_OPEN_EVT or ESP_GATTS_OPEN_EVT is triggered.",
                                 "id": "BT_BLE_ESTAB_LINK_CONN_TOUT",
                                 "name": "BT_BLE_ESTAB_LINK_CONN_TOUT",
-                                "range": [
-                                    1,
-                                    60
-                                ],
+                                "range": null,
                                 "title": "Timeout of BLE connection establishment",
                                 "type": "int"
                             },
@@ -8611,10 +8587,7 @@
                                 "help": "Bluetooth Device name length shall be no larger than 248 octets, If the broadcast data cannot contain\nthe complete device name, then only the shortname will be displayed, the rest parts that can't fit in\nwill be truncated.",
                                 "id": "BT_MAX_DEVICE_NAME_LEN",
                                 "name": "BT_MAX_DEVICE_NAME_LEN",
-                                "range": [
-                                    32,
-                                    248
-                                ],
+                                "range": null,
                                 "title": "length of bluetooth device name",
                                 "type": "int"
                             },
@@ -8634,10 +8607,7 @@
                                 "help": "This set RPA timeout of Controller and Host.\nDefault is 900 s (15 minutes). Range is 1 s to 1 hour (3600 s).",
                                 "id": "BT_BLE_RPA_TIMEOUT",
                                 "name": "BT_BLE_RPA_TIMEOUT",
-                                "range": [
-                                    1,
-                                    3600
-                                ],
+                                "range": null,
                                 "title": "Timeout of resolvable private address",
                                 "type": "int"
                             },
@@ -8845,7 +8815,10 @@
                                 "help": "Defines maximum number of concurrent BLE connections. For ESP32, user\nis expected to configure BTDM_CTRL_BLE_MAX_CONN from controller menu\nalong with this option. Similarly for ESP32-C3 or ESP32-S3, user is expected to\nconfigure BT_CTRL_BLE_MAX_ACT from controller menu.\nFor ESP32C2, ESP32C6 and ESP32H2, each connection will take about 1k DRAM.",
                                 "id": "BT_NIMBLE_MAX_CONNECTIONS",
                                 "name": "BT_NIMBLE_MAX_CONNECTIONS",
-                                "range": null,
+                                "range": [
+                                    1,
+                                    9
+                                ],
                                 "title": "Maximum number of concurrent connections",
                                 "type": "int"
                             },
@@ -8875,7 +8848,10 @@
                                 "help": "Defines maximum number of BLE Connection Oriented Channels. When set to (0), BLE COC is not compiled in",
                                 "id": "BT_NIMBLE_L2CAP_COC_MAX_NUM",
                                 "name": "BT_NIMBLE_L2CAP_COC_MAX_NUM",
-                                "range": null,
+                                "range": [
+                                    0,
+                                    9
+                                ],
                                 "title": "Maximum number of connection oriented channels",
                                 "type": "int"
                             },
@@ -9287,7 +9263,10 @@
                                 "help": "Time interval between RPA address change.",
                                 "id": "BT_NIMBLE_RPA_TIMEOUT",
                                 "name": "BT_NIMBLE_RPA_TIMEOUT",
-                                "range": null,
+                                "range": [
+                                    1,
+                                    41400
+                                ],
                                 "title": "RPA timeout in seconds",
                                 "type": "int"
                             },
@@ -9679,7 +9658,10 @@
                                 "help": "BLE list size",
                                 "id": "BT_NIMBLE_WHITELIST_SIZE",
                                 "name": "BT_NIMBLE_WHITELIST_SIZE",
-                                "range": null,
+                                "range": [
+                                    1,
+                                    15
+                                ],
                                 "title": "BLE white list size",
                                 "type": "int"
                             },
@@ -28814,6 +28796,242 @@
                 "depends_on": null,
                 "id": "component-config-wi-fi-provisioning-manager",
                 "title": "Wi-Fi Provisioning Manager",
+                "type": "menu"
+            },
+            {
+                "children": [
+                    {
+                        "children": [
+                            {
+                                "children": [],
+                                "depends_on": "<choice BLE_CONN_MGR_ROLE>",
+                                "help": null,
+                                "id": "BLE_CONN_MGR_ROLE_PERIPHERAL",
+                                "name": "BLE_CONN_MGR_ROLE_PERIPHERAL",
+                                "range": null,
+                                "title": "Peripheral",
+                                "type": "bool"
+                            },
+                            {
+                                "children": [],
+                                "depends_on": "<choice BLE_CONN_MGR_ROLE>",
+                                "help": null,
+                                "id": "BLE_CONN_MGR_ROLE_CENTRAL",
+                                "name": "BLE_CONN_MGR_ROLE_CENTRAL",
+                                "range": null,
+                                "title": "Central",
+                                "type": "bool"
+                            },
+                            {
+                                "children": [],
+                                "depends_on": "<choice BLE_CONN_MGR_ROLE>",
+                                "help": null,
+                                "id": "BLE_CONN_MGR_ROLE_BOTH",
+                                "name": "BLE_CONN_MGR_ROLE_BOTH",
+                                "range": null,
+                                "title": "Both Peripheral and Central",
+                                "type": "bool"
+                            }
+                        ],
+                        "depends_on": null,
+                        "help": "Select which role does the device work, support peripheral/central/both.",
+                        "id": "component-config-ble-connection-management-ble-role",
+                        "name": "BLE_CONN_MGR_ROLE",
+                        "title": "BLE Role",
+                        "type": "choice"
+                    },
+                    {
+                        "children": [],
+                        "depends_on": null,
+                        "help": null,
+                        "id": "BLE_CONN_MGR_ROLE",
+                        "name": "BLE_CONN_MGR_ROLE",
+                        "range": null,
+                        "title": null,
+                        "type": "int"
+                    },
+                    {
+                        "children": [],
+                        "depends_on": null,
+                        "help": "Set the duration to wait for completed. Use a value big enough to avoid retransmissions.",
+                        "id": "BLE_CONN_MGR_WAIT_DURATION",
+                        "name": "BLE_CONN_MGR_WAIT_DURATION",
+                        "range": [
+                            10,
+                            31
+                        ],
+                        "title": "Duration to wait for completed",
+                        "type": "int"
+                    },
+                    {
+                        "children": [
+                            {
+                                "children": [],
+                                "depends_on": "BLE_CONN_MGR_EXTENDED_ADV",
+                                "help": "Set extended advertising capability.\n\nThis is a bit map of bits that represents extended advertising capability of the device:\n\n- BIT0: Connect flag, it performs connectable advertising if set.\n- BIT1: Scan flag, it performs scannable advertising if set.\n- BIT2: Directed flag, it performs directed advertising if set.\n- BIT3: High-duty directed flag, it performs high-duty directed advertising if set.\n- BIT4: Legacy PDUs flag, it uses legacy PDUs for advertising if set.\n- BIT5: Anonymous flag, it performs anonymous advertising if set.\n- BIT6: TX Power flag, it includes TX power in advertising PDU if set.\n- BIT7: Scan request notification flag, it enable scan request notification if set.",
+                                "id": "BLE_CONN_MGR_EXTENDED_ADV_CAP",
+                                "name": "BLE_CONN_MGR_EXTENDED_ADV_CAP",
+                                "range": null,
+                                "title": "Set Extended Advertising Capability",
+                                "type": "int"
+                            },
+                            {
+                                "children": [
+                                    {
+                                        "children": [],
+                                        "depends_on": "BLE_CONN_MGR_PERIODIC_ADV",
+                                        "help": "Set periodic advertising capability.\n\nThis is a bitmap represents periodic advertising capability of the device, the bits are defined as follows:\n\n- BIT0: TX Power flag, it includes TX power in advertising PDU if set.",
+                                        "id": "BLE_CONN_MGR_PERIODIC_ADV_CAP",
+                                        "name": "BLE_CONN_MGR_PERIODIC_ADV_CAP",
+                                        "range": null,
+                                        "title": "Set Periodic Advertising Capability",
+                                        "type": "int"
+                                    }
+                                ],
+                                "depends_on": "BLE_CONN_MGR_EXTENDED_ADV",
+                                "help": "Use this option to enable periodic advertising.",
+                                "id": "BLE_CONN_MGR_PERIODIC_ADV",
+                                "name": "BLE_CONN_MGR_PERIODIC_ADV",
+                                "range": null,
+                                "title": "Enable Periodic Adv",
+                                "type": "bool"
+                            }
+                        ],
+                        "depends_on": "BLE_CONN_MGR_ROLE_PERIPHERAL || (BLE_CONN_MGR_ROLE_BOTH && SOC_BLE_50_SUPPORTED)",
+                        "help": "Use this option to enable extended advertising besides esp32.",
+                        "id": "BLE_CONN_MGR_EXTENDED_ADV",
+                        "name": "BLE_CONN_MGR_EXTENDED_ADV",
+                        "range": null,
+                        "title": "Enable Extended Adv",
+                        "type": "bool"
+                    },
+                    {
+                        "children": [
+                            {
+                                "children": [],
+                                "depends_on": "BLE_CONN_MGR_PERIODIC_SYNC",
+                                "help": "Set periodic sync capability.\n\nThis is a bitmap represents periodic sync capability of the device, the bits are defined as follows:\n\n- BIT0: Reports flag, it is initially disabled when sync is created if set.",
+                                "id": "BLE_CONN_MGR_PERIODIC_SYNC_CAP",
+                                "name": "BLE_CONN_MGR_PERIODIC_SYNC_CAP",
+                                "range": null,
+                                "title": "Set Periodic Sync Capability",
+                                "type": "int"
+                            }
+                        ],
+                        "depends_on": "BLE_CONN_MGR_ROLE_CENTRAL || (BLE_CONN_MGR_ROLE_BOTH && SOC_BLE_50_SUPPORTED)",
+                        "help": "Use this option to enable periodic sync with the advertiser.",
+                        "id": "BLE_CONN_MGR_PERIODIC_SYNC",
+                        "name": "BLE_CONN_MGR_PERIODIC_SYNC",
+                        "range": null,
+                        "title": "Enable Periodic Sync",
+                        "type": "bool"
+                    },
+                    {
+                        "children": [
+                            {
+                                "children": [
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice BLE_CONN_MGR_SM_IO_TYPE>",
+                                        "help": null,
+                                        "id": "BLE_CONN_MGR_SM_IO_CAP_DISP_ONLY",
+                                        "name": "BLE_CONN_MGR_SM_IO_CAP_DISP_ONLY",
+                                        "range": null,
+                                        "title": "Display Only",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice BLE_CONN_MGR_SM_IO_TYPE>",
+                                        "help": null,
+                                        "id": "BLE_CONN_MGR_SM_IO_CAP_DISP_YES_NO",
+                                        "name": "BLE_CONN_MGR_SM_IO_CAP_DISP_YES_NO",
+                                        "range": null,
+                                        "title": "Display Yes/No",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice BLE_CONN_MGR_SM_IO_TYPE>",
+                                        "help": null,
+                                        "id": "BLE_CONN_MGR_SM_IO_CAP_KEYBOARD_ONLY",
+                                        "name": "BLE_CONN_MGR_SM_IO_CAP_KEYBOARD_ONLY",
+                                        "range": null,
+                                        "title": "Keyboard Only",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice BLE_CONN_MGR_SM_IO_TYPE>",
+                                        "help": null,
+                                        "id": "BLE_CONN_MGR_SM_IO_CAP_NO_IO",
+                                        "name": "BLE_CONN_MGR_SM_IO_CAP_NO_IO",
+                                        "range": null,
+                                        "title": "Just works",
+                                        "type": "bool"
+                                    },
+                                    {
+                                        "children": [],
+                                        "depends_on": "<choice BLE_CONN_MGR_SM_IO_TYPE>",
+                                        "help": null,
+                                        "id": "BLE_CONN_MGR_SM_IO_CAP_KEYBOARD_DISP",
+                                        "name": "BLE_CONN_MGR_SM_IO_CAP_KEYBOARD_DISP",
+                                        "range": null,
+                                        "title": "Both Keyboard & Display",
+                                        "type": "bool"
+                                    }
+                                ],
+                                "depends_on": "BLE_CONN_MGR_SM",
+                                "help": "Select which capability does the device work, support display/keyboard/both.",
+                                "id": "component-config-ble-connection-management-enable-security-manager-local-input-output-capability",
+                                "name": "BLE_CONN_MGR_SM_IO_TYPE",
+                                "title": "Local Input Output Capability",
+                                "type": "choice"
+                            },
+                            {
+                                "children": [],
+                                "depends_on": "BLE_CONN_MGR_SM",
+                                "help": null,
+                                "id": "BLE_CONN_MGR_SM_IO_TYPE",
+                                "name": "BLE_CONN_MGR_SM_IO_TYPE",
+                                "range": null,
+                                "title": null,
+                                "type": "int"
+                            },
+                            {
+                                "children": [],
+                                "depends_on": "BLE_CONN_MGR_SM",
+                                "help": "Set security manager capability.\n\nThis is a bitmap represents security manager capability of the device, the bits are defined as follows:\n\n- BIT0: OOB flag, it requires Out-Of-Band information when pairing if set.\n- BIT1: Bond flag, it stores keys distributed during bonding if set.\n- BIT2: MITM flag, it requires Man-In-The-Middle protection when pairing if set.\n- BIT3: Secure Connections flag, it requires secure connections for pairing if also supported by remote device if set.",
+                                "id": "BLE_CONN_MGR_SM_CAP",
+                                "name": "BLE_CONN_MGR_SM_CAP",
+                                "range": null,
+                                "title": "Set Security Manager Capability",
+                                "type": "int"
+                            },
+                            {
+                                "children": [],
+                                "depends_on": "BLE_CONN_MGR_SM",
+                                "help": "Set key distribution to indicate which keys to distribute during pairing, it will be set if bond flag is set to 1.",
+                                "id": "BLE_CONN_MGR_SM_KEY_DIST",
+                                "name": "BLE_CONN_MGR_SM_KEY_DIST",
+                                "range": null,
+                                "title": "Set Key Distribution",
+                                "type": "int"
+                            }
+                        ],
+                        "depends_on": null,
+                        "help": null,
+                        "id": "BLE_CONN_MGR_SM",
+                        "is_menuconfig": true,
+                        "name": "BLE_CONN_MGR_SM",
+                        "range": null,
+                        "title": "Enable Security Manager",
+                        "type": "menu"
+                    }
+                ],
+                "depends_on": null,
+                "id": "component-config-ble-connection-management",
+                "title": "BLE Connection Management",
                 "type": "menu"
             },
             {

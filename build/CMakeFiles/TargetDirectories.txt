@@ -831,6 +831,13 @@
 /home/mnepraj/smart-watch/build/esp-idf/espressif__cmake_utilities/CMakeFiles/install.dir
 /home/mnepraj/smart-watch/build/esp-idf/espressif__cmake_utilities/CMakeFiles/install/local.dir
 /home/mnepraj/smart-watch/build/esp-idf/espressif__cmake_utilities/CMakeFiles/install/strip.dir
+/home/mnepraj/smart-watch/build/esp-idf/espressif__ble_conn_mgr/CMakeFiles/__idf_espressif__ble_conn_mgr.dir
+/home/mnepraj/smart-watch/build/esp-idf/espressif__ble_conn_mgr/CMakeFiles/edit_cache.dir
+/home/mnepraj/smart-watch/build/esp-idf/espressif__ble_conn_mgr/CMakeFiles/rebuild_cache.dir
+/home/mnepraj/smart-watch/build/esp-idf/espressif__ble_conn_mgr/CMakeFiles/list_install_components.dir
+/home/mnepraj/smart-watch/build/esp-idf/espressif__ble_conn_mgr/CMakeFiles/install.dir
+/home/mnepraj/smart-watch/build/esp-idf/espressif__ble_conn_mgr/CMakeFiles/install/local.dir
+/home/mnepraj/smart-watch/build/esp-idf/espressif__ble_conn_mgr/CMakeFiles/install/strip.dir
 /home/mnepraj/smart-watch/build/esp-idf/espressif__esp_lcd_ili9341/CMakeFiles/__idf_espressif__esp_lcd_ili9341.dir
 /home/mnepraj/smart-watch/build/esp-idf/espressif__esp_lcd_ili9341/CMakeFiles/edit_cache.dir
 /home/mnepraj/smart-watch/build/esp-idf/espressif__esp_lcd_ili9341/CMakeFiles/rebuild_cache.dir
