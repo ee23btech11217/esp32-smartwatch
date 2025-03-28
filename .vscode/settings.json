@@ -10,7 +10,7 @@
     "idf.openOcdConfigs": [
         "board/esp32-wrover-kit-3.3v.cfg"
     ],
-    "idf.port": "/dev/ttyACM0",
+    "idf.port": "/dev/ttyUSB0",
     "idf.pythonBinPath": "/home/mnepraj/esp/esp-idf/tools/python_env/idf5.3_py3.12_env/bin/python",
     "idf.toolsPath": "/home/mnepraj/esp/esp-idf/tools",
     "idf.flashType": "UART",

@@ -11,15 +11,18 @@
 #include "driver/i2c.h"
 #include "esp_err.h"
 #include "esp_log.h"
+#include "esp_wifi.h"
+#include "esp_event.h"
+#include "nvs_flash.h"
 
 #define LOGI(...) ESP_LOGI(TAG, __VA_ARGS__)
 #include "lvgl.h"
-#include "wifiManager.h"
 #include "lvglPort.h"
 #include "max30100.h"
 
 static const char *TAG = "main";
 
+// Hardware Configuration
 #define EXAMPLE_PIN_NUM_SCLK 18
 #define EXAMPLE_PIN_NUM_MOSI 23
 #define EXAMPLE_PIN_NUM_MISO 19
@@ -31,32 +34,145 @@ static const char *TAG = "main";
 
 #define EXAMPLE_LVGL_TICK_PERIOD_MS 2
 #define EXAMPLE_LVGL_TASK_DELAY_MS 10
+#define WIFI_CONNECT_TIMEOUT_MS 20000
 
+// Global variables
 static SemaphoreHandle_t lvgl_mux = NULL;
 static float g_heart_rate = 0.0f;
 static float g_spo2 = 0.0f;
 static SemaphoreHandle_t heart_rate_mutex = NULL;
+static EventGroupHandle_t wifi_event_group;
+const int WIFI_CONNECTED_BIT = BIT0;
 
+// Forward declarations
 extern void create_watch_face(lv_disp_t *disp, float heart_rate, float spo2);
 extern void configure_system_time();
-extern void wifi_init_sta();
 extern void mpu9250_init();
 extern void start_bluetooth_notify_task();
 
-bool lvgl_lock(int timeout_ms)
-{
+// LVGL locking functions
+bool lvgl_lock(int timeout_ms) {
     const TickType_t timeout_ticks = (timeout_ms == -1) ? portMAX_DELAY : pdMS_TO_TICKS(timeout_ms);
     return xSemaphoreTakeRecursive(lvgl_mux, timeout_ticks) == pdTRUE;
 }
 
-void lvgl_unlock(void)
-{
+void lvgl_unlock(void) {
     xSemaphoreGiveRecursive(lvgl_mux);
 }
 
-void heart_rate_monitor_task(void *pvParameters)
-{
+// WiFi event handler
+static void wifi_event_handler(void* arg, esp_event_base_t event_base, 
+                             int32_t event_id, void* event_data) {
+    if (event_base == WIFI_EVENT && event_id == WIFI_EVENT_STA_DISCONNECTED) {
+        LOGI("WiFi disconnected, attempting to reconnect...");
+        esp_wifi_connect();
+        xEventGroupClearBits(wifi_event_group, WIFI_CONNECTED_BIT);
+    } else if (event_base == IP_EVENT && event_id == IP_EVENT_STA_GOT_IP) {
+        ip_event_got_ip_t* event = (ip_event_got_ip_t*) event_data;
+        LOGI("Got IP: " IPSTR, IP2STR(&event->ip_info.ip));
+        xEventGroupSetBits(wifi_event_group, WIFI_CONNECTED_BIT);
+    }
+}
+
+// Initialize WiFi
+void wifi_init_sta(const char *ssid, const char *password) {
+    wifi_event_group = xEventGroupCreate();
+
+    ESP_ERROR_CHECK(esp_netif_init());
+    ESP_ERROR_CHECK(esp_event_loop_create_default());
+    esp_netif_create_default_wifi_sta();
+
+    wifi_init_config_t cfg = WIFI_INIT_CONFIG_DEFAULT();
+    ESP_ERROR_CHECK(esp_wifi_init(&cfg));
+
+    ESP_ERROR_CHECK(esp_event_handler_instance_register(WIFI_EVENT,
+                                                      ESP_EVENT_ANY_ID,
+                                                      &wifi_event_handler,
+                                                      NULL,
+                                                      NULL));
+    ESP_ERROR_CHECK(esp_event_handler_instance_register(IP_EVENT,
+                                                      IP_EVENT_STA_GOT_IP,
+                                                      &wifi_event_handler,
+                                                      NULL,
+                                                      NULL));
+
+    wifi_config_t wifi_config = {
+        .sta = {
+            .ssid = "",
+            .password = "",
+            .threshold.authmode = WIFI_AUTH_WPA2_PSK,
+        },
+    };
+    strncpy((char*)wifi_config.sta.ssid, ssid, sizeof(wifi_config.sta.ssid));
+    strncpy((char*)wifi_config.sta.password, password, sizeof(wifi_config.sta.password));
+
+    ESP_ERROR_CHECK(esp_wifi_set_mode(WIFI_MODE_STA));
+    ESP_ERROR_CHECK(esp_wifi_set_config(WIFI_IF_STA, &wifi_config));
+    ESP_ERROR_CHECK(esp_wifi_start());
+
+    LOGI("WiFi initialization complete, connecting to %s...", ssid);
+    ESP_ERROR_CHECK(esp_wifi_connect());
+}
+
+// Wait for WiFi connection
+void wait_for_wifi_connection() {
+    EventBits_t bits = xEventGroupWaitBits(wifi_event_group,
+                                         WIFI_CONNECTED_BIT,
+                                         pdFALSE,
+                                         pdTRUE,
+                                         pdMS_TO_TICKS(WIFI_CONNECT_TIMEOUT_MS));
+    if (bits & WIFI_CONNECTED_BIT) {
+        LOGI("WiFi connected successfully");
+    } else {
+        LOGI("Failed to connect to WiFi within timeout");
+    }
+}
+
+// Modified create_watch_face_task with proper mutex checking
+void create_watch_face_task(void *arg) {
+    lv_disp_t *disp = (lv_disp_t *)arg;
+    float current_heart_rate = 0.0f;
+    float current_spo2 = 0.0f;
+    TickType_t last_wake_time = xTaskGetTickCount();
+
+    // Wait for mutex to be initialized
+    while(heart_rate_mutex == NULL) {
+        vTaskDelay(pdMS_TO_TICKS(100));
+        LOGI("Waiting for heart_rate_mutex initialization...");
+    }
+
+    while (1) {
+        // Safely get heart rate data with timeout
+        if (xSemaphoreTake(heart_rate_mutex, pdMS_TO_TICKS(100)) == pdTRUE) {
+            current_heart_rate = g_heart_rate;
+            current_spo2 = g_spo2;
+            xSemaphoreGive(heart_rate_mutex);
+        } else {
+            LOGI("Failed to take heart_rate_mutex within timeout");
+        }
+
+        // Lock LVGL and create watch face
+        if (lvgl_lock(100)) {
+            create_watch_face(disp, current_heart_rate, current_spo2);
+            lvgl_unlock();
+        } else {
+            LOGI("Failed to acquire LVGL lock");
+        }
+
+        vTaskDelayUntil(&last_wake_time, pdMS_TO_TICKS(EXAMPLE_LVGL_TASK_DELAY_MS));
+    }
+}
+
+// Modified heart_rate_monitor_task to create mutex first
+void heart_rate_monitor_task(void *pvParameters) {
+    // Create mutex before anything else
     heart_rate_mutex = xSemaphoreCreateMutex();
+    if (heart_rate_mutex == NULL) {
+        LOGI("Failed to create heart_rate_mutex");
+        vTaskDelete(NULL);
+        return;
+    }
+
     max30100_config_t max30100_config;
     max30100_data_t max30100_data;
 
@@ -70,86 +186,54 @@ void heart_rate_monitor_task(void *pvParameters)
         MAX30100_LED_CURRENT_27_1MA,
         15, 10, true, false);
 
-    while (1)
-    {
-        LOGI("Enterring heart-1");
-        if (max30100_update(&max30100_config, &max30100_data) == ESP_OK)
-        {
-            if (xSemaphoreTake(heart_rate_mutex, pdMS_TO_TICKS(100)) == pdTRUE)
-            {
-                if (max30100_data.pulse_detected)
-                {
+    while (1) {
+        if (max30100_update(&max30100_config, &max30100_data) == ESP_OK) {
+            if (xSemaphoreTake(heart_rate_mutex, pdMS_TO_TICKS(100)) == pdTRUE) {
+                if (max30100_data.pulse_detected) {
                     g_heart_rate = max30100_data.heart_bpm;
                     g_spo2 = max30100_data.spO2;
                 }
                 xSemaphoreGive(heart_rate_mutex);
-                LOGI("Enterring heart-2");
             }
         }
         vTaskDelay(pdMS_TO_TICKS(500));
     }
 }
-void create_watch_face_task(void *arg)
-{
-    lv_disp_t *disp = (lv_disp_t *)arg;
-    float current_heart_rate = 0.0f;
-    float current_spo2 = 0.0f;
+
+// LVGL task handler
+void lvgl_port_task(void *arg) {
     TickType_t last_wake_time = xTaskGetTickCount();
 
-    while (1)
-    {
-        LOGI("Enterring create watch face-1");
-
-        // Safely get heart rate data
-        if (xSemaphoreTake(heart_rate_mutex, pdMS_TO_TICKS(50)) == pdTRUE)
-        {
-            current_heart_rate = g_heart_rate;
-            current_spo2 = g_spo2;
-            xSemaphoreGive(heart_rate_mutex);
-        }
-
-        // Lock LVGL and create watch face
-        if (lvgl_lock(100))
-        {
-            LOGI("Enterring create watch face-2");
-            create_watch_face(disp, current_heart_rate, current_spo2);
-            lvgl_unlock();
-        }
-
-        vTaskDelayUntil(&last_wake_time, pdMS_TO_TICKS(EXAMPLE_LVGL_TASK_DELAY_MS));
-    }
-}
-
-void lvgl_port_task(void *arg)
-{
-    TickType_t last_wake_time = xTaskGetTickCount();
-
-    while (1)
-    {
-        LOGI("Enterring lvgl-port");
-        if (lvgl_lock(100))
-        {
+    while (1) {
+        if (lvgl_lock(100)) {
             lv_timer_handler();
             lvgl_unlock();
         }
-
         vTaskDelayUntil(&last_wake_time, pdMS_TO_TICKS(EXAMPLE_LVGL_TASK_DELAY_MS));
     }
 }
 
-static void increase_lvgl_tick(void *arg)
-{
+// LVGL tick timer callback
+static void increase_lvgl_tick(void *arg) {
     lv_tick_inc(EXAMPLE_LVGL_TICK_PERIOD_MS);
 }
 
-void app_main(void)
-{
+// Main application
+void app_main(void) {
+    // Initialize NVS (required for WiFi)
+    esp_err_t ret = nvs_flash_init();
+    if (ret == ESP_ERR_NVS_NO_FREE_PAGES || ret == ESP_ERR_NVS_NEW_VERSION_FOUND) {
+        ESP_ERROR_CHECK(nvs_flash_erase());
+        ret = nvs_flash_init();
+    }
+    ESP_ERROR_CHECK(ret);
+
     // Initialize LVGL
     lv_init();
 
     // Initialize WiFi
-    ESP_ERROR_CHECK(wifi_manager_init());
-    ESP_ERROR_CHECK(wifi_manager_connect("Jio 1", "raja1234"));
+    wifi_init_sta("Jio 1", "raja1234");
+    wait_for_wifi_connection();
 
     // Configure system time
     configure_system_time();
@@ -163,7 +247,6 @@ void app_main(void)
         .scl_pullup_en = GPIO_PULLUP_ENABLE,
         .master.clk_speed = 400000,
     };
-
     ESP_ERROR_CHECK(i2c_param_config(I2C_MASTER_NUM, &i2c_conf));
     ESP_ERROR_CHECK(i2c_driver_install(I2C_MASTER_NUM, i2c_conf.mode, 0, 0, 0));
 
@@ -176,7 +259,6 @@ void app_main(void)
         .quadhd_io_num = -1,
         .max_transfer_sz = 38400,
     };
-
     ESP_ERROR_CHECK(spi_bus_initialize(HOST, &buscfg, SPI_DMA_CH_AUTO));
 
     // Initialize LVGL display
@@ -185,20 +267,40 @@ void app_main(void)
     // Create LVGL tick timer
     const esp_timer_create_args_t lvgl_tick_timer_args = {
         .callback = &increase_lvgl_tick,
-        .name = "lvgl_tick"};
+        .name = "lvgl_tick"
+    };
     esp_timer_handle_t lvgl_tick_timer = NULL;
     ESP_ERROR_CHECK(esp_timer_create(&lvgl_tick_timer_args, &lvgl_tick_timer));
     ESP_ERROR_CHECK(esp_timer_start_periodic(lvgl_tick_timer, EXAMPLE_LVGL_TICK_PERIOD_MS * 1000));
 
-    // Create mutexes
-    lvgl_mux = xSemaphoreCreateRecursiveMutex();
-
     // Initialize additional hardware
     mpu9250_init();
 
-    // // Create tasks
-    xTaskCreatePinnedToCore(heart_rate_monitor_task, "Heart Rate Monitor", 4096, NULL, 1, NULL, 1);
-    xTaskCreatePinnedToCore(lvgl_port_task, "LVGL Port", 8192, NULL, 3, NULL, 1);
-    xTaskCreatePinnedToCore(create_watch_face_task, "Create Watch Face", 8192, disp, 2, NULL, 1);
+    BaseType_t task_created;
+    
+    task_created = xTaskCreatePinnedToCore(heart_rate_monitor_task, 
+                                         "Heart Rate Monitor", 
+                                         4096, NULL, 2, NULL, 1);
+    if (task_created != pdPASS) {
+        ESP_LOGI(TAG, "Failed to create Heart Rate Monitor task");
+    }
+
+    task_created = xTaskCreatePinnedToCore(lvgl_port_task, 
+                                         "LVGL Port", 
+                                         8192, NULL, 3, NULL, 1);
+    if (task_created != pdPASS) {
+        ESP_LOGI(TAG, "Failed to create LVGL Port task");
+    }
+
+    task_created = xTaskCreatePinnedToCore(create_watch_face_task, 
+                                         "Create Watch Face", 
+                                         8192, disp, 1, NULL, 1);
+    if (task_created != pdPASS) {
+        ESP_LOGI(TAG, "Failed to create Watch Face task");
+    }
+
     start_bluetooth_notify_task();
+    
+    ESP_LOGI(TAG, "All components initialized successfully");
+
 }
